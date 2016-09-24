@@ -3,6 +3,8 @@ h1 {
 	color:Chocolate ;
 }
 .top{
+	font-family:'Helvetica',sans-serif;
+	font-size:28px;
 	background-image:
 url("https://upload.wikimedia.org/wikipedia/commons/2/21/Death_Valley_Zabriskie_Point.jpg");
 height: 856px;
