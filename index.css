@@ -1,4 +1,12 @@
-html {
+h1 {
+	font-family:'Trebuchet MS',Helvetica,sans-serif;
 	color: green;
 }
+.top{
+	background-image:
+url("https://upload.wikimedia.org/wikipedia/commons/2/21/Death_Valley_Zabriskie_Point.jpg");
+background-size:cover;
+}
+
+
 
