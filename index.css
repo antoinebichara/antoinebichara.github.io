@@ -5,8 +5,11 @@ h1 {
 .top{
 	background-image:
 url("https://upload.wikimedia.org/wikipedia/commons/2/21/Death_Valley_Zabriskie_Point.jpg");
-
+height: 388px;
 }
-
+.bottom{
+border: 1px solid #100
+text-align:center;
+padding:10px;
 
 
