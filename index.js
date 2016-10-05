@@ -1,5 +1,5 @@
 $(document).ready(function() {
- $('div').click(function(){
-$('div').fadeOut('slow');
+ $('.top').click(function(){
+$('.top').fadeOut('slow');
 });
 });
