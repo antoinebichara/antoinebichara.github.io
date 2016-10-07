@@ -28,7 +28,7 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url('../images/header.jpg');
+    background-image: url('../images/ios.jpg');
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -145,11 +145,11 @@ header .header-content .header-content-inner p {
 }
 
 .item-1 {
-	background: url('../images/writing.png');
+	background: url('../images/cpm.png');
 	}
 	
 .item-2 {
-	background: url('../images/concert.jpg');
+	background: url('../images/rocket.jpg');
 	}
 	
 .item-3 {
