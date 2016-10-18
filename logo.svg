@@ -4,8 +4,8 @@
 <svg version="1.1" id="ab_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="10px" height="8px" viewBox="0 0 8000 6000" enable-background="new 0 0 8000 6000" xml:space="preserve">
 <g id="background" display="none">
-	<rect id="back_1_" display="inline" fill="#3D3B3C" width="10" height="8"/>
-	<rect id="back_3_" display="inline" fill="#DDD9D4" width="10" height="8"/>
+	<rect id="back_1_" display="inline" fill="#3D3B3C" width="100" height="80"/>
+	<rect id="back_3_" display="inline" fill="#DDD9D4" width="100" height="80"/>
 </g>
 <rect id="line" x="4832.5" y="2500" display="none" fill="#2D8841" width="10" height="1000"/>
 <g id="orbit">
