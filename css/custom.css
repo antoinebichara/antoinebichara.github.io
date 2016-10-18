@@ -33,7 +33,7 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url('../images/ios.png');
+    background-image: url('../images/ios.jpg');
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -92,6 +92,12 @@ header .header-content .header-content-inner p {
         max-width: 80%;
         font-size: 18px;
     }
+}
+.section-picture{
+margin-top:0
+margin-bottom:20px;
+background-image: url('../images/ios.jpg');
+
 }
 
 .section-heading {
