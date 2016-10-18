@@ -95,6 +95,14 @@ header .header-content .header-content-inner p {
     }
 }
 
+.section-picture{
+margin-top:0;
+martin-bottom:20px;
+background-image: url('../images/ios.jpg')
+}
+
+
+
 .section-heading {
     margin-top: 0;
     margin-bottom: 20px;
