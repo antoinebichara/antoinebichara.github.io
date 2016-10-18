@@ -23,11 +23,11 @@ p {
 }
 
 h3{
-color: black;
+color: white;
 }
 .ios{
 height:1000px;
-background-image:url('../images/ios.jpg');
+background-image:url('../images/moon.jpg');
 background-size: cover;
 }
 
