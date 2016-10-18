@@ -27,10 +27,10 @@ color: white;
 font-family:"Courier New" "Avenir" "Bell MT"  "Times New Roman", Times, serif;
 }
 .ios{
-height:780px;
+height:580px;
 background-image:url('../images/ios.jpg');
 background-size: 100% auto;
-background-position: 0 -150px;
+background-position: 0 -350px;
 }
 
 
