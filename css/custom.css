@@ -36,9 +36,9 @@ header {
     background-image: url('../images/ios.png');
     background-position: center;
     -webkit-background-size: cover;
-    -moz-background-size: cover;
+<!--    -moz-background-size: cover; -->
     background-size: cover;
-    -o-background-size: cover;
+<!--    -o-background-size: cover; -->
 }
 
 header .header-content {
