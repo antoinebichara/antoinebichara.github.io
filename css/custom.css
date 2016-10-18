@@ -22,6 +22,10 @@ p {
     line-height: 1.5;
 }
 
+h3{
+font-color: black;
+}
+
 .ios {
 background-image: url('.../images/ios.jpg');
 height=100px;
@@ -304,7 +308,7 @@ header .header-content .header-content-inner p {
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
     border-color: #006C00;
-    color: #006C00;
+    color: white;
     background-color: #006C00;
 }
 
@@ -356,7 +360,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-    border-color: limegreen;
+    border-color: #006C00;
     color: #fff;
     background-color: yellow;
 }
@@ -427,7 +431,7 @@ img::-moz-selection {
 }
 
 .text-primary {
-    color: #006C00;
+    color: white;
 }
 
 .bg-primary {
