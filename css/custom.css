@@ -23,7 +23,7 @@ p {
 }
 
 h3{
-font-color: black;
+color: black;
 }
 
 
@@ -35,10 +35,10 @@ header {
     color: #fff;
     background-image: url('../images/ios.jpg');
     background-position: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+  <!--  -webkit-background-size: cover;-->
+  <!--  -moz-background-size: cover;-->
+  <!--  background-size: cover;
+    -o-background-size: cover;-->
 }
 
 header .header-content {
@@ -92,12 +92,6 @@ header .header-content .header-content-inner p {
         max-width: 80%;
         font-size: 18px;
     }
-}
-.section-picture{
-margin-top:0
-margin-bottom:20px;
-background-image: url('../images/ios.jpg');
-
 }
 
 .section-heading {
