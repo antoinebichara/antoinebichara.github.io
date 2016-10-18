@@ -26,6 +26,10 @@ h3{
 color: black;
 }
 
+.video{
+height: 100px;
+background-color: blue;
+}
 
 header {
     position: relative;
@@ -36,7 +40,7 @@ header {
     background-image: url('../images/ios.png');
     background-position: center;
   <!--  -webkit-background-size: cover;-->
-<!--    -moz-background-size: cover; -->
+    -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
