@@ -26,10 +26,7 @@ h3{
 font-color: black;
 }
 
-.ios {
-background-image: url('.../images/ios.jpg');
-height=100px;
-}
+
 header {
     position: relative;
     width: 100%;
