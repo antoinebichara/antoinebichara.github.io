@@ -26,8 +26,9 @@ h3{
 color: black;
 }
 .ios{
-height:500px;
+height:600px;
 background-image:url('../images/ios.jpg');
+background-size: cover;
 }
 
 
