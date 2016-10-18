@@ -25,6 +25,11 @@ p {
 h3{
 color: black;
 }
+.ios{
+height:500px;
+background-image:url('../images/ios.jpg');
+}
+
 
 .video{
 height: 850px;
