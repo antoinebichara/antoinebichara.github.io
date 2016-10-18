@@ -217,7 +217,7 @@ header .header-content .header-content-inner p {
 
 .navbar-default .nav > li>a:hover,
 .navbar-default .nav>li>a:focus:hover {
-    color: yellowgreen;
+    color: #006C00;
 }
 
 .navbar-default .nav > li.active>a,
@@ -280,7 +280,7 @@ header .header-content .header-content-inner p {
 
     .navbar-default.affix .nav > li>a:hover,
     .navbar-default.affix .nav>li>a:focus:hover {
-        color: yellowgreen;
+        color: #006C00;
     }
 }
 
@@ -338,7 +338,7 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-primary {
-    border-color: yellowgreen;
+    border-color: #006C00;
     color: #fff;
     background-color: yellowgreen;
     -webkit-transition: all .35s;
