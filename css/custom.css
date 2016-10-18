@@ -134,6 +134,11 @@ background-image: url('../images/ios.jpg')
 	color: #fff;
     background-color: rgb(45,135,65);
 }
+.content-25 {
+    padding: 100px 0;
+}
+
+
 
 .content-3 {
 	padding: 20px 0 40px;
@@ -176,6 +181,11 @@ background-image: url('../images/ios.jpg')
 .item-2 {
 	background: url('../images/rocket.jpg');
 	}
+.item-25 {
+        background: url('../images/cpm.png');
+        }
+
+
 	
 .item-3 {
 	background: url('../images/rocket2.jpg');
@@ -183,6 +193,7 @@ background-image: url('../images/ios.jpg')
 		
 .item-1,
 .item-2,
+.item-25,
 .item-3 {
 	background-size: cover;
 	background-position: 50% 50%;
