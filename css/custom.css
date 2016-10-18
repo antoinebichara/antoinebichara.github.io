@@ -24,14 +24,14 @@ p {
 
 h3{
 color: white;
-font-family:"Courier New" "Avenir" "Bell MT"  "Times New Roman", Times, serif;
+font-family:"Avenir" "Bell MT"  "Times New Roman", Times, serif;
 }
 .ios{
-height:880px;
+height:780px;
 background-image:url('../images/ios.jpg');
 
 background-size: cover;
-background-position: 0 -50px;
+background-position: 0 -150px;
 }
 
 
