@@ -381,7 +381,7 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-    border-color: yellowgreen;
+    border-color: #006C00;
     background-color: black;
 }
 
@@ -423,7 +423,7 @@ img::-moz-selection {
 }
 
 .text-primary {
-    color: yellowgreen;
+    color: #006C00;
 }
 
 .bg-primary {
