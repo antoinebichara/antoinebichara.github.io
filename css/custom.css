@@ -299,9 +299,9 @@ header .header-content .header-content-inner p {
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-    border-color: #eee;
-    color: #222;
-    background-color: #eee;
+    border-color: #006C00;
+    color: #006C00;
+    background-color: #006C00;
 }
 
 .btn-default:active,
@@ -339,8 +339,8 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
     border-color: #006C00;
-    color: #fff;
-    background-color: yellowgreen;
+    color: #006C00;
+    background-color: #006C00;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
