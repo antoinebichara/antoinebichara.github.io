@@ -33,12 +33,12 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url('../images/ios.jpg');
+    background-image: url('../images/ios.png') repeat-x, url('.../images/ios.jpg') repeat;
     background-position: center;
-  <!--  -webkit-background-size: cover;-->
-  <!--  -moz-background-size: cover;-->
-  <!--  background-size: cover;
-    -o-background-size: cover;-->
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 header .header-content {
