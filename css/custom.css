@@ -286,7 +286,7 @@ header .header-content .header-content-inner p {
 
 .btn-default {
     border-color: #006C00;
-    color:#006C00;
+    color:white;
     background-color: #006C00;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
@@ -333,13 +333,13 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-default .badge {
-    color: #fff;
+    color: white;
     background-color: #222;
 }
 
 .btn-primary {
     border-color: #006C00;
-    color: #006C00;
+    color: white;
     background-color: #006C00;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
