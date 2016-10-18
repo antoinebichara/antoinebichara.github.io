@@ -27,7 +27,7 @@ color: white;
 }
 .ios{
 height:1000px;
-background-image:url('../images/moon.jpg');
+background-image:url('../images/ios.jpg');
 background-size: cover;
 }
 
@@ -43,7 +43,7 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url('../images/ios.png');
+    background-image: url('../images/moon.jpg');
     background-position: center;
   <!--  -webkit-background-size: cover;-->
     -moz-background-size: cover;
