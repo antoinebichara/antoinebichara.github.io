@@ -3,28 +3,6 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-#khaosoi {
-    position: relative;
-    height: 150px;
-}
-
-#khaosoileft, #khaosoiright {
-    position: absolute;
-    top: 0px; 
-    bottom: 0px;
-}
-
-#khaosoileft {
-    left: 0px; 
-    width: 300px;
-    background: red;
-}
-
-#khaosoiright {
-    left: 300px; 
-    right: 0px;    
-    background: green;
-}
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 20px;
