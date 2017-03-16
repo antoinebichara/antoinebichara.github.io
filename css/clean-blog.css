@@ -142,7 +142,7 @@ hr.small {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 .intro-header .site-heading,
 .intro-header .post-heading,
@@ -154,7 +154,7 @@ hr.small {
   .intro-header .site-heading,
   .intro-header .post-heading,
   .intro-header .page-heading {
-    padding: 15px 0;
+    padding: 350px 0;
   }
 }
 .intro-header .site-heading,
@@ -163,7 +163,7 @@ hr.small {
 }
 .intro-header .site-heading h1,
 .intro-header .page-heading h1 {
-  margin-top: 0;
+  margin-top: 100px;
   font-size: 50px;
 }
 .intro-header .site-heading .subheading,
@@ -192,7 +192,7 @@ hr.small {
 .intro-header .post-heading .subheading {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 24px;
-  margin: 10px 0 30px;
+  margin: 10px 0 0px;
   font-weight: 600;
 }
 .intro-header .post-heading .meta {
@@ -222,13 +222,13 @@ hr.small {
 }
 .post-preview > a > .post-title {
   font-size: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 .post-preview > a > .post-subtitle {
   margin: 0;
   font-weight: 300;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
 }
 .post-preview > .post-meta {
   color: #777777;
