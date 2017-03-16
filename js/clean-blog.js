@@ -12,6 +12,15 @@ $(function() {
 // Navigation Scripts to Show Header on Scroll-Up
 jQuery(document).ready(function($) {
     var MQL = 1170;
+	
+	var everythingLoaded = setInterval(function() {
+  if (/loaded|complete/.test(document.readyState)) {
+    clearInterval(everythingLoaded);
+    init(); // this is the function that gets called when everything is loaded
+  }
+}, 10);
+
+
 
     //primary navigation slide-in effect
     if ($(window).width() > MQL) {
@@ -39,12 +48,7 @@ jQuery(document).ready(function($) {
     }
 });
 
-var everythingLoaded = setInterval(function() {
-  if (/loaded|complete/.test(document.readyState)) {
-    clearInterval(everythingLoaded);
-    init(); // this is the function that gets called when everything is loaded
-  }
-}, 10);
+
 
 
 
