@@ -1577,7 +1577,7 @@ var simplemaps_worldmap_mapdata={
       lat: "-22.906",
       lng: "-43.1729",
       color: "default",
-      description: "default",
+      description: "Brigadeiro",
       url: "../brigadeiro.html"
     },
     "1": {
@@ -1585,14 +1585,14 @@ var simplemaps_worldmap_mapdata={
       lat: "22.9868",
       lng: "87.8550",
       color: "default",
-      description: "default",
+      description: "Bengali Salmon",
       url: "../bengalisalmon.html"
     },
     "3": {
       name: "Caprese",
       lat: "43.6415",
       lng: "11.9871",
-      description: "default",
+      description: "Caprese Risotto",
       color: "default",
       url: "../caprese.html",
       size: "default"
