@@ -36,11 +36,6 @@ a img:focus {
   cursor: zoom-in;
 }
 
-.map {
-  text-align : left;
-  width: 500px;
-  background-color: powderblue;
-}
 blockquote {
   color: #777777;
   font-style: italic;
