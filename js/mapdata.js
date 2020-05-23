@@ -368,7 +368,7 @@ var simplemaps_worldmap_mapdata={
     },
     EC: {
       name: "Ecuador",
-      description: "Locro de Papas",
+      description: "Locro de Papa",
       color: "orange",
       hover_color: "default",
       url: "../potato-soup.html"
@@ -1658,6 +1658,15 @@ var simplemaps_worldmap_mapdata={
       description: "French Ratatouille",
       color: "default",
       url: "../ratatouille.html",
+      size: "default"
+    },
+ "11": {
+      name: "Singapore",
+      lat: "1.3521",
+      lng: "103.8198",
+      description: "Singaporean Hokkien Mee",
+      color: "default",
+      url: "../hokkienmee.html",
       size: "default"
     },
   },
