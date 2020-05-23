@@ -1597,6 +1597,17 @@ var simplemaps_worldmap_mapdata={
       url: "default",
       size: "default"
     }
+    "4": {
+      name: "New Orleans",
+      lat: "29.95",
+      lng: "-90.0715",
+      description: "default",
+      color: "default",
+      url: "default",
+      size: "default"
+    }
+
+
   },
   labels: {}
 };
