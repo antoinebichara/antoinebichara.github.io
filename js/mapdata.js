@@ -1047,7 +1047,7 @@ var simplemaps_worldmap_mapdata={
     },
     SE: {
       name: "Sweden",
-      description: "default",
+      description: "Kladdkaka",
       color: "orange",
       hover_color: "default",
       url: "../kladdkaka.html"
@@ -1082,7 +1082,7 @@ var simplemaps_worldmap_mapdata={
     },
     TH: {
       name: "Thailand",
-      description: "default",
+      description: "Khao Soi",
       color: "orange",
       hover_color: "default",
       url: "../khao-soi.html"
@@ -1117,14 +1117,14 @@ var simplemaps_worldmap_mapdata={
     },
     TR: {
       name: "Turkey",
-      description: "default",
+      description: "Chocolate Baklava",
       color: "orange",
       hover_color: "default",
       url: "../baklava.html"
     },
     TW: {
       name: "Taiwan",
-      description: "default",
+      description: "Scallion Pancake Beef Rolls",
       color: "orange",
       hover_color: "default",
       url: "../beef-rolls.html"
@@ -1159,14 +1159,14 @@ var simplemaps_worldmap_mapdata={
     },
     US: {
       name: "United States",
-      description: "default",
+      description: "Barbecue Ribs",
       color: "orange",
       hover_color: "default",
       url: "../ribs.html"
     },
     UZ: {
       name: "Uzbekistan",
-      description: "default",
+      description: "Plov",
       color: "orange",
       hover_color: "default",
       url: "../plov.html"
@@ -1201,7 +1201,7 @@ var simplemaps_worldmap_mapdata={
     },
     ZA: {
       name: "South Africa",
-      description: "default",
+      description: "Malva",
       color: "orange",
       hover_color: "default",
       url: "../malva.html"
@@ -1228,18 +1228,18 @@ var simplemaps_worldmap_mapdata={
       url: "default"
     },
     GF: {
+      name: "French Guyana",
+      description: "default",
+      color: "default",
+      hover_color: "default",
+      url: "default"
+    },
+    FR: {
       name: "France",
       description: "default",
       color: "orange",
       hover_color: "default",
       url: "../poulet.html"
-    },
-    FR: {
-      name: "France",
-      description: "default",
-      color: "default",
-      hover_color: "default",
-      url: "default"
     },
     ES: {
       name: "Spain",
