@@ -1544,31 +1544,31 @@ var simplemaps_worldmap_mapdata={
     },
     MQ: {
       name: "Martinique (France)",
-      description: "default",
+      description: "",
       color: "default",
       hover_color: "default",
-      url: "default"
+      url: ""
     },
     GP: {
       name: "Guadeloupe (France)",
-      description: "default",
+      description: "",
       color: "default",
       hover_color: "default",
-      url: "default"
+      url: ""
     },
     CW: {
       name: "Curaco (Netherlands)",
-      description: "default",
+      description: "",
       color: "default",
       hover_color: "default",
-      url: "default"
+      url: ""
     },
     IC: {
       name: "Canary Islands (Spain)",
-      description: "default",
+      description: "",
       color: "default",
       hover_color: "default",
-      url: "default"
+      url: ""
     }
   },
   locations: {
