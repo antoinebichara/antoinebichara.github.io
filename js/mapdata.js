@@ -1082,10 +1082,10 @@ var simplemaps_worldmap_mapdata={
     },
     TH: {
       name: "Thailand",
-      description: "Khao Soi",
+      description: "Thai Chicken Curry",
       color: "orange",
       hover_color: "default",
-      url: "../khao-soi.html"
+      url: "../thai-curry.html"
     },
     TJ: {
       name: "Tajikistan",
@@ -1604,6 +1604,60 @@ var simplemaps_worldmap_mapdata={
       description: "Chicken and Andoille Sausage Gumbo",
       color: "default",
       url: "../gumbo.html",
+      size: "default"
+    },
+ "5": {
+      name: "San Francisco",
+      lat: "37.7749",
+      lng: "-122.4194",
+      description: "Californian Salmon in Tomato-Saffron Broth",
+      color: "default",
+      url: "../salmon.html",
+      size: "default"
+    },
+ "5": {
+      name: "Turin",
+      lat: "45.0703",
+      lng: "7.6869",
+      description: "Italian Basil Panna Cotta",
+      color: "default",
+      url: "../panna_cotta.html",
+      size: "default"
+    },
+ "7": {
+      name: "Chiang Mai",
+      lat: "18.7953",
+      lng: "98.9620",
+      description: "Thai Khao Soi",
+      color: "default",
+      url: "../khao-soi.html",
+      size: "default"
+    },
+ "8": {
+      name: "Paris",
+      lat: "48.8566",
+      lng: "2.3522",
+      description: "French Chocolate Souffle",
+      color: "default",
+      url: "../souffle.html",
+      size: "default"
+    },
+ "9": {
+      name: "San Salvador",
+      lat: "13.6929",
+      lng: "-89.2182",
+      description: "Salvadoran Albondigas",
+      color: "default",
+      url: "../albondigas.html",
+      size: "default"
+    },
+ "10": {
+      name: "Nice",
+      lat: "43.7102",
+      lng: "7.2620",
+      description: "French Ratatouille",
+      color: "default",
+      url: "../ratatouille.html",
       size: "default"
     },
   },
