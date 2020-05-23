@@ -805,7 +805,7 @@ var simplemaps_worldmap_mapdata={
       description: "default",
       color: "default",
       hover_color: "default",
-      url: "fairvopia.com/laksa.html"
+      url: "../laksa.html"
     },
     NA: {
       name: "Namibia",
