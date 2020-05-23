@@ -102,7 +102,7 @@ var simplemaps_worldmap_mapdata={
     },
     AR: {
       name: "Argentina",
-      description: "default",
+      description: "Alfajores",
       color: "orange",
       hover_color: "default",
       url: "../alfajores.html"
@@ -214,7 +214,7 @@ var simplemaps_worldmap_mapdata={
     },
     BR: {
       name: "Brazil",
-      description: "default",
+      description: "Brigadeiro",
       color: "orange",
       hover_color: "default",
       url: "../brigadeiro.html"
@@ -249,7 +249,7 @@ var simplemaps_worldmap_mapdata={
     },
     CA: {
       name: "Canada",
-      description: "default",
+      description: "Montreal Bagels",
       color: "orange",
       hover_color: "default",
       url: "../bagel.html"
@@ -270,7 +270,7 @@ var simplemaps_worldmap_mapdata={
     },
     CN: {
       name: "China",
-      description: "default",
+      description: "Egg Drop Soup",
       color: "orange",
       hover_color: "default",
       url: "../egg-drop.html"
@@ -305,7 +305,7 @@ var simplemaps_worldmap_mapdata={
     },
     CO: {
       name: "Colombia",
-      description: "default",
+      description: "Apple-Chocolate, Banana-Chocolate Bread Pudding",
       color: "orange",
       hover_color: "default",
       url: "../bread-pudding.html"
@@ -333,7 +333,7 @@ var simplemaps_worldmap_mapdata={
     },
     DE: {
       name: "Germany",
-      description: "default",
+      description: "Berliner Pfannkuchen",
       color: "orange",
       hover_color: "default",
       url: "berliner.html"
@@ -368,7 +368,7 @@ var simplemaps_worldmap_mapdata={
     },
     EC: {
       name: "Ecuador",
-      description: "default",
+      description: "Locro de Papas",
       color: "orange",
       hover_color: "default",
       url: "../potato-soup.html"
@@ -424,7 +424,7 @@ var simplemaps_worldmap_mapdata={
     },
     GB: {
       name: "United Kingdom",
-      description: "default",
+      description: "Pork Roast with Apples and Onions",
       color: "orange",
       hover_color: "default",
       url: "../pork-roast.html"
@@ -438,7 +438,7 @@ var simplemaps_worldmap_mapdata={
     },
     GH: {
       name: "Ghana",
-      description: "default",
+      description: "Ghanaian Stew",
       color: "orange",
       hover_color: "default",
       url: "../ghana-stew.html"
@@ -473,7 +473,7 @@ var simplemaps_worldmap_mapdata={
     },
     GR: {
       name: "Greece",
-      description: "default",
+      description: "Spanakopita",
       color: "orange",
       hover_color: "default",
       url: "../spanakopita.html"
@@ -536,7 +536,7 @@ var simplemaps_worldmap_mapdata={
     },
     IN: {
       name: "India",
-      description: "default",
+      description: "Butter Chicken",
       color: "orange",
       hover_color: "default",
       url: "../butter-chicken.html"
@@ -550,7 +550,7 @@ var simplemaps_worldmap_mapdata={
     },
     IR: {
       name: "Iran",
-      description: "default",
+      description: "Kuku Sabzi",
       color: "orange",
       hover_color: "default",
       url: "../frittata.html"
@@ -571,14 +571,14 @@ var simplemaps_worldmap_mapdata={
     },
     IL: {
       name: "Israel",
-      description: "default",
+      description: "Israeli Salad",
       color: "orange",
       hover_color: "default",
       url: "../salad.html"
     },
     IT: {
       name: "Italy",
-      description: "default",
+      description: "Lasagne",
       color: "orange",
       hover_color: "default",
       url: "../lasagne.html"
@@ -592,14 +592,14 @@ var simplemaps_worldmap_mapdata={
     },
     JO: {
       name: "Jordan",
-      description: "default",
+      description: "Mouttabal",
       color: "orange",
       hover_color: "default",
       url: "../mouttabal.html"
     },
     JP: {
       name: "Japan",
-      description: "default",
+      description: "Ramen",
       color: "orange",
       hover_color: "default",
       url: "../ramen.html"
@@ -662,7 +662,7 @@ var simplemaps_worldmap_mapdata={
     },
     LB: {
       name: "Lebanon",
-      description: "default",
+      description: "Zaatar",
       color: "orange",
       hover_color: "default",
       url: "../zaatar.html"
@@ -697,7 +697,7 @@ var simplemaps_worldmap_mapdata={
     },
     LT: {
       name: "Lithuania",
-      description: "default",
+      description: "Beet Gazpacho",
       color: "orange",
       hover_color: "default",
       url: "../beetsoup.html"
@@ -718,7 +718,7 @@ var simplemaps_worldmap_mapdata={
     },
     MA: {
       name: "Morocco",
-      description: "default",
+      description: "Almond Cookies",
       color: "orange",
       hover_color: "default",
       url: "../almond-cookies.html"
@@ -739,7 +739,7 @@ var simplemaps_worldmap_mapdata={
     },
     MX: {
       name: "Mexico",
-      description: "default",
+      description: "Black Bean Soup",
       color: "orange",
       hover_color: "default",
       url: "../beansoup.html"
@@ -802,7 +802,7 @@ var simplemaps_worldmap_mapdata={
     },
     MY: {
       name: "Malaysia",
-      description: "default",
+      description: "Laksa",
       color: "orange",
       hover_color: "default",
       url: "../laksa.html"
@@ -886,7 +886,7 @@ var simplemaps_worldmap_mapdata={
     },
     PE: {
       name: "Peru",
-      description: "default",
+      description: "Lomo Saltado",
       color: "orange",
       hover_color: "default",
       url: "../lomosaltado"
@@ -956,7 +956,7 @@ var simplemaps_worldmap_mapdata={
     },
     RU: {
       name: "Russia",
-      description: "default",
+      description: "Beef Stroganoff",
       color: "orange",
       hover_color: "default",
       url: "../stroganoff.html"
@@ -1012,7 +1012,7 @@ var simplemaps_worldmap_mapdata={
     },
     SV: {
       name: "El Salvador",
-      description: "default",
+      description: "Pupusas",
       color: "orange",
       hover_color: "default",
       url: "../pupusas.html"
