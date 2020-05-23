@@ -539,7 +539,7 @@ var simplemaps_worldmap_mapdata={
       description: "default",
       color: "orange",
       hover_color: "default",
-      url: "../salmon.html"
+      url: "../butter-chicken.html"
     },
     IE: {
       name: "Ireland",
@@ -1573,28 +1573,28 @@ var simplemaps_worldmap_mapdata={
   },
   locations: {
     "0": {
-      name: "Paris",
-      lat: "48.866666670",
-      lng: "2.333333333",
+      name: "Rio de Janeiro",
+      lat: "-22.906",
+      lng: "-43.1729",
       color: "default",
       description: "default",
-      url: "default"
+      url: "../brigadeiro.html"
     },
     "1": {
-      name: "Tokyo",
-      lat: "35.666666670",
-      lng: "139.750000000",
+      name: "West Bengal",
+      lat: "22.9868",
+      lng: "87.8550",
       color: "default",
       description: "default",
-      url: "default"
+      url: "../bengalisalmon.html"
     },
     "3": {
-      name: "New York",
-      lat: "40.71",
-      lng: "-74.0059731",
+      name: "Caprese",
+      lat: "43.6415",
+      lng: "11.9871",
       description: "default",
       color: "default",
-      url: "default",
+      url: "../caprese.html",
       size: "default"
     },
  "4": {
