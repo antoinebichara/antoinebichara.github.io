@@ -1596,18 +1596,16 @@ var simplemaps_worldmap_mapdata={
       color: "default",
       url: "default",
       size: "default"
-    }
-    "4": {
+    },
+ "4": {
       name: "New Orleans",
-      lat: "29.95",
+      lat: "29.951",
       lng: "-90.0715",
-      description: "default",
+      description: "Chicken and Andoille Sausage Gumbo",
       color: "default",
-      url: "default",
+      url: "../gumbo.html",
       size: "default"
-    }
-
-
+    },
   },
   labels: {}
 };
