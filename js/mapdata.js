@@ -1615,7 +1615,7 @@ var simplemaps_worldmap_mapdata={
       url: "../salmon.html",
       size: "default"
     },
- "5": {
+ "6": {
       name: "Turin",
       lat: "45.0703",
       lng: "7.6869",
