@@ -103,9 +103,9 @@ var simplemaps_worldmap_mapdata={
     AR: {
       name: "Argentina",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../alfajores.html"
     },
     AM: {
       name: "Armenia",
@@ -215,9 +215,9 @@ var simplemaps_worldmap_mapdata={
     BR: {
       name: "Brazil",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../brigadeiro.html"
     },
     BN: {
       name: "Brunei Darussalam",
@@ -250,9 +250,9 @@ var simplemaps_worldmap_mapdata={
     CA: {
       name: "Canada",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../bagel.html"
     },
     CH: {
       name: "Switzerland",
@@ -271,9 +271,9 @@ var simplemaps_worldmap_mapdata={
     CN: {
       name: "China",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../egg-drop.html"
     },
     CI: {
       name: "Côte d'Ivoire",
@@ -306,9 +306,9 @@ var simplemaps_worldmap_mapdata={
     CO: {
       name: "Colombia",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../bread-pudding.html"
     },
     CR: {
       name: "Costa Rica",
@@ -334,9 +334,9 @@ var simplemaps_worldmap_mapdata={
     DE: {
       name: "Germany",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "berliner.html"
     },
     DJ: {
       name: "Djibouti",
@@ -369,16 +369,16 @@ var simplemaps_worldmap_mapdata={
     EC: {
       name: "Ecuador",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../potato-soup.html"
     },
     EG: {
       name: "Egypt",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../ghorayebah.html"
     },
     ER: {
       name: "Eritrea",
@@ -425,9 +425,9 @@ var simplemaps_worldmap_mapdata={
     GB: {
       name: "United Kingdom",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../pork-roast.html"
     },
     GE: {
       name: "Georgia",
@@ -439,9 +439,9 @@ var simplemaps_worldmap_mapdata={
     GH: {
       name: "Ghana",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../ghana-stew.html"
     },
     GN: {
       name: "Guinea",
@@ -474,9 +474,9 @@ var simplemaps_worldmap_mapdata={
     GR: {
       name: "Greece",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../spanakopita.html"
     },
     GL: {
       name: "Greenland",
@@ -523,23 +523,23 @@ var simplemaps_worldmap_mapdata={
     HU: {
       name: "Hungary",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../goulash.html"
     },
     ID: {
       name: "Indonesia",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../rendang.html"
     },
     IN: {
       name: "India",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../salmon.html"
     },
     IE: {
       name: "Ireland",
@@ -551,9 +551,9 @@ var simplemaps_worldmap_mapdata={
     IR: {
       name: "Iran",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../frittata.html"
     },
     IQ: {
       name: "Iraq",
@@ -572,16 +572,16 @@ var simplemaps_worldmap_mapdata={
     IL: {
       name: "Israel",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../salad.html"
     },
     IT: {
       name: "Italy",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../lasagne.html"
     },
     JM: {
       name: "Jamaica",
@@ -593,16 +593,16 @@ var simplemaps_worldmap_mapdata={
     JO: {
       name: "Jordan",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../mouttabal.html"
     },
     JP: {
       name: "Japan",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../ramen.html"
     },
     KZ: {
       name: "Kazakhstan",
@@ -635,9 +635,9 @@ var simplemaps_worldmap_mapdata={
     KR: {
       name: "Republic of Korea",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../japchae.html"
     },
     XK: {
       name: "Kosovo",
@@ -663,9 +663,9 @@ var simplemaps_worldmap_mapdata={
     LB: {
       name: "Lebanon",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../zaatar.html"
     },
     LR: {
       name: "Liberia",
@@ -698,9 +698,9 @@ var simplemaps_worldmap_mapdata={
     LT: {
       name: "Lithuania",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../beetsoup.html"
     },
     LU: {
       name: "Luxembourg",
@@ -719,9 +719,9 @@ var simplemaps_worldmap_mapdata={
     MA: {
       name: "Morocco",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../almond-cookies.html"
     },
     MD: {
       name: "Moldova",
@@ -740,9 +740,9 @@ var simplemaps_worldmap_mapdata={
     MX: {
       name: "Mexico",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../beansoup.html"
     },
     MK: {
       name: "Macedonia",
@@ -803,7 +803,7 @@ var simplemaps_worldmap_mapdata={
     MY: {
       name: "Malaysia",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
       url: "../laksa.html"
     },
@@ -887,9 +887,9 @@ var simplemaps_worldmap_mapdata={
     PE: {
       name: "Peru",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../lomosaltado"
     },
     PH: {
       name: "Philippines",
@@ -957,9 +957,9 @@ var simplemaps_worldmap_mapdata={
     RU: {
       name: "Russia",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../stroganoff.html"
     },
     RW: {
       name: "Rwanda",
@@ -1013,9 +1013,9 @@ var simplemaps_worldmap_mapdata={
     SV: {
       name: "El Salvador",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../pupusas.html"
     },
     RS: {
       name: "Serbia",
@@ -1048,9 +1048,9 @@ var simplemaps_worldmap_mapdata={
     SE: {
       name: "Sweden",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../kladdkaka.html"
     },
     SZ: {
       name: "Swaziland",
@@ -1083,9 +1083,9 @@ var simplemaps_worldmap_mapdata={
     TH: {
       name: "Thailand",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../khao-soi.html"
     },
     TJ: {
       name: "Tajikistan",
@@ -1118,16 +1118,16 @@ var simplemaps_worldmap_mapdata={
     TR: {
       name: "Turkey",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../baklava.html"
     },
     TW: {
       name: "Taiwan",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../beef-rolls.html"
     },
     TZ: {
       name: "Tanzania",
@@ -1160,16 +1160,16 @@ var simplemaps_worldmap_mapdata={
     US: {
       name: "United States",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../ribs.html"
     },
     UZ: {
       name: "Uzbekistan",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../plov.html"
     },
     VE: {
       name: "Venezuela",
@@ -1202,9 +1202,9 @@ var simplemaps_worldmap_mapdata={
     ZA: {
       name: "South Africa",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../malva.html"
     },
     ZM: {
       name: "Zambia",
@@ -1230,9 +1230,9 @@ var simplemaps_worldmap_mapdata={
     GF: {
       name: "France",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../poulet.html"
     },
     FR: {
       name: "France",
@@ -1244,9 +1244,9 @@ var simplemaps_worldmap_mapdata={
     ES: {
       name: "Spain",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../croquetas.html"
     },
     AW: {
       name: "Aruba",
@@ -1447,7 +1447,7 @@ var simplemaps_worldmap_mapdata={
     SG: {
       name: "Singapore",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
       url: "default"
     },
@@ -1524,7 +1524,7 @@ var simplemaps_worldmap_mapdata={
     CY: {
       name: "Cyprus",
       description: "default",
-      color: "default",
+      color: "orange",
       hover_color: "default",
       url: "default"
     },
