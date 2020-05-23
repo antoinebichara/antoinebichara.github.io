@@ -375,11 +375,11 @@ var simplemaps_worldmap_mapdata={
     },
     EG: {
       name: "Egypt",
-      description: "default",
+      description: "Egyptian Ghorayebah Cookies",
       color: "orange",
       hover_color: "default",
       url: "../ghorayebah.html"
-    },
+   },
     ER: {
       name: "Eritrea",
       description: "",
