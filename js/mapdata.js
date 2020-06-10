@@ -117,7 +117,7 @@ var simplemaps_worldmap_mapdata={
     AU: {
       name: "Australia",
       description: "",
-      color: "default",
+      color: "orange",
       hover_color: "default",
       url: ""
     },
@@ -1667,6 +1667,15 @@ var simplemaps_worldmap_mapdata={
       description: "Singaporean Hokkien Mee",
       color: "default",
       url: "../hokkienmee.html",
+      size: "default"
+    },
+ "12": {
+      name: "Brisbane",
+      lat: "-27.4698",
+      lng: "153.0251",
+      description: "Australian Chicken Parmigiana",
+      color: "default",
+      url: "../parmi.html",
       size: "default"
     },
   },
