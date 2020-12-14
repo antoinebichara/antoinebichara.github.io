@@ -116,10 +116,10 @@ var simplemaps_worldmap_mapdata={
     },
     AU: {
       name: "Australia",
-      description: "",
+      description: "Chicken Parmi",
       color: "orange",
       hover_color: "default",
-      url: ""
+      url: "../parmi.html"
     },
     AT: {
       name: "Austria",
@@ -543,9 +543,9 @@ var simplemaps_worldmap_mapdata={
     },
     IE: {
       name: "Ireland",
-      description: "",
-      color: "default",
-      hover_color: "default",
+      description: "Shepherd's Pie",
+      color: "orange",
+      hover_color: "../pie.html",
       url: ""
     },
     IR: {
@@ -1047,10 +1047,10 @@ var simplemaps_worldmap_mapdata={
     },
     SE: {
       name: "Sweden",
-      description: "Kladdkaka",
+      description: "Meatballs",
       color: "orange",
       hover_color: "default",
-      url: "../kladdkaka.html"
+      url: "../meatballs.html"
     },
     SZ: {
       name: "Swaziland",
