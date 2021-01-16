@@ -396,10 +396,10 @@ var simplemaps_worldmap_mapdata={
     },
     ET: {
       name: "Ethiopia",
-      description: "default",
-      color: "default",
+      description: "Beef Tibs",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../tibs.html"
     },
     FI: {
       name: "Finland",
