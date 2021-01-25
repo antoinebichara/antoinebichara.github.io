@@ -216,6 +216,9 @@ hr.small {
 .post-preview > a {
   color: #333333;
 }
+.mapdata{
+width = "650%";
+}
 .post-preview > a:hover,
 .post-preview > a:focus {
   text-decoration: none;
