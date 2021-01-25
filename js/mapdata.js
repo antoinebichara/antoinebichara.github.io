@@ -1433,9 +1433,9 @@ var simplemaps_worldmap_mapdata={
     PR: {
       name: "Puerto Rico",
       description: "",
-      color: "default",
+      color: "orange",
       hover_color: "default",
-      url: ""
+      url: "../chuletas.html"
     },
     PF: {
       name: "French Polynesia",
