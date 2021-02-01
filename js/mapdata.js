@@ -403,10 +403,10 @@ var simplemaps_worldmap_mapdata={
     },
     FI: {
       name: "Finland",
-      description: "default",
-      color: "default",
+      description: "Lohikeitto",
+      color: "orange",
       hover_color: "default",
-      url: "default"
+      url: "../lohikeitto.html"
     },
     FJ: {
       name: "Fiji",
