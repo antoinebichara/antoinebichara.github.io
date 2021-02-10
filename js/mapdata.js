@@ -760,10 +760,10 @@ var simplemaps_worldmap_mapdata={
     },
     MM: {
       name: "Myanmar",
-      description: "",
-      color: "default",
+      description: "Mohinga",
+      color: "orange",
       hover_color: "default",
-      url: ""
+      url: "../mohinga.html"
     },
     ME: {
       name: "Montenegro",
