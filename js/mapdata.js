@@ -144,10 +144,10 @@ var simplemaps_worldmap_mapdata={
     },
     BE: {
       name: "Belgium",
-      description: "",
-      color: "default",
+      description: "Braised Endives",
+      color: orange
       hover_color: "default",
-      url: ""
+      url: "../endives.html"
     },
     BJ: {
       name: "Benin",
