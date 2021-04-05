@@ -858,10 +858,10 @@ var simplemaps_worldmap_mapdata={
     },
     NZ: {
       name: "New Zealand",
-      description: "",
-      color: "default",
+      description: "Lamb Roast",
+      color: "orange",
       hover_color: "default",
-      url: ""
+      url: "../lamb.html"
     },
     OM: {
       name: "Oman",
