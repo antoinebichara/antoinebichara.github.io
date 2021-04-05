@@ -145,7 +145,7 @@ var simplemaps_worldmap_mapdata={
     BE: {
       name: "Belgium",
       description: "Braised Endives",
-      color: orange
+      color: "orange",
       hover_color: "default",
       url: "../endives.html"
     },
