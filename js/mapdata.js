@@ -109,10 +109,10 @@ var simplemaps_worldmap_mapdata={
     },
     AM: {
       name: "Armenia",
-      description: "",
-      color: "default",
+      description: "Lahmacun",
+      color: "orange",
       hover_color: "default",
-      url: ""
+      url: "../lahmacun.html"
     },
     AU: {
       name: "Australia",
