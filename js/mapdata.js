@@ -1678,6 +1678,15 @@ var simplemaps_worldmap_mapdata={
       url: "../parmi.html",
       size: "default"
     },
+    "13": {
+      name: "Valencia",
+      lat: "39.4699", 
+      lng: "-0.3763",
+      description: "Spanish Paella",
+      color: "default",
+      url: "../paella.html",
+      size: "default"
+    },
   },
   labels: {}
 };
