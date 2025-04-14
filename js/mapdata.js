@@ -1687,6 +1687,15 @@ var simplemaps_worldmap_mapdata={
       url: "../paella.html",
       size: "default"
     },
+     "14": {
+      name: "Ciabatta",
+      lat: "45.4404",    
+      lng: "12.3160",
+      description: "Ciabatta",
+      color: "default",
+      url: "../ciabatta.html",
+      size: "default"
+    },
   },
   labels: {}
 };
