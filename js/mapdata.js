@@ -1696,6 +1696,15 @@ var simplemaps_worldmap_mapdata={
       url: "../ciabatta.html",
       size: "default"
     },
+   "15": {
+      name: "Fatayer",
+      lat: "33.8547",    
+      lng: "35.8623",
+      description: "Fatayer",
+      color: "default",
+      url: "../fatayer.html",
+      size: "default"
+    },
   },
   labels: {}
 };
