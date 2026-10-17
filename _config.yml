@@ -1,0 +1,18 @@
+# Jekyll settings (GitHub Pages reads this file automatically).
+
+# Each recipe lives in the _recipes folder and is published at the same
+# address as before, e.g. _recipes/fatayer.html -> www.fairvopia.com/fatayer.html
+collections:
+  recipes:
+    output: true
+    permalink: /:path:output_ext
+
+defaults:
+  - scope:
+      type: recipes
+    values:
+      layout: recipe
+
+exclude:
+  - README.md
+  - LICENSE

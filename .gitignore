@@ -1,0 +1,7 @@
+# Mac and editor leftovers
+.DS_Store
+*.swp
+
+# Jekyll build output
+_site/
+.jekyll-cache/
