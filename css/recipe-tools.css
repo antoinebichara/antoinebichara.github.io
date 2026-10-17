@@ -90,6 +90,64 @@
     background: #c95f1a;
 }
 
+/* Shopping checkboxes on ingredient lists */
+.recipe-body ul.ingredient-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.recipe-body ul.ingredient-list > li {
+    margin: 2px 0;
+}
+
+.ing-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 0;
+    padding: 5px 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.ing-check input {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    margin: 4px 0 0;
+    accent-color: #e8772e;
+    cursor: pointer;
+}
+
+.is-checked .ing-text {
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+.tools-right {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.ing-clear {
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #808080;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ing-clear:hover,
+.ing-clear:focus {
+    color: #404040;
+    border-color: #bbb;
+}
+
 .is-scaled .qty {
     font-weight: 700;
     color: #c95f1a;

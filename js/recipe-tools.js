@@ -112,6 +112,57 @@
 
     ingredientItems.forEach(markQuantities);
 
+    // =====================================================================
+    // Shopping checkboxes: tick ingredients off. Ticks are remembered on this
+    // device (so they survive a reload at the store) and shared with cook mode.
+    // =====================================================================
+    var STORE_KEY = 'fairvopia-checked:' + location.pathname;
+    var checked = {};
+    try { checked = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch (err) { checked = {}; }
+
+    ingredientItems.forEach(function (li, i) {
+        var label = document.createElement('label');
+        label.className = 'ing-check';
+        var box = document.createElement('input');
+        box.type = 'checkbox';
+        box.setAttribute('data-i', i);
+        box.setAttribute('aria-label', 'Got it');
+        var text = document.createElement('span');
+        text.className = 'ing-text';
+        while (li.firstChild) text.appendChild(li.firstChild);
+        label.appendChild(box);
+        label.appendChild(text);
+        li.appendChild(label);
+        li.parentNode.classList.add('ingredient-list');
+    });
+
+    function setChecked(i, on) {
+        if (on) checked[i] = true; else delete checked[i];
+        try {
+            if (Object.keys(checked).length) localStorage.setItem(STORE_KEY, JSON.stringify(checked));
+            else localStorage.removeItem(STORE_KEY);
+        } catch (err) {}
+        showChecks();
+    }
+    function showChecks() {
+        ingredientItems.forEach(function (li, i) {
+            var on = !!checked[i];
+            li.querySelector('.ing-check input').checked = on;
+            li.classList.toggle('is-checked', on);
+        });
+        [].forEach.call(document.querySelectorAll('.cm-ingredients input[data-i]'), function (box) {
+            box.checked = !!checked[box.getAttribute('data-i')];
+        });
+        var clear = document.querySelector('.ing-clear');
+        if (clear) clear.hidden = !Object.keys(checked).length;
+    }
+    document.addEventListener('change', function (e) {
+        var box = e.target;
+        if (box.matches && box.matches('.ing-check input, .cm-ingredients input[data-i]')) {
+            setChecked(box.getAttribute('data-i'), box.checked);
+        }
+    });
+
     function scaleTo(factor) {
         [].forEach.call(body.querySelectorAll('.qty'), function (span) {
             var unit = span.nextSibling && span.nextSibling.nextSibling;
@@ -145,13 +196,21 @@
                     (f === 0.5 ? '½×' : f + '×') + '</button>';
             }).join('') +
         '</div>' +
-        '<button type="button" class="cook-start"><i class="fa fa-cutlery"></i> Start cooking</button>';
+        '<span class="tools-right">' +
+            '<button type="button" class="ing-clear" hidden><i class="fa fa-undo"></i> Clear ticks</button>' +
+            '<button type="button" class="cook-start"><i class="fa fa-cutlery"></i> Start cooking</button>' +
+        '</span>';
     ingHeading.parentNode.insertBefore(tools, ingHeading);
     tools.addEventListener('click', function (e) {
         var b = e.target.closest('.scale-btn');
         if (b) scaleTo(+b.getAttribute('data-factor'));
         if (e.target.closest('.cook-start')) openCookMode();
+        if (e.target.closest('.ing-clear')) {
+            checked = {};
+            setChecked(-1, false);
+        }
     });
+    showChecks();
 
     // =====================================================================
     // Cook mode: one step at a time, read aloud, timers, screen stays on
@@ -242,9 +301,9 @@
         ui.title.textContent = (document.querySelector('.post-heading h1') || {}).textContent || '';
 
         var list = document.createElement('ul');
-        ingredientItems.forEach(function (li) {
+        ingredientItems.forEach(function (li, i) {
             var item = document.createElement('li');
-            item.innerHTML = '<label><input type="checkbox"> <span></span></label>';
+            item.innerHTML = '<label><input type="checkbox" data-i="' + i + '"> <span></span></label>';
             item.querySelector('span').textContent = li.textContent;
             list.appendChild(item);
         });
@@ -273,6 +332,7 @@
         [].forEach.call(ui.ingredients.querySelectorAll('li span'), function (span, i) {
             span.textContent = ingredientItems[i].textContent;
         });
+        showChecks();
         overlay.classList.add('open');
         document.documentElement.classList.add('cook-mode-open');
         requestWakeLock();
