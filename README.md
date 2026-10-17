@@ -27,6 +27,9 @@ with a short header between two `---` lines, then write the recipe:
 title: "Greek Moussaka"
 date: 2026-10-17
 image: moussaka.jpg
+location: "Athens, Greece"
+country: "Greece"
+coords: [37.98, 23.73]
 ---
 
 <p>
@@ -42,6 +45,11 @@ The header fields are:
 - `title`: the recipe name, shown on the page and in the browser tab.
 - `date`: the date the recipe was posted (year-month-day). The home page is sorted by this.
 - `image`: the photo in `img/` used as the big header image.
+- `location`, `country`, `coords`: where the recipe goes on the home-page globe. `coords` is
+  `[latitude, longitude]`, which you can copy from Google Maps by right-clicking a spot.
+  `country` must be spelled the way the globe's country outlines spell it (for example
+  `"United States of America"`, `"United Kingdom"`, `"South Korea"`) for that country to be
+  shaded. A recipe without `coords` still shows up in the list but not on the globe.
 
 These fields are optional:
 

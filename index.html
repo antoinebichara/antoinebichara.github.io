@@ -25,6 +25,10 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+    <!-- Recipe globe -->
+    <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" rel="stylesheet">
+    <link href="css/recipe-globe.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -88,15 +92,30 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
 
-<script src="js/mapdata.js"></script>
-		<script src="js/worldmap.js"></script>
-		<div class="mapdata" style="position:relative;margin-bottom:-30px;top:-28px;">
-			<div > <br></div>
-			<div id="map" width="100%"></div>
-		</div>
+{% assign recipes = site.recipes | where_exp: "recipe", "recipe.hidden != true" | reverse %}
+
+<!-- Recipe globe: pins come from "location", "country" and "coords" in each _recipes file. -->
+                <div class="recipe-globe">
+                    <div class="recipe-globe-bar">
+                        <span class="recipe-globe-count" id="recipe-globe-count"></span>
+                        <button type="button" class="recipe-globe-surprise" id="recipe-globe-surprise">Surprise me</button>
+                    </div>
+                    <div id="recipe-globe-map"></div>
+                    <div class="recipe-globe-legend">
+                        <span class="rg-key-pin">Recipe</span>
+                        <span class="rg-key-favorite">Favorite</span>
+                        <span class="rg-key-country">Countries I've cooked from (click for the list)</span>
+                    </div>
+                </div>
+                <script>
+                window.FAIRVOPIA_RECIPES = [
+{%- for recipe in recipes %}{% if recipe.coords %}
+                    {"title": {{ recipe.title | jsonify }}, "url": {{ recipe.url | remove_first: '/' | jsonify }}, "date": {{ recipe.date | date: "%B %-d, %Y" | jsonify }}, "image": {{ recipe.image | jsonify }}, "location": {{ recipe.location | jsonify }}, "country": {{ recipe.country | jsonify }}, "lat": {{ recipe.coords[0] }}, "lng": {{ recipe.coords[1] }}, "favorite": {% if recipe.favorite %}true{% else %}false{% endif %}},
+{%- endif %}{% endfor %}
+                ];
+                </script>
 
 <!-- The recipe list below is generated automatically from the files in the _recipes folder (newest first). -->
-{% assign recipes = site.recipes | where_exp: "recipe", "recipe.hidden != true" | reverse %}
 {% for recipe in recipes %}
                 <div class="post-preview"{% if forloop.first %} style="margin-top:50px;"{% endif %}>
                     <a href="{{ recipe.url | remove_first: '/' }}">
@@ -163,6 +182,11 @@
 
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+
+    <!-- Recipe globe -->
+    <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+    <script src="js/recipe-globe.js"></script>
 
 </body>
 
