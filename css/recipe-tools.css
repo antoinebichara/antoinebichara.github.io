@@ -327,7 +327,56 @@ html.cook-mode-open body {
     display: none;
 }
 
+/* "Cooked this?" box at the end of each recipe */
+.cooked-this {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    margin: 50px 0 10px;
+    padding: 22px 24px;
+    background: #fffaf4;
+    border: 1px solid #f0e2d2;
+    border-radius: 10px;
+}
+
+.cooked-this-icon {
+    flex: none;
+    font-size: 30px;
+    color: #e8772e;
+}
+
+.cooked-this h3 {
+    margin: 0 0 6px;
+    font-size: 22px;
+}
+
+.cooked-this p {
+    margin: 0 0 14px;
+    font-size: 17px;
+}
+
+.cooked-this-btn,
+.cooked-this-btn:focus {
+    display: inline-block;
+    padding: 9px 18px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #e8772e;
+    border-radius: 3px;
+}
+
+.cooked-this-btn:hover {
+    color: #fff;
+    background: #c95f1a;
+    text-decoration: none;
+}
+
 @media print {
+    .cooked-this,
     .recipe-tools,
     .cook-mode {
         display: none !important;

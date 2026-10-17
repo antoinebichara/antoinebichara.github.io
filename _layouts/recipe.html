@@ -61,6 +61,16 @@
 
 {{ content }}
 
+                    <!-- Instead of comments: an email with the recipe name already in the subject -->
+                    <aside class="cooked-this">
+                        <i class="fa fa-envelope-o cooked-this-icon" aria-hidden="true"></i>
+                        <div>
+                            <h3>Cooked this?</h3>
+                            <p>I'd love to hear how it turned out, what you changed, or what I should cook next.</p>
+                            <a class="cooked-this-btn" href="mailto:antoinebichara@gmail.com?subject={{ 'Cooked: ' | append: page.title | uri_escape }}">Tell me about it</a>
+                        </div>
+                    </aside>
+
                 </div>
             </div>
         </div>
@@ -82,17 +92,6 @@
     <!-- Serving scaler and cook mode -->
     <script src="js/recipe-tools.js"></script>
 
-    <!-- Disqus comments -->
-    <div id="disqus_thread"></div>
-    <script>
-    (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://fairvopia-com.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </body>
 
 </html>
