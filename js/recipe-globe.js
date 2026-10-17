@@ -304,16 +304,22 @@
         spinning = true;
         spinStep();
     }
-    function stopSpinning() {
+    // Pause the spin when someone grabs, scrolls or pinches the globe. This must not call
+    // map.stop(): that would also cancel the drag or zoom they are starting.
+    function pauseSpinning() {
         spinning = false;
-        map.stop();
         clearTimeout(idleTimer);
         idleTimer = setTimeout(function () {
             if (!popup.isOpen()) startSpinning();
         }, RESUME_AFTER_MS);
     }
+    // For our own moves (clicking a pin, "Surprise me"): also cancel the spin's current step
+    function stopSpinning() {
+        pauseSpinning();
+        map.stop();
+    }
     map.on('moveend', spinStep);
     ['mousedown', 'touchstart', 'wheel'].forEach(function (evt) {
-        container.addEventListener(evt, stopSpinning, { passive: true });
+        container.addEventListener(evt, pauseSpinning, { passive: true });
     });
 })();
