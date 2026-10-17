@@ -1,0 +1,21 @@
+{% comment %} Filter buttons and "What can I make?" (js/recipe-finder.js) {% endcomment %}
+<div class="recipe-finder">
+    <div class="rf-filters" role="group" aria-label="Show only">
+        <button type="button" class="rf-filter active" data-filter="all">All</button>
+        <button type="button" class="rf-filter" data-filter="main">Mains</button>
+        <button type="button" class="rf-filter" data-filter="soup">Soups</button>
+        <button type="button" class="rf-filter" data-filter="dessert">Desserts</button>
+        <button type="button" class="rf-filter" data-filter="baking">Breads &amp; baking</button>
+        <button type="button" class="rf-filter" data-filter="side">Sides &amp; snacks</button>
+        <button type="button" class="rf-filter" data-filter="vegetarian">Vegetarian</button>
+    </div>
+    <div class="rf-search">
+        <label for="rf-input">What can I make?</label>
+        <div class="rf-box">
+            <span class="rf-chips"></span>
+            <input id="rf-input" type="text" autocomplete="off" placeholder="Type what you have, e.g. chicken, rice, coconut milk">
+        </div>
+        <p class="rf-help">Press Enter or a comma after each ingredient. Salt, pepper, oil, water and sugar are assumed.</p>
+    </div>
+    <div class="rf-results" aria-live="polite"></div>
+</div>

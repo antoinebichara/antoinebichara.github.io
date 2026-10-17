@@ -1,0 +1,291 @@
+/* Home page layouts: hero sections, explorer split view and photo cards */
+
+[hidden] { display: none !important; }
+
+body.home {
+    font-family: 'Lora', 'Times New Roman', serif;
+    background: #fff;
+}
+
+.wide {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    margin: 0 0 6px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #2b2b2b;
+}
+
+.section-lead {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-style: italic;
+    color: #808080;
+}
+
+.home-section {
+    padding: 60px 0;
+}
+
+/* Buttons */
+.btn-solid,
+.btn-ghost {
+    display: inline-block;
+    padding: 12px 22px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-solid {
+    color: #fff;
+    background: #e8772e;
+    border: 2px solid #e8772e;
+}
+
+.btn-solid:hover,
+.btn-solid:focus {
+    color: #fff;
+    background: #c95f1a;
+    border-color: #c95f1a;
+    text-decoration: none;
+}
+
+.btn-ghost {
+    color: #fff;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus {
+    color: #2b2b2b;
+    background: #fff;
+    border-color: #fff;
+    text-decoration: none;
+}
+
+/* ===== Photo cards ===== */
+.recipe-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+}
+
+.recipe-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    color: #2b2b2b;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.recipe-card:hover,
+.recipe-card:focus {
+    color: #2b2b2b;
+    text-decoration: none;
+    transform: translateY(-4px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.rc-photo {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f3ede6;
+}
+
+.rc-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.recipe-card:hover .rc-photo img {
+    transform: scale(1.06);
+}
+
+.rc-fav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 9px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #5a4300;
+    background: #f2b705;
+    border-radius: 12px;
+}
+
+.rc-body {
+    display: block;
+    padding: 12px 14px 14px;
+}
+
+.rc-title {
+    display: block;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.rc-title small {
+    display: block;
+    font-weight: 400;
+    color: #808080;
+}
+
+.rc-meta {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #808080;
+}
+
+/* ===== Layout A: globe hero ===== */
+.hero-a {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background: #0b1120 url('../img/rszhome-image.jpg') center / cover no-repeat;
+    overflow: hidden;
+}
+
+.hero-a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(7, 11, 22, 0.92) 0%, rgba(7, 11, 22, 0.78) 40%, rgba(7, 11, 22, 0.45) 100%);
+}
+
+.hero-a-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(300px, 430px) 1fr;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+.hero-logo {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+}
+
+.hero-tagline {
+    margin: 10px 0 24px;
+    font-size: 23px;
+    font-style: italic;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 28px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.hero-stats strong {
+    display: block;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    color: #f4a259;
+}
+
+.hero-stats span {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-a #recipe-globe-map {
+    height: min(82vh, 760px);
+    background: transparent;
+    border-radius: 0;
+    transition: border-radius 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Zoomed in, the map becomes a flat rectangle: frame it like a window */
+.hero-a #recipe-globe-map.is-zoomed {
+    border-radius: 18px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 24px 70px rgba(0, 0, 0, 0.6);
+}
+
+.hero-a .maplibregl-ctrl-attrib {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-a .maplibregl-ctrl-attrib a,
+.hero-a .maplibregl-ctrl-attrib-inner {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-hint {
+    margin-top: 18px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    font-size: 26px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: cue 1.8s ease-in-out infinite;
+}
+
+.scroll-cue:hover,
+.scroll-cue:focus {
+    color: #fff;
+}
+
+@keyframes cue {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+}
+
+@media (max-width: 991px) {
+    .hero-a { min-height: 0; }
+    .hero-a-inner { grid-template-columns: 1fr; padding-top: 90px; text-align: center; }
+    .hero-logo { margin: 0 auto; max-width: 260px; }
+    .hero-stats, .hero-buttons { justify-content: center; }
+    .hero-a #recipe-globe-map { height: 420px; }
+    .scroll-cue { display: none; }
+}
+

@@ -19,6 +19,13 @@
     var COUNTRIES_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
     var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
+    // Options set on the map element in the HTML:
+    //   data-theme="night"   dark map with a glowing atmosphere (for dark backgrounds)
+    //   data-zoom="1.4"      starting zoom (desktop; phones start a little further out)
+    //   data-no-controls     hide the +/- and full-screen buttons
+    var night = container.getAttribute('data-theme') === 'night';
+    var startZoom = parseFloat(container.getAttribute('data-zoom')) || 1.8;
+
     // ---- Counter ("78 recipes from 45 countries") ----
     var countries = {};
     recipes.forEach(function (r) {
@@ -60,19 +67,53 @@
     // ---- Map ----
     var map = new maplibregl.Map({
         container: container,
-        style: 'https://tiles.openfreemap.org/styles/positron',
+        style: 'https://tiles.openfreemap.org/styles/' + (night ? 'dark' : 'positron'),
         center: [20, 25],
-        zoom: isTouch ? 1.0 : 1.8,
+        zoom: isTouch ? Math.min(startZoom, 1.0) : startZoom,
         attributionControl: { compact: true },
         // Scrolling the page past the globe shouldn't zoom it: zoom with Ctrl + scroll,
         // a trackpad pinch, the +/- buttons or a double-click; on phones use two fingers.
         cooperativeGestures: true
     });
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-    map.addControl(new maplibregl.FullscreenControl(), 'top-right');
+    if (!container.hasAttribute('data-no-controls')) {
+        map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+        map.addControl(new maplibregl.FullscreenControl(), 'top-right');
+    }
+
+    // Once zoomed in past the whole-globe view: mark the map (for styling) and offer a way back
+    var backButton = document.createElement('button');
+    backButton.type = 'button';
+    backButton.className = 'rg-back';
+    backButton.innerHTML = '<i class="fa fa-globe"></i> Back to globe';
+    backButton.hidden = true;
+    container.appendChild(backButton);
+    backButton.addEventListener('click', function () {
+        popup.remove();
+        map.flyTo({ zoom: isTouch ? Math.min(startZoom, 1.0) : startZoom, speed: 1.4, essential: true });
+        map.once('moveend', function () { startSpinning(); });
+    });
+    map.on('zoom', function () {
+        var zoomed = map.getZoom() > 2.8;
+        container.classList.toggle('is-zoomed', zoomed);
+        backButton.hidden = !zoomed;
+    });
 
     map.on('style.load', function () {
         map.setProjection({ type: 'globe' });
+        if (night) {
+            // Glowing blue atmosphere around the globe; space shows through from the page behind
+            map.setSky({
+                'sky-color': 'rgba(0, 0, 0, 0)',
+                'horizon-color': '#3d6fd6',
+                'fog-color': '#1b2c5a',
+                'sky-horizon-blend': 0.6,
+                'horizon-fog-blend': 0.6,
+                'fog-ground-blend': 0.9,
+                'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 4, 1, 7, 0]
+            });
+            var bg = map.getStyle().layers.filter(function (l) { return l.type === 'background'; })[0];
+            if (bg) map.setPaintProperty(bg.id, 'background-color', '#0e1626');
+        }
     });
 
     map.on('load', function () {
@@ -97,7 +138,7 @@
                     id: 'recipe-countries-fill',
                     type: 'fill',
                     source: 'recipe-countries',
-                    paint: { 'fill-color': COLORS.country, 'fill-opacity': 0.35 }
+                    paint: { 'fill-color': COLORS.country, 'fill-opacity': night ? 0.28 : 0.35 }
                 }, beforeLayer);
                 map.addLayer({
                     id: 'recipe-countries-line',
@@ -206,7 +247,7 @@
     function showRecipe(r) {
         var html =
             '<a class="rg-card" href="' + esc(r.url) + '">' +
-                '<span class="rg-photo" style="background-image:url(\'img/' + esc(r.image) + '\')"></span>' +
+                '<span class="rg-photo" style="background-image:url(\'img/' + esc(r.thumb) + '\'), url(\'img/' + esc(r.image) + '\')"></span>' +
                 '<span class="rg-body">' +
                     '<span class="rg-title">' + esc(r.title) + (r.favorite ? ' <span class="rg-star" title="Favorite">&#9733;</span>' : '') + '</span>' +
                     '<span class="rg-meta">' + esc(r.location) + ' &middot; ' + esc(r.date) + '</span>' +

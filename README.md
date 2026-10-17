@@ -11,8 +11,9 @@ every time you push. You don't need to install anything to publish.
 |---|---|
 | `_recipes/` | One file per recipe. This is the only place you need to touch to add or edit a recipe. |
 | `_layouts/recipe.html` | The shared page around every recipe: the menu bar, header image, footer and comments. Change it once and every recipe updates. |
-| `index.html` | The home page. Its globe, filters, "What can I make?" search and recipe list are all filled in automatically from `_recipes/`. |
-| `js/`, `css/` | The globe (`recipe-globe`), home page search and filters (`recipe-finder`), and the serving scaler and cook mode on recipe pages (`recipe-tools`). |
+| `index.html` | The home page: the globe over the main photo, then the filters, "What can I make?" search and recipe cards, all filled in automatically from `_recipes/`. |
+| `_includes/` | Pieces the home page is assembled from (recipe cards, filters, menu bar, footer, recipe data). |
+| `js/`, `css/` | The globe (`recipe-globe`), home page search and filters (`recipe-finder`), home page look (`home-layouts`), and the serving scaler and cook mode on recipe pages (`recipe-tools`). |
 | `about.html`, `contact.html` | The other pages. |
 | `img/` | All photos. |
 | `_config.yml` | Jekyll settings. |
@@ -83,6 +84,10 @@ isn't shown anywhere. It only keeps recipes posted on the same day in the right 
 
 Phone photos are large. Before adding one to `img/`, shrink it to about 1800 pixels on its
 longest side (most photo apps can do this when exporting), which keeps pages fast on phones.
+
+The home page cards use a small copy of each recipe's header photo from `img/thumbs/`, with
+the same file name, about 640 pixels on its longest side. If a recipe has no small copy yet,
+its card falls back to the full photo, which works but loads more slowly.
 
 ## Previewing locally (optional)
 

@@ -1,223 +1,51 @@
 ---
-# Front matter: tells Jekyll to process this page so the recipe list below is filled in.
+# Home page: night globe over the main photo, then the recipe cards and filters.
+# Everything here is filled in from the files in _recipes/
 ---
+{%- assign listed = site.recipes | where_exp: "recipe", "recipe.hidden != true" -%}
+{%- assign country_count = listed | map: "country" | uniq | size -%}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fairvopia</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Theme CSS -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- Recipe globe -->
-    <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" rel="stylesheet">
-    <link href="css/recipe-globe.css" rel="stylesheet">
-    <link href="css/recipe-finder.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+{% include home-head.html %}
 </head>
+<body class="home">
 
-<body>
+{% include nav.html %}
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="index.html">Antoine Bichara</a>
+    <header class="hero-a">
+        <div class="wide hero-a-inner">
+            <div class="hero-a-text">
+                <img class="hero-logo" src="img/logo.png" alt="Fairvopia">
+                <p class="hero-tagline">A mission to explore the world through cooking</p>
+                <div class="hero-stats">
+                    <div><strong>{{ listed.size }}</strong><span>recipes</span></div>
+                    <div><strong>{{ country_count }}</strong><span>countries</span></div>
+                </div>
+                <div class="hero-buttons">
+                    <button type="button" class="btn-solid" id="recipe-globe-surprise">Surprise me</button>
+                    <a class="btn-ghost" href="#recipes">Browse recipes</a>
+                </div>
+                <p class="hero-hint">Spin the globe and click a pin to find a recipe.</p>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="margin-top:0px;margin-bottom:-25px; background-image: url('img/rszhome-image.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                       <a href="#">
-                  <!--     <center> <img style="position:absolute; top:25px; right:100px; left: 220px; height:302px; width:345px" src="img/logo.png"></center> -->
-                   
-			 <center> <img style="position:relative;margin-bottom:-100px;top:-140px; height:49%; width:51%" src="img/logo.png"></center>
- </a>
-
-
-<br>
-                      
-	       <span style="font-size:18px;margin-top:-50px; font-family: Verdana, Geneva, sans-serif" class="subheading">A mission to explore the world through cooking<br> </span><br><br><br>                    </div>                </div>            </div>        </div>    </header>    <!-- Main Content -->    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-
-{% assign recipes = site.recipes | where_exp: "recipe", "recipe.hidden != true" | reverse %}
-
-<!-- Recipe globe: pins come from "location", "country" and "coords" in each _recipes file. -->
-                <div class="recipe-globe">
-                    <div class="recipe-globe-bar">
-                        <span class="recipe-globe-count" id="recipe-globe-count"></span>
-                        <button type="button" class="recipe-globe-surprise" id="recipe-globe-surprise">Surprise me</button>
-                    </div>
-                    <div id="recipe-globe-map"></div>
-                    <div class="recipe-globe-legend">
-                        <span class="rg-key-pin">Recipe</span>
-                        <span class="rg-key-favorite">Favorite</span>
-                        <span class="rg-key-country">Countries I've cooked from (click for the list)</span>
-                    </div>
-                </div>
-                <script>
-                window.FAIRVOPIA_RECIPES = [
-{%- for recipe in recipes %}{% if recipe.coords %}
-{%- assign ing_html = recipe.content | split: '<h2 id="steps">' | first | split: '<h2 id="ingredients">' | last -%}
-{%- assign ing_items = ing_html | split: '<li>' %}
-                    {"title": {{ recipe.title | jsonify }}, "url": {{ recipe.url | remove_first: '/' | jsonify }}, "date": {{ recipe.date | date: "%B %-d, %Y" | jsonify }}, "image": {{ recipe.image | jsonify }}, "location": {{ recipe.location | jsonify }}, "country": {{ recipe.country | jsonify }}, "lat": {{ recipe.coords[0] }}, "lng": {{ recipe.coords[1] }}, "favorite": {% if recipe.favorite %}true{% else %}false{% endif %}, "type": {{ recipe.type | default: "main" | jsonify }}, "vegetarian": {% if recipe.vegetarian %}true{% else %}false{% endif %},
-                     "ingredients": [{%- for li in ing_items offset: 1 -%}{{ li | split: '</li>' | first | strip_html | normalize_whitespace | strip | jsonify }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}]},
-{%- endif %}{% endfor %}
-                ];
-                </script>
-
-<!-- Recipe finder: filter buttons and "What can I make?" (js/recipe-finder.js) -->
-                <div class="recipe-finder">
-                    <div class="rf-filters" role="group" aria-label="Show only">
-                        <button type="button" class="rf-filter active" data-filter="all">All</button>
-                        <button type="button" class="rf-filter" data-filter="main">Mains</button>
-                        <button type="button" class="rf-filter" data-filter="soup">Soups</button>
-                        <button type="button" class="rf-filter" data-filter="dessert">Desserts</button>
-                        <button type="button" class="rf-filter" data-filter="baking">Breads &amp; baking</button>
-                        <button type="button" class="rf-filter" data-filter="side">Sides &amp; snacks</button>
-                        <button type="button" class="rf-filter" data-filter="vegetarian">Vegetarian</button>
-                    </div>
-                    <div class="rf-search">
-                        <label for="rf-input">What can I make?</label>
-                        <div class="rf-box">
-                            <span class="rf-chips"></span>
-                            <input id="rf-input" type="text" autocomplete="off" placeholder="Type what you have, e.g. chicken, rice, coconut milk">
-                        </div>
-                        <p class="rf-help">Press Enter or a comma after each ingredient. Salt, pepper, oil, water and sugar are assumed.</p>
-                    </div>
-                    <div class="rf-results" aria-live="polite"></div>
-                </div>
-
-<!-- The recipe list below is generated automatically from the files in the _recipes folder (newest first). -->
-{% for recipe in recipes %}
-                <div class="recipe-entry" data-url="{{ recipe.url | remove_first: '/' }}">
-                <div class="post-preview"{% if forloop.first %} style="margin-top:50px;"{% endif %}>
-                    <a href="{{ recipe.url | remove_first: '/' }}">
-                        <h2 class="post-title">
-                            {{ recipe.list_title | default: recipe.title }}{% if recipe.favorite %} *{% endif %}
-                        </h2>
-                        <h3 class="post-subtitle">
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">Antoine</a> on {{ recipe.date | date: "%B %-d, %Y" }}</p>
-                </div>
-                <hr>
-                </div>
-{% endfor %}
-                <p class="rf-none" hidden>No recipes match that filter yet.</p>
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="next">
-                       <a href="#">Back to Top &rarr;</a>
-                    </li>
-                </ul>
+            <div class="hero-a-globe">
+                <div id="recipe-globe-map" data-theme="night" data-zoom="1.9" data-no-controls></div>
             </div>
         </div>
-    </div>
-<h3>&nbsp;  * favorites </h3>
-    <hr>
+        <a class="scroll-cue" href="#recipes" aria-label="Scroll to recipes"><i class="fa fa-chevron-down"></i></a>
+    </header>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="https://twitter.com/antoine_bichara">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/antoine-bichara-03397071?trk=nav_responsive_tab_profile_pic">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Antoine Bichara 2017</p>
-                </div>
-            </div>
+    <section class="home-section" id="recipes">
+        <div class="wide">
+            <h2 class="section-title">All recipes</h2>
+            <p class="section-lead" id="recipe-globe-count"></p>
+{% include recipe-finder.html %}
+{% include recipe-cards.html %}
         </div>
-    </footer>
+    </section>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="js/clean-blog.min.js"></script>
-
-    <!-- Recipe globe -->
-    <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
-    <script src="js/recipe-globe.js"></script>
-    <script src="js/recipe-finder.js"></script>
-
+{% include footer.html %}
+{% include recipe-data.html %}
+{% include home-scripts.html %}
 </body>
-
 </html>
