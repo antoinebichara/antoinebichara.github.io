@@ -413,8 +413,11 @@ html.cook-mode-open body {
     font-size: 17px;
 }
 
-.cooked-this-btn,
-.cooked-this-btn:focus {
+.cooked-this-email {
+    word-break: break-all;
+}
+
+.cooked-this-btn {
     display: inline-block;
     padding: 9px 18px;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -424,13 +427,29 @@ html.cook-mode-open body {
     text-transform: uppercase;
     color: #fff;
     background: #e8772e;
+    border: 0;
     border-radius: 3px;
+    cursor: pointer;
 }
 
-.cooked-this-btn:hover {
-    color: #fff;
+.cooked-this-btn:hover,
+.cooked-this-btn:focus {
     background: #c95f1a;
-    text-decoration: none;
+}
+
+.cooked-this-btn.copied {
+    background: #2f8f46;
+}
+
+.cooked-this-status {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #808080;
+}
+
+.cooked-this-status:empty {
+    display: none;
 }
 
 @media print {
