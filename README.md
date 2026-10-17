@@ -11,16 +11,18 @@ every time you push. You don't need to install anything to publish.
 |---|---|
 | `_recipes/` | One file per recipe. This is the only place you need to touch to add or edit a recipe. |
 | `_layouts/recipe.html` | The shared page around every recipe: the menu bar, header image, footer and comments. Change it once and every recipe updates. |
-| `index.html` | The home page. Its recipe list is filled in automatically from `_recipes/`. |
+| `index.html` | The home page. Its globe, filters, "What can I make?" search and recipe list are all filled in automatically from `_recipes/`. |
+| `js/`, `css/` | The globe (`recipe-globe`), home page search and filters (`recipe-finder`), and the serving scaler and cook mode on recipe pages (`recipe-tools`). |
 | `about.html`, `contact.html` | The other pages. |
 | `img/` | All photos. |
 | `_config.yml` | Jekyll settings. |
 
 ## Adding a recipe
 
-Create a new file in `_recipes/`, for example `_recipes/moussaka.html`. It will be published at
-`www.fairvopia.com/moussaka.html` and appear at the top of the home page. Start the file
-with a short header between two `---` lines, then write the recipe:
+Create a new file in `_recipes/`, for example `_recipes/moussaka.md`. It will be published at
+`www.fairvopia.com/moussaka.html` and appear at the top of the home page and on the globe.
+Start the file with a short header between two `---` lines, then write the recipe in two
+sections, `## Ingredients` and `## Steps`:
 
 ```
 ---
@@ -30,15 +32,29 @@ image: moussaka.jpg
 location: "Athens, Greece"
 country: "Greece"
 coords: [37.98, 23.73]
+type: main
 ---
 
-<p>
-1 eggplant <br>
-...
-</p>
+## Ingredients
+
+- 2 eggplants, sliced
+- 1 lb ground lamb
+- 1/2 cup red wine
+
+**Serves Four · Total Time: 90 minutes**
+
+## Steps
+
+1. Salt the eggplant slices and let them sit for 30 minutes.
+2. Brown the lamb in a large pan.
 
 <img class="img-responsive" src="img/moussaka-2.jpg" alt="">
 ```
+
+Keep the `## Ingredients` and `## Steps` headings: the serving scaler, cook mode and the
+"What can I make?" search all rely on them. Inside each section you can add smaller headings
+such as `### Sauce` to split a recipe into parts. Start each ingredient with its amount
+(`1/2 cup ...`, `2 eggs`, `1 1/2 tbsp ...`) so the scaler can change it.
 
 The header fields are:
 
@@ -50,16 +66,23 @@ The header fields are:
   `country` must be spelled the way the globe's country outlines spell it (for example
   `"United States of America"`, `"United Kingdom"`, `"South Korea"`) for that country to be
   shaded. A recipe without `coords` still shows up in the list but not on the globe.
+- `type`: one of `main`, `soup`, `dessert`, `baking` or `side`, used by the filter buttons.
 
 These fields are optional:
 
+- `vegetarian: true`: shows the recipe under the Vegetarian filter.
 - `list_title`: a different name to show on the home page, if it should differ from `title`.
-- `favorite: true`: marks the recipe with a `*` on the home page.
+- `favorite: true`: marks the recipe with a `*` on the home page and a gold pin on the globe.
 - `hidden: true`: publishes the page but leaves it off the home page.
 - `date_note`: extra text after the date, such as `"Updated January 2021"`.
 
 Some older recipes have a time after the date (for example `2016-10-22 15:00:00`). The time
 isn't shown anywhere. It only keeps recipes posted on the same day in the right order.
+
+## Photos
+
+Phone photos are large. Before adding one to `img/`, shrink it to about 1800 pixels on its
+longest side (most photo apps can do this when exporting), which keeps pages fast on phones.
 
 ## Previewing locally (optional)
 

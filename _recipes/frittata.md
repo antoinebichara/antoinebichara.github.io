@@ -1,0 +1,35 @@
+---
+title: "Iranian Kuku Sabzi"
+date: 2017-05-19 18:00:00
+image: frittata.jpg
+location: "Tehran, Iran"
+country: "Iran"
+coords: [35.6892, 51.3890]
+type: main
+vegetarian: true
+---
+
+## Ingredients
+
+- 4 eggs, lightly beaten
+- 1 tsp baking powder
+- 1 tsp fenugreek leaves
+- 1 bunch dill, finely chopped
+- 1 bunch parsley, finely chopped
+- 1 bunch cilantro, finely chopped
+- 1 tsp ground turmeric
+- 1 yellow or brown onion, very finely chopped
+- 1 leek, up to and including light green part, very finely chopped
+- Some canola oil
+
+**Makes One · Total Time: 30 minutes**
+
+## Steps
+
+1. Preheat oven to broil. In a small saucepan add two tbsp canola oil and cook the onion and leek over medium-low heat for twelve minutes until soft.
+1. In a mixing bowl, add the herbs, eggs, baking powder, turmeric, two tsp salt and one tsp ground black pepper.
+1. Mix well. Once finished, add in the onion and leek mixture to the herbs and combine well. Clean out the small saucepan, and then add three tbsp canola oil over medium heat. Once the oil is hot, pour in the frittata mixture. Pat it down so it is evenly spread out in the saucepan, then cover the saucepan with a plate or baking tray and cook for ten minutes. Check occasionally to make sure the bottom isn't burning, you may need to lower heat. After the ten minutes, place pan in oven and broil for one minute. Then slide frittata from pan onto a bread board and serve warm.
+
+<img class="img-responsive" src="img/frittata-2.jpg" alt="">
+
+<img class="img-responsive" src="img/frittata-3.jpg" alt="">

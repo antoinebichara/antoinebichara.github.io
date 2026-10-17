@@ -1,0 +1,163 @@
+/* Home page filters and "What can I make?" (js/recipe-finder.js) */
+
+.recipe-finder {
+    margin: 30px 0 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.rf-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.rf-filter {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #404040;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.rf-filter:hover {
+    border-color: #e8772e;
+}
+
+.rf-filter.active {
+    color: #fff;
+    background: #e8772e;
+    border-color: #e8772e;
+}
+
+.rf-search {
+    margin-top: 22px;
+}
+
+.rf-search label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #404040;
+}
+
+.rf-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: text;
+}
+
+.rf-box:focus-within {
+    border-color: #e8772e;
+    box-shadow: 0 0 0 2px rgba(232, 119, 46, 0.2);
+}
+
+.rf-chips {
+    display: contents;
+}
+
+.rf-chip {
+    padding: 3px 8px 3px 10px;
+    font-size: 14px;
+    color: #c95f1a;
+    background: #fdf0e6;
+    border: 1px solid #f4c8a3;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.rf-chip span {
+    margin-left: 2px;
+    font-weight: 700;
+}
+
+#rf-input {
+    flex: 1;
+    min-width: 180px;
+    padding: 6px 4px;
+    font-size: 16px;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.rf-help {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: #808080;
+}
+
+.rf-list {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+}
+
+.rf-item {
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    background: #fffaf4;
+    border: 1px solid #f0e2d2;
+    border-radius: 6px;
+}
+
+.rf-title {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: #404040;
+}
+
+.rf-title:hover,
+.rf-title:focus {
+    color: #e8772e;
+    text-decoration: none;
+}
+
+.rf-score {
+    display: block;
+    margin-top: 2px;
+    font-size: 14px;
+    color: #606060;
+}
+
+.rf-bar {
+    display: block;
+    height: 6px;
+    margin: 6px 0;
+    background: #f0e2d2;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.rf-bar span {
+    display: block;
+    height: 100%;
+    background: #e8772e;
+}
+
+.rf-missing {
+    display: block;
+    font-size: 13px;
+    color: #808080;
+}
+
+.rf-missing.rf-all {
+    color: #2f8f46;
+    font-weight: 600;
+}
+
+.rf-empty,
+.rf-none {
+    margin-top: 14px;
+    color: #808080;
+}

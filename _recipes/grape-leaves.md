@@ -1,0 +1,39 @@
+---
+title: "Lebanese Stuffed Grape Leaves"
+date: 2017-04-21 20:00:00
+image: grape-leaves.jpg
+location: "Tripoli, Lebanon"
+country: "Lebanon"
+coords: [34.4367, 35.8497]
+type: side
+---
+
+## Ingredients
+
+- 1 lb ground beef
+- About 50 grape leaves
+- 2 white onions, one chopped, one cut into rings
+- 1/2 cup chopped parsley
+- 4 cloves garlic, minced
+- 1 tsp all spice
+- 1 tsp cumin
+- 1/4 tsp nutmeg
+- 1 cup uncooked white rice
+- 6 cups chicken broth
+- 1 lemon, cut into wedges
+
+**Serves Four · Total Time: 90 minutes**
+
+## Steps
+
+1. In a saucepan over medium heat with 3 tbsp olive oil, cook the chopped onion and garlic for about three minutes. Then add in the spices as well as salt and pepper and continue to cook, stirring for about 3 minutes. Then move contents to a mixing bowl and combine with the rice, beef and parsley. Mix thoroughly so everything is evenly combined.
+1. If jarred, rinse and drain the grape leaves.
+1. Bring large pot of water to boil and boil the grape leaves for about 8 minutes, then drain.
+1. Rinse out the large pot, then add a layer of the grape leaves to the bottom, and then layer the onion rings over them.
+1. To roll the grape leaves, take a single leaf, smooth side down and place about a tbsp of the meat and rice onto it as shown in the picture below. First fold the bottom two parts directly upward over the meat. Then fold the left and right leaves inward and roll forward. Layer the completed grape leaves into the pot over the onion rings, alternating the direction of the rolled leaves each layer. Then cover the grape leaves with the chicken broth, place a plate over the top of the grape leaves so they don't move around. Cover the pot, and bring to a boil, then reduce heat to low and cook for about 40 minutes. Serve warm with the lemon.
+
+<img class="img-responsive" src="img/grape-leaves-2.jpg" alt="">
+
+<img class="img-responsive" src="img/grape-leaves-3.jpg" alt="">
+
+<img class="img-responsive" src="img/grape-leaves-4.jpg" alt="">

@@ -25,8 +25,36 @@
         (countries[r.country] = countries[r.country] || []).push(r);
     });
     var countEl = document.getElementById('recipe-globe-count');
-    if (countEl) {
-        countEl.textContent = recipes.length + ' recipes from ' + Object.keys(countries).length + ' countries';
+    function updateCount(list) {
+        if (!countEl) return;
+        var inCountries = {};
+        list.forEach(function (r) { inCountries[r.country] = true; });
+        countEl.textContent = list.length + (list.length === 1 ? ' recipe' : ' recipes') + ' from ' +
+            Object.keys(inCountries).length + (Object.keys(inCountries).length === 1 ? ' country' : ' countries');
+    }
+    updateCount(recipes);
+
+    // Used by the filter buttons (js/recipe-finder.js): show only these recipe URLs, or all with null
+    var visible = null;
+    window.recipeGlobe = {
+        showOnly: function (urls) {
+            visible = urls;
+            updateCount(urls ? recipes.filter(function (r) { return urls[r.url]; }) : recipes);
+            var source = map.getSource && map.getSource('recipes');
+            if (source) source.setData(pinData());
+        }
+    };
+    function pinData() {
+        return {
+            type: 'FeatureCollection',
+            features: recipes.map(function (r, i) {
+                return {
+                    type: 'Feature',
+                    geometry: { type: 'Point', coordinates: [r.lng, r.lat] },
+                    properties: { index: i, favorite: !!r.favorite }
+                };
+            }).filter(function (f) { return !visible || visible[recipes[f.properties.index].url]; })
+        };
     }
 
     // ---- Map ----
@@ -104,16 +132,7 @@
             cluster: true,
             clusterRadius: 36,
             clusterMaxZoom: 7,
-            data: {
-                type: 'FeatureCollection',
-                features: recipes.map(function (r, i) {
-                    return {
-                        type: 'Feature',
-                        geometry: { type: 'Point', coordinates: [r.lng, r.lat] },
-                        properties: { index: i, favorite: !!r.favorite }
-                    };
-                })
-            }
+            data: pinData()
         });
 
         map.addLayer({
@@ -218,8 +237,9 @@
     var surprise = document.getElementById('recipe-globe-surprise');
     if (surprise) {
         surprise.addEventListener('click', function () {
-            if (!recipes.length) return;
-            var r = recipes[Math.floor(Math.random() * recipes.length)];
+            var pool = visible ? recipes.filter(function (x) { return visible[x.url]; }) : recipes;
+            if (!pool.length) return;
+            var r = pool[Math.floor(Math.random() * pool.length)];
             stopSpinning();
             popup.remove();
             map.flyTo({ center: [r.lng, r.lat], zoom: 5, speed: 0.9, essential: true });

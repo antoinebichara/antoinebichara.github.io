@@ -1,0 +1,31 @@
+---
+title: "French Crème Caramel"
+date: 2017-05-12 18:00:00
+image: cremecaramel.jpg
+location: "Lyon, France"
+country: "France"
+coords: [45.7640, 4.8357]
+type: dessert
+vegetarian: true
+---
+
+## Ingredients
+
+- 2 eggs
+- 1/4 cup sugar
+- Pinch of salt
+- 3/4 cup milk
+- 2 tsp vanilla extract
+
+**Makes Two · Total Time: 85 minutes, then refrigerate at least four hours**
+
+## Steps
+
+1. Preheat the oven to 300 degrees Fahrenheit. Butter two ramekins. In a small saucepan melt half the sugar, stirring constantly, until it forms a brown consistent syrup, then pour half into each of the ramekins. In a mixing bowl beat the eggs together with the other half of the sugar, and the salt with a fork until smooth and frothy. Then slowly mix in the vanilla extract and milk.
+1. Continue to stir for a few minutes, then pour half the mixture into each ramekin ontop of the sugar syrup. Place the two ramekins inside a rectangular baking dish and fill it with hot water halfway up the ramekins. Then put the dish with the ramekins in the oven and bake for one hour. Remove from oven, and let ramekins cool for about 15 minutes, then refrigerate them for at least four hours. To serve use a sharp knife to cut around the inside edge, and then flip onto plate.
+
+<img class="img-responsive" src="img/cremecaramel-2.jpg" alt="">
+
+<img class="img-responsive" src="img/cremecaramel-3.jpg" alt="">
+
+<img class="img-responsive" src="img/cremecaramel-4.jpg" alt="">
