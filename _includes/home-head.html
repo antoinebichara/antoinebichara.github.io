@@ -13,9 +13,9 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" rel="stylesheet">
-    <link href="css/recipe-globe.css" rel="stylesheet">
-    <link href="css/recipe-finder.css" rel="stylesheet">
-    <link href="css/home-layouts.css" rel="stylesheet">
+    <link href="css/recipe-globe.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
+    <link href="css/recipe-finder.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
+    <link href="css/home-layouts.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
     <!-- Hold the first paint until the recipe cards exist, so the back-transition can find its card -->
     <link rel="expect" href="#cards-end" blocking="render">
 {% include app-head.html %}

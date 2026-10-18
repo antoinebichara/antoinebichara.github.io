@@ -27,7 +27,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Serving scaler and cook mode -->
-    <link href="css/recipe-tools.css" rel="stylesheet">
+    <link href="css/recipe-tools.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
 {% include app-head.html %}
 
 </head>
@@ -89,8 +89,8 @@
     <script src="js/clean-blog.min.js"></script>
 
     <!-- Serving scaler and cook mode -->
-    <script src="js/recipe-tools.js"></script>
-    <script src="js/cooked-this.js"></script>
+    <script src="js/recipe-tools.js?v={{ site.time | date: "%s" }}"></script>
+    <script src="js/cooked-this.js?v={{ site.time | date: "%s" }}"></script>
 
 </body>
 

@@ -9,6 +9,8 @@ sitemap: false
  * Map tiles and anything else from other sites: never saved.
  */
 var VERSION = '{{ site.time | date: "%Y%m%d%H%M%S" }}';
+// Matches the "?v=" tag the pages put on the site's own styles and scripts
+var V = '?v={{ site.time | date: "%s" }}';
 var CORE = 'fairvopia-core-' + VERSION;
 var PAGES = 'fairvopia-pages';
 var IMAGES = 'fairvopia-images';
@@ -24,17 +26,17 @@ var PRECACHE = [
     '/vendor/font-awesome/css/font-awesome.min.css',
     '/vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3',
     '/css/clean-blog.min.css',
-    '/css/transitions.css',
-    '/css/recipe-tools.css',
-    '/css/recipe-globe.css',
-    '/css/recipe-finder.css',
-    '/css/home-layouts.css',
+    '/css/transitions.css' + V,
+    '/css/recipe-tools.css' + V,
+    '/css/recipe-globe.css' + V,
+    '/css/recipe-finder.css' + V,
+    '/css/home-layouts.css' + V,
     '/js/clean-blog.min.js',
-    '/js/transitions.js',
-    '/js/recipe-tools.js',
-    '/js/cooked-this.js',
-    '/js/recipe-globe.js',
-    '/js/recipe-finder.js',
+    '/js/transitions.js' + V,
+    '/js/recipe-tools.js' + V,
+    '/js/cooked-this.js' + V,
+    '/js/recipe-globe.js' + V,
+    '/js/recipe-finder.js' + V,
     '/img/logo.png',
     '/img/rszhome-image.jpg',
     '/img/icons/icon-192.png'
@@ -43,7 +45,10 @@ var LIB_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net'
 
 self.addEventListener('install', function (event) {
     event.waitUntil(
-        caches.open(CORE).then(function (cache) { return cache.addAll(PRECACHE); }).then(function () { return self.skipWaiting(); })
+        caches.open(CORE).then(function (cache) {
+            // "reload": get each file from the server, not from the browser's own 10-minute copy
+            return cache.addAll(PRECACHE.map(function (url) { return new Request(url, { cache: 'reload' }); }));
+        }).then(function () { return self.skipWaiting(); })
     );
 });
 
@@ -76,7 +81,9 @@ self.addEventListener('fetch', function (event) {
 });
 
 function networkFirst(req, cacheName, isPage) {
-    return fetch(req).then(function (res) {
+    // Pages always check with the server ("no-cache"), so an update shows on the next visit
+    var request = isPage ? fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }) : fetch(req);
+    return request.then(function (res) {
         if (res.ok) {
             var copy = res.clone();
             caches.open(cacheName).then(function (cache) { cache.put(req, copy); });
