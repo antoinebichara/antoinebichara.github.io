@@ -6,10 +6,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
     <meta name="author" content="Antoine Bichara">
 
     <title>{{ page.title }}</title>
+{%- capture recipe_description -%}
+{{ page.title }}, a home-cooked recipe from {{ page.location | default: "around the world" }}{% if page.time %}. Ready in {% include recipe-time.html recipe=page %}{% endif %}.
+{%- endcapture %}
+{% include social-meta.html title=page.title description=recipe_description image=page.image recipe=true %}
+{% include recipe-jsonld.html description=recipe_description %}
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,13 +28,6 @@
 
     <!-- Serving scaler and cook mode -->
     <link href="css/recipe-tools.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 

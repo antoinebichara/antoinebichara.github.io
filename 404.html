@@ -1,0 +1,74 @@
+---
+# Shown by GitHub Pages for any address that doesn't exist.
+# Links start with "/" because this page can appear at any path.
+permalink: /404.html
+sitemap: false
+---
+{%- assign listed = site.recipes | where_exp: "recipe", "recipe.hidden != true" -%}
+{%- assign favorites = listed | where: "favorite", true | reverse -%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+
+    <title>Page not found | Fairvopia</title>
+
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="/css/home-layouts.css" rel="stylesheet">
+
+</head>
+
+<body class="home">
+
+{% include nav.html %}
+
+    <header class="intro-header" style="background-image: url('/img/rszhome-image.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Page not found</h1>
+                        <span class="subheading">This page must have been eaten.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wide not-found">
+        <p class="section-lead">The page you were looking for doesn't exist, or it has moved. Try the full list of {{ listed.size }} recipes, or one of these favorites:</p>
+        <p><a class="btn-solid" href="/#recipes">Browse all recipes</a></p>
+
+        <div class="recipe-cards">
+{%- for recipe in favorites limit: 4 %}
+            <a class="recipe-card" href="/{{ recipe.url | remove_first: '/' }}">
+                <span class="rc-photo"><img src="/img/thumbs/{{ recipe.image }}" alt="" loading="lazy" onerror="this.onerror=null; this.src='/img/{{ recipe.image }}'"></span>
+                <span class="rc-body">
+                    <span class="rc-title">{{ recipe.list_title | default: recipe.title }}</span>
+                    <span class="rc-meta">{{ recipe.location }}</span>
+                </span>
+            </a>
+{%- endfor %}
+        </div>
+    </div>
+
+    <hr>
+
+{% include footer.html %}
+
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

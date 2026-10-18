@@ -1,0 +1,35 @@
+{%- comment -%}
+  Structured recipe data (schema.org/Recipe) so Google can show a recipe card with the photo,
+  time and ingredients. Built from the "## Ingredients" and "## Steps" sections of the recipe.
+  Usage (in _layouts/recipe.html): {% include recipe-jsonld.html description=... %}
+{%- endcomment -%}
+{%- if content contains '<h2 id="ingredients">' and content contains '<h2 id="steps">' -%}
+{%- assign ing_items = content | split: '<h2 id="steps">' | first | split: '<h2 id="ingredients">' | last | split: '<li>' -%}
+{%- assign step_items = content | split: '<h2 id="steps">' | last | split: '<li>' -%}
+{%- assign categories = "main:Main course,soup:Soup,dessert:Dessert,baking:Bread and baking,side:Side dish" | split: "," -%}
+{%- assign category = "Main course" -%}
+{%- for c in categories -%}{%- assign pair = c | split: ":" -%}{%- if pair[0] == page.type -%}{%- assign category = pair[1] -%}{%- endif -%}{%- endfor -%}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": {{ page.title | jsonify }},
+        "description": {{ include.description | jsonify }},
+        "image": [{{ '/img/' | append: page.image | absolute_url | jsonify }}],
+        "author": {"@type": "Person", "name": {{ site.author | jsonify }}},
+        "datePublished": {{ page.date | date: "%Y-%m-%d" | jsonify }},
+        "recipeCategory": {{ category | jsonify }},
+        "recipeCuisine": {{ page.country | jsonify }},
+        "keywords": {{ page.country | append: ", " | append: category | jsonify }},
+        {%- if page.time and page.overnight != true %}
+        "totalTime": "PT{{ page.time }}M",
+        {%- endif %}
+        "recipeIngredient": [
+            {%- for li in ing_items offset: 1 -%}{{ li | split: '</li>' | first | strip_html | normalize_whitespace | strip | jsonify }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}
+        ],
+        "recipeInstructions": [
+            {%- for li in step_items offset: 1 -%}{"@type": "HowToStep", "text": {{ li | split: '</li>' | first | strip_html | normalize_whitespace | strip | jsonify }}}{% unless forloop.last %}, {% endunless %}{%- endfor -%}
+        ]
+    }
+    </script>
+{%- endif -%}

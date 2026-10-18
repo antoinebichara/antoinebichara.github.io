@@ -172,6 +172,11 @@ body.home {
     color: #808080;
 }
 
+/* Page-not-found page (404.html) */
+.not-found {
+    padding-bottom: 50px;
+}
+
 /* ===== Layout A: globe hero ===== */
 .hero-a {
     position: relative;

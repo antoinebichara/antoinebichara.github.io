@@ -1,5 +1,15 @@
 # Jekyll settings (GitHub Pages reads this file automatically).
 
+# Used for link previews, Google's recipe data and the sitemap
+title: Fairvopia
+description: A mission to explore the world through cooking. Home-cooked recipes from around the globe.
+author: Antoine Bichara
+url: "https://www.fairvopia.com"
+
+# Builds sitemap.xml so search engines can find every recipe
+plugins:
+  - jekyll-sitemap
+
 # Each recipe lives in the _recipes folder and is published at the same
 # address as before, e.g. _recipes/fatayer.html -> www.fairvopia.com/fatayer.html
 collections:
