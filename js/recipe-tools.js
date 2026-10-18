@@ -354,6 +354,7 @@ var fairvopiaFractions = window.fairvopiaFractions;
             '</span>' +
         '</span>' +
         '<span class="tools-right">' +
+            '<button type="button" class="share-btn"><i class="fa fa-share-alt"></i> Share</button>' +
             '<button type="button" class="ing-clear" hidden><i class="fa fa-undo"></i> Clear ticks</button>' +
             '<button type="button" class="cook-start"><i class="fa fa-cutlery"></i> Start cooking</button>' +
         '</span>';
@@ -364,11 +365,29 @@ var fairvopiaFractions = window.fairvopiaFractions;
         var u = e.target.closest('.unit-btn');
         if (u) setUnits(u.getAttribute('data-units') === 'metric');
         if (e.target.closest('.cook-start')) openCookMode();
+        if (e.target.closest('.share-btn')) shareRecipe();
         if (e.target.closest('.ing-clear')) {
             checked = {};
             setChecked(-1, false);
         }
     });
+    // Share: the phone's own share menu where available, otherwise copy the link
+    function shareRecipe() {
+        var title = (document.querySelector('.post-heading h1') || {}).textContent || document.title;
+        var link = document.querySelector('link[rel="canonical"]');
+        var url = link ? link.href : location.href.split('#')[0];
+        if (navigator.share) {
+            navigator.share({ title: title, text: title + ' on Fairvopia', url: url }).catch(function () {});
+            return;
+        }
+        var toast = window.fairvopiaToast || function () {};
+        (window.fairvopiaCopy ? window.fairvopiaCopy(url) : Promise.reject()).then(function () {
+            toast('<i class="fa fa-check" aria-hidden="true"></i>Link copied. Paste it anywhere to share.');
+        }, function () {
+            toast('Copy this link to share: ' + url);
+        });
+    }
+
     showChecks();
     render();   // apply metric units if this visitor chose them before
 

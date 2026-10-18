@@ -1,3 +1,22 @@
+    <!-- Dark mode: follows the device setting unless the visitor picked one with the menu button.
+         Runs before the page is drawn so there's no flash of the wrong colors. -->
+    <script>
+    (function () {
+        var root = document.documentElement, saved = null;
+        try { saved = localStorage.getItem('fairvopia-theme'); } catch (e) {}
+        var system = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+        function apply(dark) { root.classList.toggle('dark', dark); }
+        apply(saved ? saved === 'dark' : !!(system && system.matches));
+        if (system && system.addEventListener) system.addEventListener('change', function (e) { if (!saved) apply(e.matches); });
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest || !e.target.closest('.theme-toggle')) return;
+            saved = root.classList.contains('dark') ? 'light' : 'dark';
+            try { localStorage.setItem('fairvopia-theme', saved); } catch (err) {}
+            apply(saved === 'dark');
+        });
+    })();
+    </script>
+
     <!-- Icons, "Add to Home Screen" app settings, page transitions and offline support -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#121a2b">

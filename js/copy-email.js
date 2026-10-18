@@ -45,6 +45,7 @@
         clearTimeout(timer);
         timer = setTimeout(function () { toast.classList.remove('show'); }, 3000);
     }
+    window.fairvopiaToast = showToast;   // also used by the share button (js/recipe-tools.js)
 
     document.addEventListener('click', function (e) {
         var link = e.target.closest('[data-copy-email]');

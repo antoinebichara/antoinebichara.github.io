@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Antoine Bichara">
 
-    <title>{{ page.title }}</title>
+    <title>{{ page.title }} | Fairvopia</title>
 {%- capture recipe_description -%}
 {{ page.title }}, a home-cooked recipe from {{ page.location | default: "around the world" }}{% if page.time %}. Ready in {% include recipe-time.html recipe=page %}{% endif %}.
 {%- endcapture %}
@@ -57,7 +57,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 recipe-body">
 
-{{ content }}
+{%- comment -%} Recipe photos are described with the recipe name (for screen readers and Google Images) {%- endcomment -%}
+{%- capture photo_alt -%}alt="{{ page.title | escape }}"{%- endcapture -%}
+{{ content | replace: 'alt=""', photo_alt }}
 
                     <!-- Instead of comments: the button copies the email address (js/cooked-this.js) -->
                     <aside class="cooked-this">

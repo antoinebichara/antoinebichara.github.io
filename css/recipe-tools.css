@@ -140,6 +140,25 @@
     gap: 10px;
 }
 
+.share-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #e8772e;
+    background: transparent;
+    border: 2px solid #e8772e;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.share-btn:hover,
+.share-btn:focus {
+    color: #fff;
+    background: #e8772e;
+}
+
 .ing-clear {
     padding: 7px 12px;
     font-size: 13px;

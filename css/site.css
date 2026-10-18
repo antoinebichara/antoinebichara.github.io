@@ -50,3 +50,143 @@
     margin-right: 6px;
     color: #7bd88f;
 }
+
+/* ===== Menu bar: site name on the left, light/dark button on the right ===== */
+.navbar-custom .navbar-header {
+    float: none;
+}
+
+.theme-toggle {
+    float: right;
+    margin: 8px 6px 0 0;
+    padding: 6px 10px;
+    font-size: 20px;
+    line-height: 1;
+    color: #777;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.theme-toggle .fa-sun-o,
+.dark .theme-toggle .fa-moon-o {
+    display: none;
+}
+
+.dark .theme-toggle .fa-sun-o {
+    display: inline-block;
+}
+
+@media (min-width: 768px) {
+    .theme-toggle { margin-top: 13px; color: #fff; }
+    .theme-toggle:hover, .theme-toggle:focus { color: rgba(255, 255, 255, 0.8); }
+    .navbar-custom.is-fixed .theme-toggle { color: #333; }
+}
+
+/* ===== Dark mode (html.dark, set by _includes/app-head.html) ===== */
+html.dark,
+.dark body,
+.dark body.home {
+    color: #e4e0d9;
+    background: #16181d;
+}
+
+.dark a,
+.dark .post-preview > a { color: #e4e0d9; }
+.dark a:hover,
+.dark a:focus { color: #f4a259; }
+.dark hr { border-color: #2c313a; }
+.dark .text-muted,
+.dark .copyright { color: #8f8a83; }
+.dark blockquote { color: #a29d95; }
+
+/* Footer icons: dark circles instead of light ones */
+.dark footer .fa-stack .fa-circle { color: #2f3540; }
+.dark footer a:hover .fa-circle,
+.dark footer a:focus .fa-circle { color: #e8772e; }
+
+/* Menu bar on phones, and on computers once it sticks to the top while scrolling */
+@media (max-width: 767px) {
+    .dark .navbar-default { background-color: #1b1e24; border-color: #2a2e36; }
+    .dark .navbar-default .navbar-brand,
+    .dark .theme-toggle { color: #e4e0d9; }
+}
+.dark .navbar-custom.is-fixed { background-color: rgba(27, 30, 36, 0.94); border-bottom-color: #2a2e36; }
+.dark .navbar-custom.is-fixed .navbar-brand,
+.dark .navbar-custom.is-fixed .theme-toggle { color: #e4e0d9; }
+
+/* Home page */
+.dark .section-title { color: #f1ede6; }
+.dark .section-lead,
+.dark .rc-meta,
+.dark .rf-help,
+.dark .rf-missing { color: #a29d95; }
+.dark .recipe-card { color: #e4e0d9; background: #1f232a; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.3); }
+.dark .recipe-card:hover,
+.dark .recipe-card:focus { color: #e4e0d9; }
+.dark .rc-photo { background: #2a2f37; }
+.dark #rf-query,
+.dark .rf-box,
+.dark .rf-sort select { color: #e4e0d9; background: #1f232a; border-color: #333944; }
+.dark #rf-input { color: #e4e0d9; }
+.dark .rf-search label,
+.dark .rf-row-label,
+.dark .rf-sort { color: #e4e0d9; }
+.dark .rf-filter,
+.dark .rf-time { color: #e4e0d9; background: #1f232a; border-color: #3a404b; }
+.dark .rf-filter.active { color: #fff; background: #e8772e; border-color: #e8772e; }
+.dark .rf-time.active { color: #f4a259; background: rgba(232, 119, 46, 0.15); border-color: #e8772e; }
+.dark .rf-chip { color: #f4a259; background: rgba(232, 119, 46, 0.15); border-color: #8a4a22; }
+.dark .rf-item { background: #1f232a; border-color: #333944; }
+.dark .rf-title { color: #f1ede6; }
+.dark .rf-score { color: #c9c4bc; }
+.dark .rf-bar { background: #333944; }
+
+/* Globe popups */
+.dark .maplibregl-popup-content { color: #e4e0d9; background: #1f232a; }
+.dark .rg-card,
+.dark .rg-card:hover { color: #e4e0d9; }
+.dark .rg-meta { color: #a29d95; }
+.dark .maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.dark .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.dark .maplibregl-popup-anchor-top-right .maplibregl-popup-tip { border-bottom-color: #1f232a; }
+.dark .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.dark .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.dark .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { border-top-color: #1f232a; }
+.dark .maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: #1f232a; }
+.dark .maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: #1f232a; }
+
+/* Recipe pages */
+.dark .scale-btn,
+.dark .unit-btn,
+.dark .ing-clear { color: #e4e0d9; background: #1f232a; border-color: #3a404b; }
+.dark .scale-btn.active,
+.dark .unit-btn.active { color: #fff; background: #e8772e; border-color: #e8772e; }
+.dark .scale-label { color: #a29d95; }
+.dark .share-btn { color: #f4a259; border-color: #e8772e; }
+.dark .share-btn:hover,
+.dark .share-btn:focus { color: #fff; background: #e8772e; }
+.dark .is-scaled .qty,
+.dark .qty.converted,
+.dark .unit.converted { color: #f4a259; }
+.dark .is-checked .ing-text { color: #6f6b66; }
+.dark .cooked-this { background: #1f232a; border-color: #333944; }
+.dark .cooked-this-status { color: #a29d95; }
+
+/* Cook mode */
+.dark .cook-mode { color: #e4e0d9; background: #16181d; }
+.dark .cm-top,
+.dark .cm-nav,
+.dark .cm-ingredients { border-color: #2c313a; }
+.dark .cm-ingredients { background: #1f232a; }
+.dark .cm-btn,
+.dark .cm-nav-btn,
+.dark .cm-timer { color: #e4e0d9; background: #1f232a; border-color: #3a404b; }
+.dark .cm-btn.on,
+.dark .cm-nav-btn.cm-next { color: #fff; background: #e8772e; border-color: #e8772e; }
+.dark .cm-section,
+.dark .cm-hint { color: #a29d95; }
+.dark .cm-timer-chip { color: #f4a259; background: #1f232a; border-color: #8a4a22; }
+.dark .cm-timer.done { color: #fff; background: #d9480f; border-color: #d9480f; }
+
+.dark .copy-toast { background: #3a3f48; }
