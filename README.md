@@ -14,7 +14,6 @@ every time you push. You don't need to install anything to publish.
 | `index.html` | The home page: the globe over the main photo, then the filters, "What can I make?" search and recipe cards, all filled in automatically from `_recipes/`. |
 | `_includes/` | Pieces the home page is assembled from (recipe cards, filters, menu bar, footer, recipe data). |
 | `js/`, `css/` | The globe (`recipe-globe`), home page search and filters (`recipe-finder`), home page look (`home-layouts`), and the serving scaler, US/metric toggle, ingredient checkboxes and cook mode on recipe pages (`recipe-tools`). |
-| `about.html` | The About & Contact page. (`contact.html` just forwards there so old links keep working.) |
 | `404.html` | The "page not found" page, shown for any address that doesn't exist. |
 | `img/` | All photos. |
 | `_config.yml` | Jekyll settings. |

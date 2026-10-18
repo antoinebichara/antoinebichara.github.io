@@ -1,13 +1,18 @@
 /*
- * Recipe page tools: serving scaler and cook mode.
+ * Recipe page tools: serving scaler, US/metric, checkboxes, cook mode and nicely
+ * typeset fractions.
  *
  * Works on any recipe written with "## Ingredients" and "## Steps" sections
- * (see README.md). Pages without them are left alone.
+ * (see README.md). Pages without them only get the fraction formatting.
  */
+// Fraction formatting comes from js/fractions.js (window.fairvopiaFractions).
+var fairvopiaFractions = window.fairvopiaFractions;
+
 (function () {
     var body = document.querySelector('.recipe-body');
     var ingHeading = document.getElementById('ingredients');
     var stepsHeading = document.getElementById('steps');
+    if (body && !(ingHeading && stepsHeading)) fairvopiaFractions.format(body);
     if (!body || !ingHeading || !stepsHeading) return;
 
     // Everything between one h2 and the next h2
@@ -25,9 +30,10 @@
     // =====================================================================
     // Serving scaler: changes the leading quantity of each ingredient
     // =====================================================================
-    var UNICODE_FRACTIONS = { '¼': 0.25, '½': 0.5, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3, '⅛': 0.125, '⅕': 0.2, '⅘': 0.8 };
+    var UNICODE_FRACTIONS = { '¼': 0.25, '½': 0.5, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3, '⅛': 0.125, '⅕': 0.2, '⅘': 0.8,
+        '⅖': 0.4, '⅗': 0.6, '⅙': 1 / 6, '⅚': 5 / 6, '⅜': 0.375, '⅝': 0.625, '⅞': 0.875 };
     // "1 1/2", "1/2", "2.5", "3 ¾", "½" (longest forms first)
-    var NUM = '(?:\\d+\\s+\\d+\\s*[\\/⁄]\\s*\\d+|\\d+\\s*[\\/⁄]\\s*\\d+|\\d+(?:\\.\\d+)?(?:\\s*[¼½¾⅓⅔⅛⅕⅘])?|[¼½¾⅓⅔⅛⅕⅘])';
+    var NUM = '(?:\\d+\\s+\\d+\\s*[\\/⁄]\\s*\\d+|\\d+\\s*[\\/⁄]\\s*\\d+|\\d+(?:\\.\\d+)?(?:\\s*[¼½¾⅓⅔⅛⅕⅘⅖⅗⅙⅚⅜⅝⅞])?|[¼½¾⅓⅔⅛⅕⅘⅖⅗⅙⅚⅜⅝⅞])';
     var QTY = new RegExp('^(\\s*(?:at least|about|approx\\.?|~)?\\s*)(' + NUM + ')(\\s*(?:-|to)\\s*(' + NUM + '))?', 'i');
     // Later in a line, "1-2 cm thick" or "350 degrees" describe the method, not an amount
     var NOT_AMOUNT = /^\s*(cm|mm|inch|inches|in\b|degrees|°|minutes?|mins?|hours?|hrs?|seconds?)/i;
@@ -35,7 +41,7 @@
     function parseNum(s) {
         s = s.trim().replace(/\s*[\/⁄]\s*/g, '/');
         var total = 0;
-        s.replace(/[¼½¾⅓⅔⅛⅕⅘]/g, function (c) { total += UNICODE_FRACTIONS[c]; return ''; })
+        s.replace(/[¼½¾⅓⅔⅛⅕⅘⅖⅗⅙⅚⅜⅝⅞]/g, function (c) { total += UNICODE_FRACTIONS[c]; return ''; })
             .split(/\s+/).forEach(function (part) {
                 if (!part) return;
                 if (part.indexOf('/') > 0) { var p = part.split('/'); total += +p[0] / +p[1]; }
@@ -308,10 +314,10 @@
                 span.textContent = m.text;
                 unit.textContent = m.unit;
             } else if (factor === 1) {
-                span.textContent = span.getAttribute('data-original');
+                span.innerHTML = fairvopiaFractions.toHTML(fairvopiaFractions.esc(span.getAttribute('data-original')));
                 if (unit) unit.textContent = unit.getAttribute('data-original');
             } else {
-                span.textContent = formatNum(from) + (to != null ? '–' + formatNum(to) : '');
+                span.innerHTML = fairvopiaFractions.toHTML(formatNum(from) + (to != null ? '–' + formatNum(to) : ''));
                 if (unit) unit.textContent = unit.getAttribute((to != null ? to : from) > 1 ? 'data-many' : 'data-one');
             }
         });
@@ -484,7 +490,7 @@
         if (!overlay) buildOverlay();
         // Show the amounts as currently scaled
         [].forEach.call(ui.ingredients.querySelectorAll('li span'), function (span, i) {
-            span.textContent = ingredientItems[i].innerText.trim();   // visible text, in the chosen units
+            span.innerHTML = fairvopiaFractions.toHTML(fairvopiaFractions.esc(ingredientItems[i].innerText.trim()));   // visible text, in the chosen units
         });
         showChecks();
         overlay.classList.add('open');
@@ -510,7 +516,7 @@
         ui.progress.textContent = 'Step ' + (i + 1) + ' of ' + steps.length;
         ui.section.textContent = step.section;
         ui.section.style.display = step.section ? '' : 'none';
-        ui.step.textContent = stepText(step);
+        ui.step.innerHTML = fairvopiaFractions.toHTML(fairvopiaFractions.esc(stepText(step)));
         ui['step-timers'].innerHTML = findTimers(step.text).map(function (t) {
             return '<button type="button" class="cm-timer-chip" data-secs="' + t.secs + '" data-label="' + t.label.replace(/"/g, '') + '">' +
                 '<i class="fa fa-clock-o"></i> Start ' + t.label + ' timer</button>';
@@ -637,6 +643,9 @@
             });
         } catch (err) {}
     }
+
+    // Typeset fractions in the rest of the recipe (amounts are handled by render() above)
+    fairvopiaFractions.format(body, '.qty');
 
     // ---- Keyboard: arrows to move, space to repeat, Esc to close ----
     document.addEventListener('keydown', function (e) {

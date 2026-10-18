@@ -210,7 +210,7 @@
                 '<span class="rf-score">You have ' + x.have + ' of ' + x.total + ' ingredients' +
                     (x.r.time != null ? ' &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> ' + fmtTime(x.r) : '') + '</span>' +
                 '<span class="rf-bar"><span style="width:' + pct + '%"></span></span>' +
-                (x.missing.length ? '<span class="rf-missing">Still need: ' + x.missing.slice(0, 4).map(esc).join(' · ') +
+                (x.missing.length ? '<span class="rf-missing">Still need: ' + x.missing.slice(0, 4).map(function (t) { return withFractions(esc(t)); }).join(' · ') +
                     (x.missing.length > 4 ? ' · and ' + (x.missing.length - 4) + ' more' : '') + '</span>' : '<span class="rf-missing rf-all">You have everything!</span>') +
                 '</li>';
         }).join('') + '</ul>';
@@ -219,6 +219,8 @@
         var h = Math.floor(r.time / 60), m = r.time % 60;
         return (h ? h + ' hr' + (m ? ' ' + m + ' min' : '') : m + ' min') + (r.overnight ? ' + overnight' : '');
     }
+    // Typeset fractions in ingredient text, using js/fractions.js when it has loaded
+    function withFractions(safe) { return window.fairvopiaFractions ? window.fairvopiaFractions.toHTML(safe) : safe; }
     function esc(s) {
         return String(s).replace(/[&<>"']/g, function (c) {
             return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];

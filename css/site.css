@@ -1,0 +1,52 @@
+/* Small pieces used on every page (loaded by _includes/app-head.html) */
+
+/* Fractions typeset by js/fractions.js: a small raised number over a lowered one */
+.frac {
+    white-space: nowrap;
+}
+
+.frac-num,
+.frac-den {
+    font-size: 0.72em;
+}
+
+.frac-num {
+    position: relative;
+    top: -0.42em;
+}
+
+.frac-den {
+    position: relative;
+    top: 0.08em;
+}
+
+/* "Email address copied" message (js/copy-email.js) */
+.copy-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 3000;
+    max-width: calc(100% - 32px);
+    padding: 10px 18px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #2b2b2b;
+    border-radius: 22px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, 20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.copy-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.copy-toast .fa {
+    margin-right: 6px;
+    color: #7bd88f;
+}

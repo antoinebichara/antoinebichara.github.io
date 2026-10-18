@@ -1,6 +1,7 @@
 /*
  * "Cooked this?" box at the end of each recipe: the button copies the email
  * address so visitors can paste it into Gmail or whatever email they use.
+ * The copying itself is done by js/copy-email.js (window.fairvopiaCopy).
  */
 (function () {
     var button = document.querySelector('.cooked-this-btn');
@@ -13,7 +14,8 @@
     var timer;
 
     button.addEventListener('click', function () {
-        copy(email).then(function () {
+        var copying = window.fairvopiaCopy ? window.fairvopiaCopy(email) : Promise.reject();
+        copying.then(function () {
             label.textContent = 'Copied!';
             button.classList.add('copied');
             status.textContent = 'Paste it into Gmail or your email app.';
@@ -32,27 +34,4 @@
             button.classList.remove('copied');
         }, 2500);
     });
-
-    // Try the modern clipboard first, then the older text-box method
-    function copy(text) {
-        if (navigator.clipboard && window.isSecureContext) {
-            return navigator.clipboard.writeText(text).catch(function () { return copyWithTextBox(text); });
-        }
-        return copyWithTextBox(text);
-    }
-    function copyWithTextBox(text) {
-        return new Promise(function (resolve, reject) {
-            var box = document.createElement('textarea');
-            box.value = text;
-            box.setAttribute('readonly', '');
-            box.style.position = 'fixed';
-            box.style.opacity = '0';
-            document.body.appendChild(box);
-            box.select();
-            var ok = false;
-            try { ok = document.execCommand('copy'); } catch (err) {}
-            document.body.removeChild(box);
-            if (ok) resolve(); else reject();
-        });
-    }
 })();
