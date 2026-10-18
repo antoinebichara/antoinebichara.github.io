@@ -1,0 +1,14 @@
+    <!-- Icons, "Add to Home Screen" app settings, page transitions and offline support -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#121a2b">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/img/icons/favicon-48.png">
+    <link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Fairvopia">
+    <link href="/css/transitions.css" rel="stylesheet">
+    <script src="/js/transitions.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+    }
+    </script>

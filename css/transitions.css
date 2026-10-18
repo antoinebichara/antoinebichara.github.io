@@ -1,0 +1,41 @@
+/*
+ * Smooth transitions between pages (View Transitions). Browsers that don't support
+ * them just load the next page as usual. Turned off for visitors who prefer less motion.
+ * The photo of the clicked recipe card grows into the recipe's header (js/transitions.js).
+ */
+@view-transition {
+    navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+}
+
+/* The big photo at the top of recipe (and other) pages */
+.intro-header {
+    view-transition-name: hero-photo;
+}
+
+/* The menu bar stays put while the page underneath changes */
+.navbar-custom {
+    view-transition-name: site-nav;
+}
+
+::view-transition-group(hero-photo) {
+    animation-duration: 0.55s;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(hero-photo),
+::view-transition-new(hero-photo) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.3s;
+}

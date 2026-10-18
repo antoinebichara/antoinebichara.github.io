@@ -1,0 +1,82 @@
+---
+# Shown by the service worker (sw.js) when you're offline and open a page that hasn't been saved.
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+
+    <title>Offline | Fairvopia</title>
+
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/home-layouts.css" rel="stylesheet">
+{% include app-head.html %}
+
+</head>
+
+<body class="home">
+
+{% include nav.html %}
+
+    <header class="intro-header" style="background-image: url('/img/rszhome-image.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>You're offline</h1>
+                        <span class="subheading">No signal in the kitchen?</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wide not-found">
+        <p class="section-lead">This page hasn't been saved on this device yet. Recipes you've opened before still work offline:</p>
+        <ul class="offline-list" id="offline-list"></ul>
+        <p id="offline-none" hidden>None saved yet. Open a few recipes while you have a connection and they'll be here next time.</p>
+    </div>
+
+    <script>
+    // List the recipe pages saved by sw.js, using each page's own title
+    (function () {
+        var list = document.getElementById('offline-list');
+        if (!('caches' in window)) { document.getElementById('offline-none').hidden = false; return; }
+        caches.open('fairvopia-pages').then(function (cache) {
+            return cache.keys().then(function (requests) {
+                var pages = requests.filter(function (r) {
+                    var path = new URL(r.url).pathname;
+                    return /\.html$/.test(path) && !/\/(index|about|contact|offline|404)\.html$/.test(path);
+                });
+                return Promise.all(pages.map(function (r) {
+                    return cache.match(r).then(function (res) { return res.text(); }).then(function (html) {
+                        var m = html.match(/<title>([^<]*)<\/title>/);
+                        return { url: new URL(r.url).pathname, title: m ? m[1] : new URL(r.url).pathname };
+                    });
+                }));
+            });
+        }).then(function (pages) {
+            pages.sort(function (a, b) { return a.title.localeCompare(b.title); });
+            pages.forEach(function (p) {
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = p.url;
+                a.textContent = p.title;
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+            document.getElementById('offline-none').hidden = pages.length > 0;
+        });
+    })();
+    </script>
+
+</body>
+
+</html>
