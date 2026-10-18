@@ -6,6 +6,7 @@ location: "Amman, Jordan"
 country: "Jordan"
 coords: [31.9454, 35.9284]
 type: side
+time: 70
 vegetarian: true
 ---
 

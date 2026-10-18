@@ -6,6 +6,7 @@ location: "Tehran, Iran"
 country: "Iran"
 coords: [35.6892, 51.3890]
 type: main
+time: 30
 vegetarian: true
 ---
 

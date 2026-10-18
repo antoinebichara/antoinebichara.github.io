@@ -6,6 +6,7 @@ location: "Rouen, France"
 country: "France"
 coords: [49.4432, 1.0999]
 type: main
+time: 100
 favorite: true
 ---
 

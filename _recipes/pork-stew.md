@@ -6,6 +6,7 @@ location: "Bordeaux, France"
 country: "France"
 coords: [44.8378, -0.5792]
 type: main
+time: 100
 list_title: "French Inspired Pork Stew with White Wine"
 ---
 

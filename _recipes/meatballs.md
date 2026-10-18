@@ -6,6 +6,7 @@ location: "Gothenburg, Sweden"
 country: "Sweden"
 coords: [57.7089, 11.9746]
 type: main
+time: 90
 favorite: true
 ---
 

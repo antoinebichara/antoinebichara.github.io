@@ -6,6 +6,7 @@ location: "Stockholm, Sweden"
 country: "Sweden"
 coords: [59.3293, 18.0686]
 type: dessert
+time: 70
 vegetarian: true
 ---
 

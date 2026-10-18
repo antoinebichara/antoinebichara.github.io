@@ -6,6 +6,7 @@ location: "Valencia, Spain"
 country: "Spain"
 coords: [39.4699, -0.3763]
 type: main
+time: 75
 ---
 
 ## Ingredients

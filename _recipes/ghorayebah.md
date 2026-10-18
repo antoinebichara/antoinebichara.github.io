@@ -6,6 +6,7 @@ location: "Cairo, Egypt"
 country: "Egypt"
 coords: [30.0444, 31.2357]
 type: dessert
+time: 30
 vegetarian: true
 ---
 

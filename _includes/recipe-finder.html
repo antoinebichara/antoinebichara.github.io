@@ -9,6 +9,21 @@
         <button type="button" class="rf-filter" data-filter="side">Sides &amp; snacks</button>
         <button type="button" class="rf-filter" data-filter="vegetarian">Vegetarian</button>
     </div>
+    <div class="rf-time-row">
+        <div class="rf-times" role="group" aria-label="Time available">
+            <span class="rf-row-label"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</span>
+            <button type="button" class="rf-time active" data-max="">Any</button>
+            <button type="button" class="rf-time" data-max="30">Under 30 min</button>
+            <button type="button" class="rf-time" data-max="60">Under 1 hr</button>
+            <button type="button" class="rf-time" data-max="120">Under 2 hrs</button>
+        </div>
+        <label class="rf-sort">Sort
+            <select id="rf-sort">
+                <option value="newest">Newest first</option>
+                <option value="quickest">Quickest first</option>
+            </select>
+        </label>
+    </div>
     <div class="rf-search">
         <label for="rf-input">What can I make?</label>
         <div class="rf-box">

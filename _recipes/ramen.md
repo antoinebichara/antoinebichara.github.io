@@ -6,6 +6,7 @@ location: "Tokyo, Japan"
 country: "Japan"
 coords: [35.6762, 139.6503]
 type: soup
+time: 60
 ---
 
 ## Ingredients

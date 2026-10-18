@@ -6,6 +6,7 @@ location: "Kansas City, USA"
 country: "United States of America"
 coords: [39.0997, -94.5786]
 type: main
+time: 180
 ---
 
 ## Ingredients

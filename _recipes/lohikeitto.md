@@ -6,6 +6,7 @@ location: "Helsinki, Finland"
 country: "Finland"
 coords: [60.1699, 24.9384]
 type: soup
+time: 45
 ---
 
 ## Ingredients

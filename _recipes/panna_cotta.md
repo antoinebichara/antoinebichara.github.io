@@ -6,6 +6,8 @@ location: "Turin, Italy"
 country: "Italy"
 coords: [45.0703, 7.6869]
 type: dessert
+time: 40
+overnight: true
 favorite: true
 ---
 

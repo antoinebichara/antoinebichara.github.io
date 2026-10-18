@@ -6,6 +6,7 @@ location: "Addis Ababa, Ethiopia"
 country: "Ethiopia"
 coords: [9.0300, 38.7400]
 type: main
+time: 60
 ---
 
 ## Ingredients

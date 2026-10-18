@@ -6,6 +6,7 @@ location: "Athens, Greece"
 country: "Greece"
 coords: [37.9838, 23.7275]
 type: main
+time: 90
 ---
 
 ## Ingredients

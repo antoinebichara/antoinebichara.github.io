@@ -6,6 +6,7 @@ location: "Accra, Ghana"
 country: "Ghana"
 coords: [5.6037, -0.1870]
 type: main
+time: 60
 ---
 
 ## Ingredients

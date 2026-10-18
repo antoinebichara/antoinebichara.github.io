@@ -6,6 +6,7 @@ location: "Lucknow, India"
 country: "India"
 coords: [26.8467, 80.9462]
 type: main
+time: 50
 vegetarian: true
 favorite: true
 ---

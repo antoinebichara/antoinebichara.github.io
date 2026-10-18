@@ -6,6 +6,7 @@ location: "Chiang Mai, Thailand"
 country: "Thailand"
 coords: [18.7883, 98.9853]
 type: soup
+time: 120
 favorite: true
 ---
 
@@ -46,7 +47,7 @@ favorite: true
 - 2 limes, quartered
 - Picked cabbage (cover sliced cabbage leaves with rice vinegar and a few tbsp sugar in a jar for one week)
 
-**Serves Four · Total Time: 120 Minutes ·**
+**Serves Four · Total Time: 120 Minutes**
 
 ## Steps
 

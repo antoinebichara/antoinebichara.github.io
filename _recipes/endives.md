@@ -6,6 +6,7 @@ location: "Brussels, Belgium"
 country: "Belgium"
 coords: [50.8503, 4.3517]
 type: side
+time: 45
 vegetarian: true
 ---
 

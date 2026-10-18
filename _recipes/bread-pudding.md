@@ -6,6 +6,7 @@ location: "Bogotá, Colombia"
 country: "Colombia"
 coords: [4.7110, -74.0721]
 type: dessert
+time: 60
 vegetarian: true
 list_title: "Colombian Apple-Chocolate, Banana-Chocolate Bread Pudding"
 ---

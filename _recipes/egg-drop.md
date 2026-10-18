@@ -6,6 +6,7 @@ location: "Guangzhou, China"
 country: "China"
 coords: [23.1291, 113.2644]
 type: soup
+time: 12
 ---
 
 ## Ingredients

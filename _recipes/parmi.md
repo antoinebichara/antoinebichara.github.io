@@ -6,6 +6,7 @@ location: "Brisbane, Australia"
 country: "Australia"
 coords: [-27.4698, 153.0251]
 type: main
+time: 90
 ---
 
 ## Ingredients

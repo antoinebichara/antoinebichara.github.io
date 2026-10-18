@@ -6,6 +6,7 @@ location: "Singapore"
 country: "Singapore"
 coords: [1.3521, 103.8198]
 type: main
+time: 60
 ---
 
 ## Ingredients

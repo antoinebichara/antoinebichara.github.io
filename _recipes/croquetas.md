@@ -6,6 +6,7 @@ location: "Madrid, Spain"
 country: "Spain"
 coords: [40.4168, -3.7038]
 type: side
+time: 180
 favorite: true
 ---
 

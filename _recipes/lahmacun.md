@@ -6,6 +6,7 @@ location: "Yerevan, Armenia"
 country: "Armenia"
 coords: [40.1792, 44.4991]
 type: main
+time: 35
 ---
 
 ## Ingredients

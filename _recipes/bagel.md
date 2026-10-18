@@ -6,6 +6,7 @@ location: "Montreal, Canada"
 country: "Canada"
 coords: [45.5019, -73.5674]
 type: baking
+time: 90
 vegetarian: true
 favorite: true
 ---

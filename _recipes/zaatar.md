@@ -6,6 +6,7 @@ location: "Byblos, Lebanon"
 country: "Lebanon"
 coords: [34.1236, 35.6511]
 type: baking
+time: 55
 vegetarian: true
 ---
 

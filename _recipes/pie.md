@@ -6,6 +6,7 @@ location: "Dublin, Ireland"
 country: "Ireland"
 coords: [53.3498, -6.2603]
 type: main
+time: 90
 ---
 
 ## Ingredients

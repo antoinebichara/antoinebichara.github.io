@@ -6,6 +6,7 @@ location: "Tashkent, Uzbekistan"
 country: "Uzbekistan"
 coords: [41.2995, 69.2401]
 type: main
+time: 140
 favorite: true
 ---
 

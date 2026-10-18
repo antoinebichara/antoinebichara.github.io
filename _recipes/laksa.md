@@ -6,6 +6,7 @@ location: "Penang, Malaysia"
 country: "Malaysia"
 coords: [5.4141, 100.3288]
 type: soup
+time: 40
 vegetarian: true
 ---
 

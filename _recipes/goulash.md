@@ -6,6 +6,7 @@ location: "Budapest, Hungary"
 country: "Hungary"
 coords: [47.4979, 19.0402]
 type: main
+time: 90
 ---
 
 ## Ingredients

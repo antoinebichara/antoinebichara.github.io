@@ -6,6 +6,7 @@ location: "New Orleans, USA"
 country: "United States of America"
 coords: [29.9511, -90.0715]
 type: main
+time: 80
 favorite: true
 ---
 

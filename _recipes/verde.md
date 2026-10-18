@@ -6,6 +6,7 @@ location: "Mexico City, Mexico"
 country: "Mexico"
 coords: [19.4326, -99.1332]
 type: main
+time: 360
 ---
 
 ## Ingredients

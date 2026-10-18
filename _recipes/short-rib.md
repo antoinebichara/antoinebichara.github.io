@@ -6,6 +6,7 @@ location: "York, UK"
 country: "United Kingdom"
 coords: [53.9600, -1.0873]
 type: main
+time: 150
 list_title: "English Braised Short Rib"
 ---
 

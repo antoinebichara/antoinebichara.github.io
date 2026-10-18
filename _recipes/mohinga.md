@@ -6,6 +6,7 @@ location: "Yangon, Myanmar"
 country: "Myanmar"
 coords: [16.8409, 96.1735]
 type: soup
+time: 45
 ---
 
 ## Ingredients

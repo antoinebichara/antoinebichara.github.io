@@ -6,6 +6,7 @@ location: "Bahir Dar, Ethiopia"
 country: "Ethiopia"
 coords: [11.5742, 37.3614]
 type: main
+time: 45
 ---
 
 ## Ingredients

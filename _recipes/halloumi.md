@@ -6,6 +6,7 @@ location: "Nicosia, Cyprus"
 country: "Cyprus"
 coords: [35.1856, 33.3823]
 type: main
+time: 20
 vegetarian: true
 ---
 

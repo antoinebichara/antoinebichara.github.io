@@ -6,6 +6,7 @@ location: "Thessaloniki, Greece"
 country: "Greece"
 coords: [40.6401, 22.9444]
 type: main
+time: 45
 vegetarian: true
 ---
 

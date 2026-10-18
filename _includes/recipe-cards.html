@@ -1,10 +1,11 @@
-{% comment %} Photo cards for every listed recipe, newest first. Filtered by js/recipe-finder.js. {% endcomment %}
+{% comment %} Photo cards for every listed recipe, newest first. Filtered and sorted by js/recipe-finder.js. {% endcomment %}
 {%- assign card_recipes = site.recipes | where_exp: "recipe", "recipe.hidden != true" | reverse -%}
 <div class="recipe-cards">
 {%- for recipe in card_recipes %}
     <a class="recipe-card recipe-entry" data-url="{{ recipe.url | remove_first: '/' }}" href="{{ recipe.url | remove_first: '/' }}">
         <span class="rc-photo"><img src="img/thumbs/{{ recipe.image }}" alt="" loading="lazy" onerror="this.onerror=null; this.src='img/{{ recipe.image }}'"></span>
         {% if recipe.favorite %}<span class="rc-fav">&#9733; Favorite</span>{% endif %}
+        {% if recipe.time %}<span class="rc-time"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include recipe-time.html recipe=recipe %}</span>{% endif %}
         <span class="rc-body">
             <span class="rc-title">{{ recipe.list_title | default: recipe.title }}</span>
             <span class="rc-meta">{{ recipe.location }} &middot; {{ recipe.date | date: "%b %Y" }}</span>

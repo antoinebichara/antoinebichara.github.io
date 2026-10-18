@@ -6,6 +6,7 @@ location: "Gaziantep, Turkey"
 country: "Turkey"
 coords: [37.0662, 37.3833]
 type: dessert
+time: 90
 vegetarian: true
 ---
 

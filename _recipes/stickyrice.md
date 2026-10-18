@@ -6,6 +6,8 @@ location: "Bangkok, Thailand"
 country: "Thailand"
 coords: [13.7563, 100.5018]
 type: dessert
+time: 30
+overnight: true
 vegetarian: true
 ---
 

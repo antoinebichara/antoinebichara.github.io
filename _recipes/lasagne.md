@@ -6,6 +6,7 @@ location: "Modena, Italy"
 country: "Italy"
 coords: [44.6471, 10.9252]
 type: main
+time: 150
 ---
 
 ## Ingredients

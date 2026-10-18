@@ -6,6 +6,7 @@ location: "Havana, Cuba"
 country: "Cuba"
 coords: [23.1136, -82.3666]
 type: dessert
+time: 150
 vegetarian: true
 ---
 

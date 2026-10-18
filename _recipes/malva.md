@@ -6,6 +6,7 @@ location: "Cape Town, South Africa"
 country: "South Africa"
 coords: [-33.9249, 18.4241]
 type: dessert
+time: 45
 vegetarian: true
 ---
 

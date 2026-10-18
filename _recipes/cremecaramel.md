@@ -6,6 +6,7 @@ location: "Lyon, France"
 country: "France"
 coords: [45.7640, 4.8357]
 type: dessert
+time: 325
 vegetarian: true
 ---
 

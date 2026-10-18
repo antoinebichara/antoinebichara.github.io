@@ -6,6 +6,7 @@ location: "Oaxaca, Mexico"
 country: "Mexico"
 coords: [17.0732, -96.7266]
 type: soup
+time: 50
 vegetarian: true
 ---
 

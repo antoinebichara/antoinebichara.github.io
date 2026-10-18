@@ -6,6 +6,7 @@ location: "Dijon, France"
 country: "France"
 coords: [47.3220, 5.0415]
 type: main
+time: 70
 list_title: "French Coq Au Vin"
 favorite: true
 ---

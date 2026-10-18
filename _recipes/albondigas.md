@@ -6,6 +6,7 @@ location: "San Salvador, El Salvador"
 country: "El Salvador"
 coords: [13.6929, -89.2182]
 type: main
+time: 60
 ---
 
 ## Ingredients

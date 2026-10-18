@@ -6,6 +6,7 @@ location: "San Juan, Puerto Rico"
 country: "Puerto Rico"
 coords: [18.4655, -66.1057]
 type: main
+time: 60
 ---
 
 ## Ingredients

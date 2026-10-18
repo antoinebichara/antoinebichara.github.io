@@ -6,6 +6,7 @@ location: "Venice, Italy"
 country: "Italy"
 coords: [45.4404, 12.3155]
 type: baking
+time: 900
 vegetarian: true
 ---
 

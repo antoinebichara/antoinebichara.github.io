@@ -6,6 +6,7 @@ location: "Capri, Italy"
 country: "Italy"
 coords: [40.5532, 14.2222]
 type: main
+time: 75
 ---
 
 ## Ingredients

@@ -6,6 +6,7 @@ location: "New York, USA"
 country: "United States of America"
 coords: [40.7128, -74.0060]
 type: dessert
+time: 35
 vegetarian: true
 list_title: "American Chocolate Lava Cake"
 ---

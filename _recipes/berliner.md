@@ -6,6 +6,7 @@ location: "Berlin, Germany"
 country: "Germany"
 coords: [52.5200, 13.4050]
 type: dessert
+time: 60
 vegetarian: true
 ---
 

@@ -6,6 +6,7 @@ location: "Tel Aviv, Israel"
 country: "Israel"
 coords: [32.0853, 34.7818]
 type: side
+time: 10
 vegetarian: true
 ---
 

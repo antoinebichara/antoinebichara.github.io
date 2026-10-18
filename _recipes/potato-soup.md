@@ -6,6 +6,7 @@ location: "Quito, Ecuador"
 country: "Ecuador"
 coords: [-0.1807, -78.4678]
 type: soup
+time: 70
 vegetarian: true
 ---
 

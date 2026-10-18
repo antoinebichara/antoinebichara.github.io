@@ -6,6 +6,7 @@ location: "Mumbai, India"
 country: "India"
 coords: [19.0760, 72.8777]
 type: main
+time: 45
 vegetarian: true
 ---
 

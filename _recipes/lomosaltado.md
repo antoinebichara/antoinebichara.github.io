@@ -6,6 +6,7 @@ location: "Lima, Peru"
 country: "Peru"
 coords: [-12.0464, -77.0428]
 type: main
+time: 100
 ---
 
 ## Ingredients

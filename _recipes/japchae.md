@@ -6,6 +6,7 @@ location: "Seoul, South Korea"
 country: "South Korea"
 coords: [37.5665, 126.9780]
 type: main
+time: 60
 ---
 
 ## Ingredients

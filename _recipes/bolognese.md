@@ -6,6 +6,7 @@ location: "Bologna, Italy"
 country: "Italy"
 coords: [44.4949, 11.3426]
 type: main
+time: 180
 ---
 
 ## Ingredients

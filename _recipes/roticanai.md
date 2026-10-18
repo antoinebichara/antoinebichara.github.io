@@ -6,6 +6,8 @@ location: "Kuala Lumpur, Malaysia"
 country: "Malaysia"
 coords: [3.1390, 101.6869]
 type: baking
+time: 10
+overnight: true
 vegetarian: true
 ---
 

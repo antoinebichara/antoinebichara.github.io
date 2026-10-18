@@ -6,6 +6,7 @@ location: "Istanbul, Turkey"
 country: "Turkey"
 coords: [41.0082, 28.9784]
 type: main
+time: 35
 vegetarian: true
 ---
 

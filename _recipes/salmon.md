@@ -6,6 +6,7 @@ location: "San Francisco, USA"
 country: "United States of America"
 coords: [37.7749, -122.4194]
 type: main
+time: 225
 list_title: "Californian Salmon in Tomato-Saffron Broth <small> based on recipe by Daniel Patterson</small>"
 ---
 

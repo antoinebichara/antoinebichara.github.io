@@ -6,6 +6,7 @@ location: "Buenos Aires, Argentina"
 country: "Argentina"
 coords: [-34.6037, -58.3816]
 type: dessert
+time: 90
 vegetarian: true
 ---
 

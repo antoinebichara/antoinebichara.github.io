@@ -6,6 +6,7 @@ location: "Vilnius, Lithuania"
 country: "Lithuania"
 coords: [54.6872, 25.2797]
 type: soup
+time: 60
 vegetarian: true
 ---
 

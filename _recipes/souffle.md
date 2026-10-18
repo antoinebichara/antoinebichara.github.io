@@ -6,6 +6,7 @@ location: "Paris, France"
 country: "France"
 coords: [48.8566, 2.3522]
 type: dessert
+time: 35
 vegetarian: true
 ---
 

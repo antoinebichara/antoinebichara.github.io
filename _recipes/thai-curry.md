@@ -6,6 +6,7 @@ location: "Phuket, Thailand"
 country: "Thailand"
 coords: [7.8804, 98.3923]
 type: main
+time: 40
 ---
 
 ## Ingredients

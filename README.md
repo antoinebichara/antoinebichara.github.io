@@ -34,6 +34,7 @@ location: "Athens, Greece"
 country: "Greece"
 coords: [37.98, 23.73]
 type: main
+time: 90
 ---
 
 ## Ingredients
@@ -69,7 +70,14 @@ The header fields are:
   shaded. A recipe without `coords` still shows up in the list but not on the globe.
 - `type`: one of `main`, `soup`, `dessert`, `baking` or `side`, used by the filter buttons.
 
+- `time`: total time in minutes, including waiting such as rising, soaking or chilling (for
+  example `time: 90`). It's shown on the home page cards and used by the time filter and the
+  "Quickest first" sort.
+
 These fields are optional:
+
+- `overnight: true`: the recipe also needs to rest overnight. It's shown as "+ overnight",
+  sorted after the others, and left out of the "Under ..." time filters.
 
 - `vegetarian: true`: shows the recipe under the Vegetarian filter.
 - `list_title`: a different name to show on the home page, if it should differ from `title`.

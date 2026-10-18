@@ -6,6 +6,7 @@ location: "Christchurch, New Zealand"
 country: "New Zealand"
 coords: [-43.5321, 172.6362]
 type: main
+time: 180
 ---
 
 ## Ingredients

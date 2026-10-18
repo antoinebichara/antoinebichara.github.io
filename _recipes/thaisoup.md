@@ -6,6 +6,7 @@ location: "Hua Hin, Thailand"
 country: "Thailand"
 coords: [12.5684, 99.9577]
 type: soup
+time: 45
 ---
 
 ## Ingredients

@@ -6,6 +6,7 @@ location: "Kolkata, India"
 country: "India"
 coords: [22.5726, 88.3639]
 type: main
+time: 60
 ---
 
 ## Ingredients

@@ -7,6 +7,7 @@ location: "Nice, France"
 country: "France"
 coords: [43.7102, 7.2620]
 type: main
+time: 120
 vegetarian: true
 list_title: "French Ratatouille"
 ---

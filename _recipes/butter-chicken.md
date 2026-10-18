@@ -6,6 +6,7 @@ location: "Delhi, India"
 country: "India"
 coords: [28.6139, 77.2090]
 type: main
+time: 45
 list_title: "Indian Butter Chicken"
 favorite: true
 ---

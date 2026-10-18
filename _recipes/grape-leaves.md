@@ -6,6 +6,7 @@ location: "Tripoli, Lebanon"
 country: "Lebanon"
 coords: [34.4367, 35.8497]
 type: side
+time: 90
 ---
 
 ## Ingredients

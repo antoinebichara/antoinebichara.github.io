@@ -6,6 +6,7 @@ location: "Santa Ana, El Salvador"
 country: "El Salvador"
 coords: [13.9946, -89.5597]
 type: main
+time: 90
 vegetarian: true
 ---
 

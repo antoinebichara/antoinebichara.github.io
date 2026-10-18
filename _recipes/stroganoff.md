@@ -6,6 +6,7 @@ location: "Saint Petersburg, Russia"
 country: "Russia"
 coords: [59.9311, 30.3609]
 type: main
+time: 35
 ---
 
 ## Ingredients

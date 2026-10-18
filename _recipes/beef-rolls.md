@@ -6,6 +6,7 @@ location: "Taipei, Taiwan"
 country: "Taiwan"
 coords: [25.0330, 121.5654]
 type: main
+time: 150
 ---
 
 ## Ingredients

@@ -1,0 +1,10 @@
+{%- comment -%}
+  A recipe's total time as text, e.g. "45 min", "1 hr 30 min", "40 min + overnight".
+  Usage: {% include recipe-time.html recipe=recipe %}
+{%- endcomment -%}
+{%- assign t = include.recipe.time -%}
+{%- if t -%}
+{%- assign h = t | divided_by: 60 -%}{%- assign m = t | modulo: 60 -%}
+{%- if h > 0 %}{{ h }} hr{% if m > 0 %} {{ m }} min{% endif %}{% else %}{{ m }} min{% endif -%}
+{%- if include.recipe.overnight %} + overnight{% endif -%}
+{%- endif -%}

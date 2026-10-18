@@ -6,6 +6,7 @@ location: "Rio de Janeiro, Brazil"
 country: "Brazil"
 coords: [-22.9068, -43.1729]
 type: dessert
+time: 30
 vegetarian: true
 ---
 

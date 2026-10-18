@@ -6,6 +6,7 @@ location: "Padang, Indonesia"
 country: "Indonesia"
 coords: [-0.9471, 100.4172]
 type: main
+time: 120
 ---
 
 ## Ingredients

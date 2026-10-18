@@ -6,6 +6,7 @@ location: "Beirut, Lebanon"
 country: "Lebanon"
 coords: [33.8938, 35.5018]
 type: baking
+time: 90
 vegetarian: true
 ---
 
