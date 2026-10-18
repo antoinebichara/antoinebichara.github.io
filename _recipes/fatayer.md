@@ -2,6 +2,7 @@
 title: "Lebanese Spinach Fatayer"
 date: 2026-08-16
 image: fatayer.jpg
+favorite: true
 location: "Beirut, Lebanon"
 country: "Lebanon"
 coords: [33.8938, 35.5018]

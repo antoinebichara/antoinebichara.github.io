@@ -5,6 +5,40 @@
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* "Search recipes" box */
+.rf-find {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.rf-find .fa-search {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #b0b0b0;
+    pointer-events: none;
+}
+
+#rf-query {
+    width: 100%;
+    padding: 13px 16px 13px 46px;
+    font-size: 17px;
+    color: #2b2b2b;
+    background: #fff;
+    border: 2px solid #e5e0da;
+    border-radius: 28px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#rf-query:focus {
+    border-color: #e8772e;
+    box-shadow: 0 0 0 3px rgba(232, 119, 46, 0.15);
+}
+
 .rf-filters {
     display: flex;
     flex-wrap: wrap;

@@ -2,6 +2,7 @@
 title: "Taiwanese Scallion Pancake Beef Rolls"
 date: 2017-06-19 20:00:00
 image: beef-rolls.jpg
+favorite: true
 location: "Taipei, Taiwan"
 country: "Taiwan"
 coords: [25.0330, 121.5654]

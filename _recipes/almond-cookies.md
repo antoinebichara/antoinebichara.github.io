@@ -6,6 +6,8 @@ location: "Fes, Morocco"
 country: "Morocco"
 coords: [34.0181, -5.0078]
 type: dessert
+time: 30
+overnight: true
 vegetarian: true
 favorite: true
 ---

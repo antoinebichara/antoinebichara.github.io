@@ -20,8 +20,16 @@
     // ---------------- Filters: type and time available ----------------
     var filter = 'all';
     var maxTime = null;   // minutes, or null for any
+    var query = [];       // words typed in "Search recipes"
+    var TYPE_WORDS = { main: 'main mains', soup: 'soup soups', dessert: 'dessert desserts sweet', baking: 'bread breads baking baked',
+        side: 'side sides snack snacks salad appetizer' };
+    recipes.forEach(function (r) {
+        r._find = ' ' + words([r.title, r.list_title, r.location, r.country, TYPE_WORDS[r.type] || ''].join(' ')).join(' ') + ' ';
+    });
     function matchesFilter(r) {
-        if (!r) return filter === 'all' && maxTime === null;
+        if (!r) return filter === 'all' && maxTime === null && !query.length;
+        // Every word typed must appear somewhere in the name or place (start of a word)
+        if (query.length && !query.every(function (q) { return r._find.indexOf(' ' + q) !== -1; })) return false;
         if (filter === 'vegetarian' && !r.vegetarian) return false;
         if (filter !== 'all' && filter !== 'vegetarian' && r.type !== filter) return false;
         // Recipes that need to rest overnight, or have no time yet, only show under "Any"
@@ -37,7 +45,7 @@
             if (ok) { shown[url] = true; count++; }
         });
         if (noneEl) noneEl.hidden = count > 0;
-        if (window.recipeGlobe) window.recipeGlobe.showOnly(filter === 'all' && maxTime === null ? null : shown);
+        if (window.recipeGlobe) window.recipeGlobe.showOnly(filter === 'all' && maxTime === null && !query.length ? null : shown);
         [].forEach.call(root.querySelectorAll('.rf-filter'), function (b) {
             b.classList.toggle('active', b.getAttribute('data-filter') === filter);
             b.setAttribute('aria-pressed', b.getAttribute('data-filter') === filter);
@@ -55,6 +63,17 @@
         filter = b.getAttribute('data-filter');
         applyFilter();
     });
+    var queryInput = document.getElementById('rf-query');
+    if (queryInput) {
+        queryInput.addEventListener('input', function () {
+            // Match the start of words, without accents or plurals: "creme" finds "Crème"
+            query = norm(queryInput.value).split(/[\s-]+/).filter(Boolean).map(singular);
+            applyFilter();
+        });
+        queryInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { queryInput.value = ''; query = []; applyFilter(); }
+        });
+    }
     var timeButtons = root.querySelector('.rf-times');
     if (timeButtons) timeButtons.addEventListener('click', function (e) {
         var b = e.target.closest('.rf-time');

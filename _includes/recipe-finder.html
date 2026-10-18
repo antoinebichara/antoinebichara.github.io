@@ -1,5 +1,9 @@
 {% comment %} Filter buttons and "What can I make?" (js/recipe-finder.js) {% endcomment %}
 <div class="recipe-finder">
+    <div class="rf-find">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input id="rf-query" type="search" autocomplete="off" aria-label="Search recipes" placeholder="Search recipes by dish or country, e.g. paella, Thai, Lebanon">
+    </div>
     <div class="rf-filters" role="group" aria-label="Show only">
         <button type="button" class="rf-filter active" data-filter="all">All</button>
         <button type="button" class="rf-filter" data-filter="main">Mains</button>
