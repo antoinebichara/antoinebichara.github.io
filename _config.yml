@@ -22,6 +22,11 @@ defaults:
       type: recipes
     values:
       layout: recipe
+  # Google Search Console's ownership check file: keep it, but out of the sitemap
+  - scope:
+      path: "google9adb0c7771283a40.html"
+    values:
+      sitemap: false
 
 exclude:
   - README.md
