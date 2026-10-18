@@ -1,0 +1,9 @@
+{% comment %}
+  10-year anniversary banner at the top of the home page.
+  To remove it, delete the "include anniversary-banner.html" line in index.html.
+{% endcomment %}
+    <div class="anniversary-banner" role="note">
+        <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+        <strong>Celebrating 10 years of Fairvopia!</strong>
+        <span class="anniversary-years">2016 &ndash; {{ site.time | date: "%Y" }}</span>
+    </div>

@@ -74,18 +74,39 @@
                     if (m[4]) span.setAttribute('data-to', parseNum(m[4]));
                     frag.appendChild(span);
                     var rest = part.slice(m[0].length);
-                    var w = rest.match(/^(\s*)([A-Za-z]+)/);
-                    var forms = w && unitForms(w[2]);
+                    // A measurement ("cups", "oz", "lbs") can switch to metric; a count word
+                    // ("cloves", "cans") just changes between singular and plural
+                    var mu = rest.match(MEASURE);
+                    var w = mu || rest.match(/^(\s*)([A-Za-z]+)/);
+                    var forms = mu ? measureForms(mu[2]) : w && unitForms(w[2]);
                     if (forms) {
-                        // "1 cup" -> "2 cups": wrap the word so it can change with the amount
                         frag.appendChild(document.createTextNode(w[1]));
                         var unit = document.createElement('span');
                         unit.className = 'unit';
                         unit.textContent = w[2];
+                        unit.setAttribute('data-original', w[2]);
                         unit.setAttribute('data-one', forms[0]);
                         unit.setAttribute('data-many', forms[1]);
+                        if (mu) {
+                            unit.setAttribute('data-measure', forms[2]);
+                            var grams = forms[2] === 'cup' && gramsPerCup(li.textContent);
+                            if (grams) unit.setAttribute('data-grams', grams);
+                        }
                         frag.appendChild(unit);
                         rest = rest.slice(w[0].length);
+                        // "1 cup (5 oz/142 g) flour": the recipe already gives the metric amount,
+                        // so use it, and hide the bracket while metric is on
+                        var given = mu && rest.match(/^(\s*)(\([^)]*?(\d+(?:\.\d+)?)\s*(g|ml)\s*\))/i);
+                        if (given) {
+                            unit.setAttribute('data-given', +given[3] / parseNum(m[2]));
+                            unit.setAttribute('data-given-unit', given[4].toLowerCase());
+                            frag.appendChild(document.createTextNode(given[1]));
+                            var paren = document.createElement('span');
+                            paren.className = 'given-metric';
+                            paren.textContent = given[2];
+                            frag.appendChild(paren);
+                            rest = rest.slice(given[0].length);
+                        }
                     }
                     frag.appendChild(document.createTextNode(rest));
                     changed = true;
@@ -110,7 +131,98 @@
         return [cap(one), cap(PLURALS[one])];
     }
 
+    // =====================================================================
+    // US / metric: cups, ounces, pounds, quarts and inches. Spoons stay as they are,
+    // since metric recipes use teaspoons and tablespoons too.
+    // =====================================================================
+    var MEASURE = /^(\s*)(fl\.?\s*oz\.?|fluid ounces?|cups?|oz\.?|ounces?|lbs?\.?|pounds?|quarts?|qts?\.?|inch(?:es)?)(?=[\s,).;]|$)/i;
+    function measureForms(word) {
+        var w = word.toLowerCase().replace(/\.$/, '');
+        if (/^fl|^fluid/.test(w)) return [word, word, 'floz'];
+        if (/^cup/.test(w)) return ['cup', 'cups', 'cup'];
+        if (/^(oz|ounce)/.test(w)) return [word, word, 'oz'];
+        if (/^(lb|pound)/.test(w)) return [word, word, 'lb'];
+        if (/^(quart|qt)/.test(w)) return [w.indexOf('quart') === 0 ? 'quart' : word, w.indexOf('quart') === 0 ? 'quarts' : word, 'quart'];
+        return ['inch', 'inches', 'inch'];
+    }
+    // Grams in one US cup, for common dry ingredients. Anything else (and any liquid)
+    // is converted to millilitres instead.
+    var CUP_GRAMS = [
+        ['powdered sugar', 120], ['icing sugar', 120], ['brown sugar', 220], ['palm sugar', 190], ['sugar', 200],
+        ['bread flour', 130], ['masa', 115], ['flour', 125], ['corn starch', 128], ['cornstarch', 128], ['cocoa', 85],
+        ['oats', 90], ['rice', 185], ['bread crumbs', 110], ['breadcrumbs', 110], ['panko', 60],
+        ['parmesan', 100], ['mozzarella', 113], ['feta', 150], ['ricotta', 245], ['queso', 120], ['cheese', 113],
+        ['butter', 227], ['almond', 140], ['cashew', 140], ['walnut', 120], ['pecan', 110], ['peanut', 145],
+        ['chocolate', 170], ['coconut flakes', 85], ['shredded coconut', 85], ['raisin', 150], ['lentil', 190],
+        ['quinoa', 170], ['couscous', 180], ['peas', 145], ['beans', 180], ['blueberr', 145], ['raspberr', 125],
+        ['strawberr', 150], ['berries', 145], ['cherry tomatoes', 150], ['tomato', 180], ['spinach', 30],
+        ['cilantro', 16], ['parsley', 30], ['basil', 24], ['mint', 25], ['mushroom', 70], ['onion', 160],
+        ['yogurt', 245], ['honey', 340]
+    ];
+    var LIQUID = /\b(milk|cream|stock|broth|water|oil|vinegar|wine|juice|sauce|syrup|liqueur|whiskey|cognac|brandy|rum|beer|molasses)\b/i;
+    function gramsPerCup(line) {
+        var text = line.toLowerCase();
+        if (LIQUID.test(text)) return 0;
+        for (var i = 0; i < CUP_GRAMS.length; i++) if (text.indexOf(CUP_GRAMS[i][0]) !== -1) return CUP_GRAMS[i][1];
+        return 0;
+    }
+    function roundMetric(v, unit) {
+        if (unit === 'kg' || unit === 'L') return String(Math.round(v * 10) / 10);
+        if (unit === 'cm') return String(v < 10 ? Math.round(v * 2) / 2 : Math.round(v));
+        if (v < 30) return String(Math.max(1, Math.round(v)));
+        if (v < 200) return String(Math.round(v / 5) * 5);
+        return String(Math.round(v / 10) * 10);
+    }
+    function toMetric(measure, from, to, grams) {
+        var rate = { cup: grams ? [grams, 'g'] : [240, 'ml'], floz: [29.57, 'ml'], quart: [946, 'ml'],
+                     oz: [28.35, 'g'], lb: [453.6, 'g'], inch: [2.54, 'cm'] }[measure];
+        var a = from * rate[0], b = to != null ? to * rate[0] : null, unit = rate[1];
+        if ((unit === 'g' || unit === 'ml') && Math.max(a, b || 0) >= 1000) {
+            a /= 1000; if (b != null) b /= 1000; unit = unit === 'g' ? 'kg' : 'L';
+        }
+        return { text: roundMetric(a, unit) + (b != null ? '–' + roundMetric(b, unit) : ''), unit: unit };
+    }
+
+    // Oven temperatures in the steps: "350 degrees Fahrenheit" -> "180°C"
+    // (left alone when a Celsius value is already given, as in "350°F (180°C)")
+    var TEMP = /(\d{3})(\s*(?:°\s*F\b|degrees?\s+F(?:ahrenheit)?\b|degrees?\b))(?!\s*\(\s*\d+\s*°?\s*C)/gi;
+    function celsius(f) {
+        var c = (f - 32) * 5 / 9;
+        return c >= 100 ? Math.round(c / 5) * 5 : Math.round(c);
+    }
+    function metricTemps(text) {
+        return text.replace(TEMP, function (all, f, rest) {
+            if (+f < 200 && !/F/i.test(rest)) return all;   // a plain "120 degrees" may not be an oven
+            return celsius(+f) + '°C';
+        });
+    }
+    function markTemps(root) {
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        var nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(function (node) {
+            TEMP.lastIndex = 0;
+            if (!TEMP.test(node.nodeValue)) return;
+            var frag = document.createDocumentFragment(), last = 0, m;
+            TEMP.lastIndex = 0;
+            while ((m = TEMP.exec(node.nodeValue))) {
+                if (+m[1] < 200 && !/F/i.test(m[2])) continue;
+                frag.appendChild(document.createTextNode(node.nodeValue.slice(last, m.index)));
+                var span = document.createElement('span');
+                span.className = 'temp';
+                span.textContent = m[0];
+                span.setAttribute('data-original', m[0]);
+                span.setAttribute('data-c', celsius(+m[1]) + '°C');
+                frag.appendChild(span);
+                last = m.index + m[0].length;
+            }
+            frag.appendChild(document.createTextNode(node.nodeValue.slice(last)));
+            node.parentNode.replaceChild(frag, node);
+        });
+    }
+
     ingredientItems.forEach(markQuantities);
+    sectionAfter(stepsHeading).forEach(function (el) { if (el.tagName === 'OL' || el.tagName === 'P') markTemps(el); });
 
     // =====================================================================
     // Shopping checkboxes: tick ingredients off. Ticks are remembered on this
@@ -163,25 +275,57 @@
         }
     });
 
-    function scaleTo(factor) {
+    // Current amounts: the serving factor and US or metric units (remembered across recipes)
+    var factor = 1;
+    var metric = false;
+    try { metric = localStorage.getItem('fairvopia-units') === 'metric'; } catch (err) {}
+
+    function scaleTo(f) { factor = f; render(); }
+    // A cook-mode step's text, with oven temperatures in °C when metric is on
+    function stepText(step) { return metric ? metricTemps(step.text) : step.text; }
+    function setUnits(isMetric) {
+        metric = isMetric;
+        try { localStorage.setItem('fairvopia-units', metric ? 'metric' : 'us'); } catch (err) {}
+        render();
+    }
+    function render() {
         [].forEach.call(body.querySelectorAll('.qty'), function (span) {
             var unit = span.nextSibling && span.nextSibling.nextSibling;
-            if (factor === 1) {
-                span.textContent = span.getAttribute('data-original');
-                if (unit && unit.className === 'unit') unit.textContent = unit.getAttribute('data-original') || unit.textContent;
-                return;
-            }
+            if (!(unit && unit.classList && unit.classList.contains('unit'))) unit = null;
             var from = +span.getAttribute('data-from') * factor;
-            var to = span.getAttribute('data-to');
-            span.textContent = formatNum(from) + (to ? '–' + formatNum(+to * factor) : '');
-            if (unit && unit.className === 'unit') {
-                if (!unit.getAttribute('data-original')) unit.setAttribute('data-original', unit.textContent);
-                var amount = to ? +to * factor : from;
-                unit.textContent = unit.getAttribute(amount > 1 ? 'data-many' : 'data-one');
+            var to = span.getAttribute('data-to') ? +span.getAttribute('data-to') * factor : null;
+            var measure = unit && unit.getAttribute('data-measure');
+            // Highlight amounts that were converted to metric
+            span.classList.toggle('converted', !!(metric && measure));
+            if (unit) unit.classList.toggle('converted', !!(metric && measure));
+            if (metric && measure && unit.getAttribute('data-given')) {
+                var per = +unit.getAttribute('data-given'), gu = unit.getAttribute('data-given-unit');
+                // The recipe's own number, kept exact (just rounded to a whole gram or millilitre)
+                span.textContent = Math.round(from * per) + (to != null ? '–' + Math.round(to * per) : '');
+                unit.textContent = gu;
+            } else if (metric && measure) {
+                var m = toMetric(measure, from, to, +unit.getAttribute('data-grams') || 0);
+                span.textContent = m.text;
+                unit.textContent = m.unit;
+            } else if (factor === 1) {
+                span.textContent = span.getAttribute('data-original');
+                if (unit) unit.textContent = unit.getAttribute('data-original');
+            } else {
+                span.textContent = formatNum(from) + (to != null ? '–' + formatNum(to) : '');
+                if (unit) unit.textContent = unit.getAttribute((to != null ? to : from) > 1 ? 'data-many' : 'data-one');
             }
+        });
+        [].forEach.call(body.querySelectorAll('.given-metric'), function (p) { p.hidden = metric; });
+        [].forEach.call(body.querySelectorAll('.temp'), function (t) {
+            t.textContent = t.getAttribute(metric ? 'data-c' : 'data-original');
         });
         [].forEach.call(document.querySelectorAll('.scale-btn'), function (b) {
             b.classList.toggle('active', +b.getAttribute('data-factor') === factor);
+        });
+        [].forEach.call(document.querySelectorAll('.unit-btn'), function (b) {
+            var on = (b.getAttribute('data-units') === 'metric') === metric;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-pressed', on);
         });
         body.classList.toggle('is-scaled', factor !== 1);
     }
@@ -189,13 +333,20 @@
     var tools = document.createElement('div');
     tools.className = 'recipe-tools';
     tools.innerHTML =
-        '<div class="scale-group" role="group" aria-label="Scale the recipe">' +
-            '<span class="scale-label">Amounts</span>' +
-            [0.5, 1, 2, 3].map(function (f) {
-                return '<button type="button" class="scale-btn' + (f === 1 ? ' active' : '') + '" data-factor="' + f + '">' +
-                    (f === 0.5 ? '½×' : f + '×') + '</button>';
-            }).join('') +
-        '</div>' +
+        '<span class="tools-left">' +
+            '<span class="scale-group" role="group" aria-label="Scale the recipe">' +
+                '<span class="scale-label">Amounts</span>' +
+                [0.5, 1, 2, 3].map(function (f) {
+                    return '<button type="button" class="scale-btn' + (f === 1 ? ' active' : '') + '" data-factor="' + f + '">' +
+                        (f === 0.5 ? '½×' : f + '×') + '</button>';
+                }).join('') +
+            '</span>' +
+            '<span class="scale-group" role="group" aria-label="Units">' +
+                '<span class="scale-label">Units</span>' +
+                '<button type="button" class="unit-btn active" data-units="us" aria-pressed="true">US</button>' +
+                '<button type="button" class="unit-btn" data-units="metric" aria-pressed="false">Metric</button>' +
+            '</span>' +
+        '</span>' +
         '<span class="tools-right">' +
             '<button type="button" class="ing-clear" hidden><i class="fa fa-undo"></i> Clear ticks</button>' +
             '<button type="button" class="cook-start"><i class="fa fa-cutlery"></i> Start cooking</button>' +
@@ -204,6 +355,8 @@
     tools.addEventListener('click', function (e) {
         var b = e.target.closest('.scale-btn');
         if (b) scaleTo(+b.getAttribute('data-factor'));
+        var u = e.target.closest('.unit-btn');
+        if (u) setUnits(u.getAttribute('data-units') === 'metric');
         if (e.target.closest('.cook-start')) openCookMode();
         if (e.target.closest('.ing-clear')) {
             checked = {};
@@ -211,6 +364,7 @@
         }
     });
     showChecks();
+    render();   // apply metric units if this visitor chose them before
 
     // =====================================================================
     // Cook mode: one step at a time, read aloud, timers, screen stays on
@@ -317,7 +471,7 @@
             if (t.closest('.cm-close')) closeCookMode();
             else if (t.closest('.cm-next')) go(index + 1);
             else if (t.closest('.cm-prev')) go(index - 1);
-            else if (t.closest('.cm-repeat')) speak(steps[index].text, true);
+            else if (t.closest('.cm-repeat')) speak(stepText(steps[index]), true);
             else if (t.closest('.cm-read')) setReadAloud(!readAloud);
             else if (t.closest('.cm-voice')) setVoice(!listening);
             else if (t.closest('.cm-ingredients-btn')) ui.ingredients.hidden = !ui.ingredients.hidden;
@@ -330,7 +484,7 @@
         if (!overlay) buildOverlay();
         // Show the amounts as currently scaled
         [].forEach.call(ui.ingredients.querySelectorAll('li span'), function (span, i) {
-            span.textContent = ingredientItems[i].textContent;
+            span.textContent = ingredientItems[i].innerText.trim();   // visible text, in the chosen units
         });
         showChecks();
         overlay.classList.add('open');
@@ -356,14 +510,14 @@
         ui.progress.textContent = 'Step ' + (i + 1) + ' of ' + steps.length;
         ui.section.textContent = step.section;
         ui.section.style.display = step.section ? '' : 'none';
-        ui.step.textContent = step.text;
+        ui.step.textContent = stepText(step);
         ui['step-timers'].innerHTML = findTimers(step.text).map(function (t) {
             return '<button type="button" class="cm-timer-chip" data-secs="' + t.secs + '" data-label="' + t.label.replace(/"/g, '') + '">' +
                 '<i class="fa fa-clock-o"></i> Start ' + t.label + ' timer</button>';
         }).join('');
         ui.prev.disabled = i === 0;
         ui.next.innerHTML = i === steps.length - 1 ? 'Done <i class="fa fa-check"></i>' : 'Next <i class="fa fa-chevron-right"></i>';
-        if (readAloud) speak((step.section && (i === 0 || steps[i - 1].section !== step.section) ? step.section + '. ' : '') + step.text);
+        if (readAloud) speak((step.section && (i === 0 || steps[i - 1].section !== step.section) ? step.section + '. ' : '') + stepText(step));
     }
 
     // ---- Read aloud (built into the browser, works offline) ----
@@ -382,7 +536,7 @@
         readAloud = on;
         ui.read.classList.toggle('on', on);
         ui.read.setAttribute('aria-pressed', on);
-        if (on) speak(steps[index].text);
+        if (on) speak(stepText(steps[index]));
         else if ('speechSynthesis' in window) speechSynthesis.cancel();
     }
 
@@ -415,7 +569,7 @@
             var said = e.results[e.results.length - 1][0].transcript.toLowerCase();
             if (/\b(next|forward|continue)\b/.test(said)) go(index + 1);
             else if (/\b(back|previous|go back)\b/.test(said)) go(index - 1);
-            else if (/\b(repeat|again|say that)\b/.test(said)) speak(steps[index].text, true);
+            else if (/\b(repeat|again|say that)\b/.test(said)) speak(stepText(steps[index]), true);
             else if (/\bingredients?\b/.test(said)) ui.ingredients.hidden = !ui.ingredients.hidden;
             else if (/\b(stop|quiet|pause)\b/.test(said) && 'speechSynthesis' in window) speechSynthesis.cancel();
         };
@@ -490,6 +644,6 @@
         if (e.key === 'ArrowRight') go(index + 1);
         else if (e.key === 'ArrowLeft') go(index - 1);
         else if (e.key === 'Escape') closeCookMode();
-        else if (e.key === ' ' && e.target === document.body) { e.preventDefault(); speak(steps[index].text, true); }
+        else if (e.key === ' ' && e.target === document.body) { e.preventDefault(); speak(stepText(steps[index]), true); }
     });
 })();

@@ -172,6 +172,79 @@ body.home {
     color: #808080;
 }
 
+/* 10-year anniversary banner (_includes/anniversary-banner.html) */
+.anniversary-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    min-height: 40px;
+    padding: 8px 16px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(90deg, #c95f1a, #e8772e 35%, #f2b705 100%);
+    background-size: 200% 100%;
+    animation: anniversary-shimmer 8s ease-in-out infinite alternate;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.anniversary-banner strong {
+    font-weight: 800;
+    letter-spacing: 0.3px;
+}
+
+.anniversary-years {
+    padding: 1px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 12px;
+}
+
+@keyframes anniversary-shimmer {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .anniversary-banner { animation: none; }
+}
+
+/* Push the menu bar and the hero's content below the banner */
+.anniversary-banner ~ .navbar-custom:not(.is-fixed) {
+    top: 40px;
+}
+
+.anniversary-banner ~ .hero-a .hero-a-inner {
+    padding-top: 120px;
+}
+
+@media (max-width: 991px) {
+    .anniversary-banner ~ .hero-a .hero-a-inner {
+        padding-top: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .anniversary-banner {
+        font-size: 14px;
+    }
+    .anniversary-banner ~ .navbar-custom:not(.is-fixed) {
+        top: 62px;
+    }
+    .anniversary-banner ~ .hero-a .hero-a-inner {
+        padding-top: 150px;
+    }
+}
+
 /* Page-not-found page (404.html) */
 .not-found {
     padding-bottom: 50px;

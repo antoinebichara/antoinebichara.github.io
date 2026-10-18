@@ -54,7 +54,15 @@
     margin-right: 4px;
 }
 
-.scale-btn {
+.tools-left {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 22px;
+}
+
+.scale-btn,
+.unit-btn {
     min-width: 42px;
     padding: 6px 10px;
     font-size: 14px;
@@ -66,7 +74,8 @@
     cursor: pointer;
 }
 
-.scale-btn.active {
+.scale-btn.active,
+.unit-btn.active {
     color: #fff;
     background: #e8772e;
     border-color: #e8772e;
@@ -148,7 +157,9 @@
     border-color: #bbb;
 }
 
-.is-scaled .qty {
+.is-scaled .qty,
+.qty.converted,
+.unit.converted {
     font-weight: 700;
     color: #c95f1a;
 }
