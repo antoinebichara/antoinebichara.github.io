@@ -34,6 +34,7 @@ var PRECACHE = [
     '/css/home-layouts.css' + V,
     '/js/clean-blog.min.js',
     '/js/fractions.js' + V,
+    '/js/passport.js' + V,
     '/js/copy-email.js' + V,
     '/js/transitions.js' + V,
     '/js/recipe-tools.js' + V,

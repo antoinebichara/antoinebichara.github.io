@@ -14,8 +14,28 @@
         pin: '#e8772e',
         favorite: '#f2b705',
         cluster: '#c95f1a',
-        country: '#f4a259'
+        country: '#f4a259',
+        passport: '#3fbf9f'
     };
+
+    // ---- Cooking passport (js/passport.js): recipes this visitor has cooked ----
+    var passport = window.fairvopiaPassport;
+    var countryShapes = null;
+    function cooked(r) { return !!(passport && passport.has(r.url)); }
+    function passportShapes() {
+        var mine = {};
+        recipes.forEach(function (r) { if (cooked(r)) mine[r.country] = true; });
+        return { type: 'FeatureCollection', features: countryShapes ? countryShapes.features.filter(function (f) { return mine[f.properties.name]; }) : [] };
+    }
+    function refreshPassport() {
+        var pins = map.getSource && map.getSource('recipes');
+        if (pins) pins.setData(pinData());
+        var lands = map.getSource && map.getSource('passport-countries');
+        if (lands) lands.setData(passportShapes());
+    }
+    document.addEventListener('fairvopia:passport', refreshPassport);
+    // Stamped in another tab: the passport is shared through the browser's storage
+    window.addEventListener('storage', function (e) { if (e.key === 'fairvopia-passport') refreshPassport(); });
     var COUNTRIES_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
     var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
@@ -58,7 +78,7 @@
                 return {
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: [r.lng, r.lat] },
-                    properties: { index: i, favorite: !!r.favorite }
+                    properties: { index: i, favorite: !!r.favorite, cooked: cooked(r) }
                 };
             }).filter(function (f) { return !visible || visible[recipes[f.properties.index].url]; })
         };
@@ -147,6 +167,15 @@
                     paint: { 'line-color': COLORS.cluster, 'line-width': 0.6, 'line-opacity': 0.6 }
                 }, beforeLayer);
                 setPointer('recipe-countries-fill');
+                // Countries in the visitor's cooking passport, drawn in green on top
+                countryShapes = shapes;
+                map.addSource('passport-countries', { type: 'geojson', data: passportShapes() });
+                map.addLayer({
+                    id: 'passport-countries-fill',
+                    type: 'fill',
+                    source: 'passport-countries',
+                    paint: { 'fill-color': COLORS.passport, 'fill-opacity': night ? 0.38 : 0.42 }
+                }, beforeLayer);
             })
             .catch(function () { /* the globe still works without country shading */ });
     }
@@ -209,8 +238,9 @@
             paint: {
                 'circle-color': ['case', ['get', 'favorite'], COLORS.favorite, COLORS.pin],
                 'circle-radius': ['case', ['get', 'favorite'], 8, 6],
-                'circle-stroke-width': 2,
-                'circle-stroke-color': '#fff'
+                // Dishes in the visitor's cooking passport get a thicker green ring
+                'circle-stroke-width': ['case', ['get', 'cooked'], 3, 2],
+                'circle-stroke-color': ['case', ['get', 'cooked'], COLORS.passport, '#fff']
             }
         });
         setPointer('recipe-clusters');
@@ -223,7 +253,7 @@
     }
 
     // ---- Clicks: pins first, then bubbles, then countries ----
-    var popup = new maplibregl.Popup({ offset: 12, maxWidth: '260px', className: 'recipe-globe-popup' });
+    var popup = new maplibregl.Popup({ offset: 12, maxWidth: '260px', className: 'recipe-globe-popup', focusAfterOpen: false });
 
     map.on('click', function (e) {
         var layers = ['recipe-pins', 'recipe-clusters', 'recipe-countries-fill'].filter(function (id) {
@@ -251,6 +281,7 @@
                 '<span class="rg-body">' +
                     '<span class="rg-title">' + esc(r.title) + (r.favorite ? ' <span class="rg-star" title="Favorite">&#9733;</span>' : '') + '</span>' +
                     '<span class="rg-meta">' + esc(r.location) + ' &middot; ' + esc(r.date) + '</span>' +
+                    (cooked(r) ? '<span class="rg-cooked"><i class="fa fa-check-circle" aria-hidden="true"></i> In your passport</span>' : '') +
                     '<span class="rg-link">View recipe &rarr;</span>' +
                 '</span>' +
             '</a>';
@@ -274,18 +305,54 @@
         });
     }
 
-    // ---- "Surprise me": fly to a random recipe ----
+    // ---- "Surprise me": spin the globe like a roulette wheel and land on a random recipe ----
     var surprise = document.getElementById('recipe-globe-surprise');
+    var rouletteRunning = false, rouletteCancelled = false;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (surprise) {
         surprise.addEventListener('click', function () {
+            if (rouletteRunning) return;
             var pool = visible ? recipes.filter(function (x) { return visible[x.url]; }) : recipes;
             if (!pool.length) return;
             var r = pool[Math.floor(Math.random() * pool.length)];
             stopSpinning();
             popup.remove();
-            map.flyTo({ center: [r.lng, r.lat], zoom: 5, speed: 0.9, essential: true });
-            map.once('moveend', function () { showRecipe(r); });
+            // Bring the globe into view first if the page is scrolled past it
+            var box = container.getBoundingClientRect();
+            if (box.bottom < 80 || box.top > window.innerHeight - 80) container.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+            if (reduceMotion) return land(r);
+            roulette(r);
         });
+    }
+    function roulette(r) {
+        rouletteRunning = true;
+        rouletteCancelled = false;
+        surprise.classList.add('spinning');
+        var start = map.getCenter(), startZoom = map.getZoom();
+        var globeZoom = isTouch ? Math.min(startZoom, 1.0) : Math.min(startZoom, startZoom > 2.5 ? 1.8 : startZoom);
+        // Two full turns eastward plus however far it is to the chosen recipe
+        var ahead = ((r.lng - start.lng) % 360 + 360) % 360;
+        var turn = 720 + ahead;
+        var duration = 3600, t0 = performance.now();
+        (function frame(now) {
+            if (rouletteCancelled) return finish(false);
+            var t = Math.min(1, (now - t0) / duration);
+            var e = 1 - Math.pow(1 - t, 3.2);           // fast at first, slowing down at the end
+            map.jumpTo({
+                center: [start.lng + turn * e, start.lat + (r.lat * 0.6 - start.lat) * e],
+                zoom: startZoom + (globeZoom - startZoom) * Math.min(1, t * 4)
+            });
+            if (t < 1) requestAnimationFrame(frame); else finish(true);
+        })(t0);
+        function finish(landed) {
+            rouletteRunning = false;
+            surprise.classList.remove('spinning');
+            if (landed) land(r);
+        }
+    }
+    function land(r) {
+        map.flyTo({ center: [r.lng, r.lat], zoom: 4.5, speed: 0.9, essential: true });
+        map.once('moveend', function () { showRecipe(r); });
     }
 
     // ---- Slow spin until someone touches the globe; resumes after a while idle ----
@@ -308,6 +375,7 @@
     // map.stop(): that would also cancel the drag or zoom they are starting.
     function pauseSpinning() {
         spinning = false;
+        if (rouletteRunning) rouletteCancelled = true;   // grabbing the globe stops the roulette too
         clearTimeout(idleTimer);
         idleTimer = setTimeout(function () {
             if (!popup.isOpen()) startSpinning();

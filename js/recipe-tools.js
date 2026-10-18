@@ -473,7 +473,20 @@ var fairvopiaFractions = window.fairvopiaFractions;
                 '<button type="button" class="cm-nav-btn cm-repeat" title="Read this step again"><i class="fa fa-repeat"></i></button>' +
                 '<button type="button" class="cm-nav-btn cm-next">Next <i class="fa fa-chevron-right"></i></button>' +
             '</div>' +
-            '<div class="cm-hint"></div>';
+            '<div class="cm-hint"></div>' +
+            '<div class="cm-celebrate" hidden>' +
+                '<canvas class="cm-confetti" aria-hidden="true"></canvas>' +
+                '<div class="cm-celebrate-box" role="status">' +
+                    '<div class="cm-celebrate-icon" aria-hidden="true"><i class="fa fa-cutlery"></i></div>' +
+                    '<h2>Enjoy your meal!</h2>' +
+                    '<p>You cooked <strong class="cm-dish"></strong>.</p>' +
+                    '<button type="button" class="passport-btn cm-stamp"><i class="fa fa-check-circle-o" aria-hidden="true"></i> <span>Stamp my passport</span></button>' +
+                    '<div class="cm-celebrate-links">' +
+                        '<button type="button" class="cm-again">Back to the steps</button>' +
+                        '<button type="button" class="cm-finish">Close cook mode</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
         document.body.appendChild(overlay);
         ['title', 'ingredients', 'progress', 'section', 'step', 'step-timers', 'timers', 'prev', 'next', 'read', 'voice', 'hint']
             .forEach(function (k) { ui[k] = overlay.querySelector('.cm-' + k); });
@@ -502,6 +515,9 @@ var fairvopiaFractions = window.fairvopiaFractions;
             else if (t.closest('.cm-ingredients-btn')) ui.ingredients.hidden = !ui.ingredients.hidden;
             else if (t.closest('.cm-timer-chip')) startTimer(+t.closest('.cm-timer-chip').getAttribute('data-secs'), t.closest('.cm-timer-chip').getAttribute('data-label'));
             else if (t.closest('.cm-timer-cancel')) cancelTimer(+t.closest('.cm-timer').getAttribute('data-id'));
+            else if (t.closest('.cm-stamp')) stampFromCookMode();
+            else if (t.closest('.cm-again')) { hideCelebration(); go(steps.length - 1); }
+            else if (t.closest('.cm-finish')) closeCookMode();
         });
     }
 
@@ -517,7 +533,60 @@ var fairvopiaFractions = window.fairvopiaFractions;
         requestWakeLock();
         go(index);
     }
+    // ---- Finished! Confetti, and a one-tap passport stamp ----
+    function celebrate() {
+        var box = overlay.querySelector('.cm-celebrate');
+        overlay.querySelector('.cm-dish').textContent = ui.title.textContent;
+        updateStampButton();
+        box.hidden = false;
+        speak('That was the last step. Enjoy your meal!', true);
+        if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) confetti(overlay.querySelector('.cm-confetti'));
+    }
+    function hideCelebration() {
+        var box = overlay && overlay.querySelector('.cm-celebrate');
+        if (box) box.hidden = true;
+    }
+    function updateStampButton() {
+        var btn = overlay.querySelector('.cm-stamp');
+        var on = !!(window.fairvopiaPassport && window.fairvopiaPassport.has(location.pathname));
+        btn.classList.toggle('stamped', on);
+        btn.querySelector('span').textContent = on ? 'In your passport' : 'Stamp my passport';
+        btn.querySelector('.fa').className = 'fa ' + (on ? 'fa-check-circle' : 'fa-check-circle-o');
+    }
+    function stampFromCookMode() {
+        if (!window.fairvopiaPassport) return;
+        if (!window.fairvopiaPassport.has(location.pathname)) window.fairvopiaPassport.add(location.pathname);
+        updateStampButton();
+    }
+    // A short burst of paper confetti on a canvas (about three seconds)
+    function confetti(canvas) {
+        var ctx = canvas.getContext('2d');
+        var w = canvas.width = canvas.offsetWidth, h = canvas.height = canvas.offsetHeight;
+        var colors = ['#e8772e', '#f2b705', '#1f7a63', '#3d6fd6', '#d9480f', '#f4a259'];
+        var bits = [];
+        for (var n = 0; n < 160; n++) {
+            bits.push({ x: w / 2 + (Math.random() - 0.5) * w * 0.3, y: h * 0.35, vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 14 - 4,
+                size: 6 + Math.random() * 6, rot: Math.random() * 6, spin: (Math.random() - 0.5) * 0.4, color: colors[n % colors.length] });
+        }
+        var start = performance.now();
+        (function frame(now) {
+            var t = now - start;
+            ctx.clearRect(0, 0, w, h);
+            bits.forEach(function (b) {
+                b.vy += 0.35; b.vx *= 0.99; b.x += b.vx; b.y += b.vy; b.rot += b.spin;
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, 1 - t / 3200);
+                ctx.translate(b.x, b.y); ctx.rotate(b.rot);
+                ctx.fillStyle = b.color;
+                ctx.fillRect(-b.size / 2, -b.size / 4, b.size, b.size / 2);
+                ctx.restore();
+            });
+            if (t < 3200) requestAnimationFrame(frame); else ctx.clearRect(0, 0, w, h);
+        })(start);
+    }
+
     function closeCookMode() {
+        hideCelebration();
         overlay.classList.remove('open');
         document.documentElement.classList.remove('cook-mode-open');
         if ('speechSynthesis' in window) speechSynthesis.cancel();
@@ -526,10 +595,9 @@ var fairvopiaFractions = window.fairvopiaFractions;
     }
 
     function go(i) {
-        if (i < 0 || i >= steps.length) {
-            if (i >= steps.length) speak('That was the last step. Enjoy your meal!', true);
-            return;
-        }
+        if (i >= steps.length) { celebrate(); return; }
+        if (i < 0) return;
+        hideCelebration();
         index = i;
         var step = steps[i];
         ui.progress.textContent = 'Step ' + (i + 1) + ' of ' + steps.length;

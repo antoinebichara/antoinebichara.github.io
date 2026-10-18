@@ -31,7 +31,8 @@
         // Every word typed must appear somewhere in the name or place (start of a word)
         if (query.length && !query.every(function (q) { return r._find.indexOf(' ' + q) !== -1; })) return false;
         if (filter === 'vegetarian' && !r.vegetarian) return false;
-        if (filter !== 'all' && filter !== 'vegetarian' && r.type !== filter) return false;
+        if (filter === 'cooked' && !(passport && passport.has(r.url))) return false;
+        if (filter !== 'all' && filter !== 'vegetarian' && filter !== 'cooked' && r.type !== filter) return false;
         // Recipes that need to rest overnight, or have no time yet, only show under "Any"
         if (maxTime !== null && (r.time == null || r.overnight || r.time > maxTime)) return false;
         return true;
@@ -81,6 +82,47 @@
         maxTime = b.getAttribute('data-max') ? +b.getAttribute('data-max') : null;
         applyFilter();
     });
+
+    // ---------------- Cooking passport (js/passport.js) ----------------
+    // "Cooked" stamps on cards, the "My passport" filter, and the counter under the hero stats
+    var passport = window.fairvopiaPassport;
+    var passportLine = document.getElementById('passport-line');
+    var passportChip = root.querySelector('.rf-filter-passport');
+    function refreshPassport() {
+        if (!passport) return;
+        var dishes = 0, lands = {};
+        entries.forEach(function (el) {
+            var r = byUrl[el.getAttribute('data-url')];
+            var on = !!(r && passport.has(r.url));
+            var badge = el.querySelector('.rc-stamp');
+            if (on && !badge) {
+                badge = document.createElement('span');
+                badge.className = 'rc-stamp';
+                badge.innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> Cooked';
+                (el.querySelector('.rc-photo') || el).appendChild(badge);
+            } else if (!on && badge) {
+                badge.parentNode.removeChild(badge);
+            }
+            if (on) { dishes++; lands[r.country] = true; }
+        });
+        var countriesCooked = Object.keys(lands).length;
+        if (passportChip) passportChip.hidden = !dishes;
+        if (passportLine) {
+            passportLine.hidden = !dishes;
+            passportLine.innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> Your cooking passport: <strong>' + dishes +
+                (dishes === 1 ? ' dish' : ' dishes') + '</strong> from <strong>' + countriesCooked + (countriesCooked === 1 ? ' country' : ' countries') +
+                '</strong> <a href="#recipes" class="passport-show">Show them</a>';
+        }
+        if (!dishes && filter === 'cooked') filter = 'all';
+        applyFilter();
+    }
+    if (passportLine) passportLine.addEventListener('click', function (e) {
+        if (!e.target.closest('.passport-show')) return;
+        filter = 'cooked';
+        applyFilter();
+    });
+    document.addEventListener('fairvopia:passport', refreshPassport);
+    window.addEventListener('storage', function (e) { if (e.key === 'fairvopia-passport') refreshPassport(); });
 
     // ---------------- Sort: newest first, or quickest first ----------------
     entries.forEach(function (el, i) { el.setAttribute('data-order', i); });
@@ -226,4 +268,6 @@
             return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
         });
     }
+
+    refreshPassport();   // once everything above is set up
 })();

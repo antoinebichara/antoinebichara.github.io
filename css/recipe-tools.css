@@ -415,6 +415,95 @@ html.cook-mode-open body {
     display: none;
 }
 
+/* Cooking passport: button and the stamp on the header photo (js/cooked-this.js) */
+.cooked-this-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.passport-btn {
+    display: inline-block;
+    padding: 9px 18px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #1f7a63;
+    background: transparent;
+    border: 2px solid #1f7a63;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.passport-btn:hover,
+.passport-btn:focus,
+.passport-btn.stamped {
+    color: #fff;
+    background: #1f7a63;
+}
+
+.intro-header {
+    position: relative;
+}
+
+.passport-stamp {
+    position: absolute;
+    right: 6%;
+    bottom: 22px;
+    z-index: 2;
+    display: none;
+    padding: 6px 16px 8px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1f7a63;
+    background: rgba(255, 255, 255, 0.88);
+    border: 4px double #1f7a63;
+    border-radius: 10px;
+    transform: rotate(-12deg);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+.passport-stamp.show {
+    display: block;
+}
+
+.passport-stamp.thump {
+    animation: stamp-thump 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.ps-word {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    line-height: 1.1;
+}
+
+.ps-date {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+@keyframes stamp-thump {
+    from { opacity: 0; transform: rotate(-30deg) scale(2.4); }
+    to { opacity: 1; transform: rotate(-12deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .passport-stamp.thump { animation: none; }
+}
+
+@media (max-width: 767px) {
+    .passport-stamp { right: 14px; bottom: 14px; padding: 4px 12px 6px; }
+    .ps-word { font-size: 17px; }
+}
+
 /* "Cooked this?" box at the end of each recipe */
 .cooked-this {
     display: flex;
@@ -480,6 +569,87 @@ html.cook-mode-open body {
 
 .cooked-this-status:empty {
     display: none;
+}
+
+/* End of cook mode: confetti and "Enjoy your meal!" */
+.cm-celebrate {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #fffaf4;
+}
+
+.cm-celebrate[hidden] {
+    display: none;
+}
+
+.cm-confetti {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.cm-celebrate-box {
+    position: relative;
+    max-width: 420px;
+    text-align: center;
+    animation: celebrate-pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.cm-celebrate-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    margin-bottom: 8px;
+    font-size: 34px;
+    color: #fff;
+    background: #e8772e;
+    border-radius: 50%;
+}
+
+.cm-celebrate-box h2 {
+    margin: 6px 0 4px;
+    font-size: 32px;
+}
+
+.cm-celebrate-box p {
+    margin: 0 0 20px;
+    font-size: 18px;
+}
+
+.cm-celebrate-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.cm-celebrate-links button {
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #808080;
+    text-decoration: underline;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+@keyframes celebrate-pop {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cm-celebrate-box { animation: none; }
 }
 
 @media print {

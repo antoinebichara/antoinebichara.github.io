@@ -150,6 +150,17 @@
     line-height: 1.3;
 }
 
+.rg-cooked {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background: #1f7a63;
+    border-radius: 10px;
+}
+
 .rg-meta {
     display: block;
     margin-top: 3px;

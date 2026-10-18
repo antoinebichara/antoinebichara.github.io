@@ -61,6 +61,17 @@ body.home {
     text-decoration: none;
 }
 
+/* "Surprise me" while the roulette spins */
+.btn-solid.spinning {
+    cursor: progress;
+    animation: surprise-pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes surprise-pulse {
+    from { box-shadow: 0 0 0 0 rgba(232, 119, 46, 0.6); }
+    to { box-shadow: 0 0 0 10px rgba(232, 119, 46, 0); }
+}
+
 .btn-ghost {
     color: #fff;
     background: transparent;
@@ -144,6 +155,53 @@ body.home {
     color: #fff;
     background: rgba(20, 20, 20, 0.7);
     border-radius: 12px;
+}
+
+/* Cooking passport: stamp on cooked cards, and the counter under the hero stats */
+.rc-photo {
+    position: relative;
+}
+
+.rc-stamp {
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    padding: 3px 10px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #1f7a63;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    transform: rotate(-6deg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.passport-line {
+    margin: -12px 0 22px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.passport-line .fa {
+    color: #5fd0b0;
+}
+
+.passport-line a,
+.passport-line a:hover,
+.passport-line a:focus {
+    margin-left: 6px;
+    color: #5fd0b0;
+    text-decoration: underline;
+}
+
+.rf-filter-passport.active {
+    background: #1f7a63;
+    border-color: #1f7a63;
 }
 
 .rc-body {

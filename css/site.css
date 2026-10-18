@@ -189,4 +189,13 @@ html.dark,
 .dark .cm-timer-chip { color: #f4a259; background: #1f232a; border-color: #8a4a22; }
 .dark .cm-timer.done { color: #fff; background: #d9480f; border-color: #d9480f; }
 
+.dark .cm-celebrate { background: #16181d; }
+.dark .cm-celebrate-links button { color: #a29d95; }
+.dark .passport-btn { color: #5fd0b0; border-color: #5fd0b0; }
+.dark .passport-btn:hover,
+.dark .passport-btn:focus,
+.dark .passport-btn.stamped { color: #0f2e27; background: #5fd0b0; }
+
 .dark .copy-toast { background: #3a3f48; }
+
+.dark .rf-filter-passport.active { color: #fff; background: #1f7a63; border-color: #1f7a63; }
