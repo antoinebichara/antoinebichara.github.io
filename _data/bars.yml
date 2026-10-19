@@ -1,6 +1,14 @@
 # Bars on the Long Beach eats page (eats.html): one overall rating out of 10.
 # Leave out lat/lng and the bar is listed without a pin on the map.
 
+- name: "Twisted Tiki"
+  area: "McFadden Public Market, Santa Ana"
+  region: "Orange County"
+  rating: 8.7
+  address: "515 N Main St, Santa Ana, CA 92701"
+  lat: 33.74905
+  lng: -117.86757
+
 - name: "Viper Room"
   area: "Sunset Strip, West Hollywood"
   region: "Los Angeles"
@@ -41,6 +49,14 @@
   lat: 34.10162
   lng: -118.33534
 
+- name: "Goat Hill Tavern"
+  area: "Costa Mesa"
+  region: "Orange County"
+  rating: 8.4
+  address: "1830 Newport Blvd, Costa Mesa, CA 92627"
+  lat: 33.64142
+  lng: -117.91837
+
 - name: "Baby Gee"
   area: "Alamitos Beach, Long Beach"
   region: "Long Beach"
@@ -69,6 +85,14 @@
   address: "3811 Grand View Blvd, Los Angeles, CA 90066"
   lat: 34.00452
   lng: -118.431
+
+- name: "Observation Bar"
+  area: "Queen Mary, Long Beach"
+  region: "Long Beach"
+  rating: 8.2
+  address: "1126 Queens Hwy, Long Beach, CA 90802"
+  lat: 33.75314
+  lng: -118.19526
 
 - name: "Purple Orchid"
   area: "El Segundo"
@@ -142,6 +166,14 @@
   lat: 34.0597
   lng: -118.29533
 
+- name: "Palma"
+  area: "Santa Monica Proper Hotel, Santa Monica"
+  region: "Los Angeles"
+  rating: 8.0
+  address: "700 Wilshire Blvd, Santa Monica, CA 90401"
+  lat: 34.0214
+  lng: -118.49499
+
 - name: "V Room"
   area: "Alamitos Beach, Long Beach"
   region: "Long Beach"
@@ -158,22 +190,6 @@
   lat: 33.78253
   lng: -118.19718
 
-- name: "HMS Bounty"
-  area: "Koreatown, LA"
-  region: "Los Angeles"
-  rating: 7.8
-  address: "3357 Wilshire Blvd, Los Angeles, CA 90010"
-  lat: 34.06182
-  lng: -118.2968
-
-- name: "Death & Co"
-  area: "Arts District, LA"
-  region: "Los Angeles"
-  rating: 7.5
-  address: "818 E 3rd St, Los Angeles, CA 90013"
-  lat: 34.04576
-  lng: -118.23588
-
 - name: "The Normandie Club"
   area: "Koreatown, LA"
   region: "Los Angeles"
@@ -189,11 +205,3 @@
   address: "6377 Hollywood Blvd, Los Angeles, CA 90028"
   lat: 34.10166
   lng: -118.32909
-
-- name: "No Smoking Bar"
-  area: "Mid-City, LA"
-  region: "Los Angeles"
-  rating: 7.0
-  address: "2692 S La Cienega Blvd, Los Angeles, CA 90034"
-  lat: 34.03376
-  lng: -118.37629
