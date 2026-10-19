@@ -916,3 +916,16 @@
   address: "12326 Venice Blvd, Los Angeles, CA 90066"
   lat: 34.00398
   lng: -118.43258
+
+- name: "Bar Le Côte"
+  cuisine: "Seafood"
+  meals: [lunch, dinner]
+  area: "Los Olivos, Santa Barbara County"
+  region: "Road trip"
+  food: 8.6
+  price: 7.5
+  vibe: 8.3
+  order: "Anything, it's all good"
+  address: "2375 Alamo Pintado Ave, Los Olivos, CA 93441"
+  lat: 34.66557
+  lng: -120.11547
