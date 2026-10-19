@@ -929,3 +929,16 @@
   address: "2375 Alamo Pintado Ave, Los Olivos, CA 93441"
   lat: 34.66557
   lng: -120.11547
+
+- name: "Broken Mouth | Lee's Homestyle"
+  cuisine: "Korean"
+  meals: [lunch]
+  area: "Fashion District, Downtown LA"
+  region: "Los Angeles"
+  food: 8.3
+  price: 7.9
+  vibe: 6.9
+  order: "Short rib"
+  address: "718 S Los Angeles St, Los Angeles, CA 90014"
+  lat: 34.04294
+  lng: -118.25074
