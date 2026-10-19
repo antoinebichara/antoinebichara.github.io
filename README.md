@@ -112,6 +112,9 @@ price and vibe count is set by `weights` at the top of `eats.html` (40/40/20 to 
 change them to re-rank the list. Visitors can also try their own mix with the sliders, which
 only changes what they see.
 
+Bars live in `_data/bars.yml` and show under the page's Bars tab. Each bar just has a name,
+area, region, one overall `rating` out of 10, and optionally `address` and `lat`/`lng`.
+
 ## Previewing locally (optional)
 
 With [Ruby and Jekyll installed](https://jekyllrb.com/docs/installation/), run `jekyll serve`

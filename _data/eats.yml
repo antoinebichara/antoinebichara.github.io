@@ -274,7 +274,7 @@
   region: "Long Beach"
   food: 7.5
   price: 9.0
-  vibe: 8.0
+  vibe: 7.5
   order: "Deep dish pizza"
   visited: 2021-03
   address: "East 2nd Street, Long Beach"
@@ -306,20 +306,6 @@
   address: "16051 Bolsa Chica St, Huntington Beach, CA 92649"
   lat: 33.72898
   lng: -118.04177
-
-- name: "Honduras Kitchen"
-  cuisine: "Honduran"
-  meals: [breakfast, lunch, dinner]
-  area: "Retro Row, Long Beach"
-  region: "Long Beach"
-  food: 8.0
-  price: 8.2
-  vibe: 8.3
-  order: "The shared platter"
-  visited: 2022-06
-  address: "East 4th Street, Long Beach"
-  lat: 33.77185
-  lng: -118.16851
 
 - name: "Bell's"
   cuisine: "French"
@@ -391,7 +377,7 @@
   meals: [lunch, dinner]
   area: "Belmont Shore, Long Beach"
   region: "Long Beach"
-  food: 8.1
+  food: 7.7
   price: 8.0
   vibe: 8.0
   visited: 2025-03
@@ -432,7 +418,7 @@
   meals: [lunch, dinner]
   area: "Lakewood"
   region: "Long Beach"
-  food: 8.3
+  food: 7.9
   price: 8.0
   vibe: 7.4
   address: "3225 E Carson St, Lakewood, CA 90712"
@@ -565,7 +551,7 @@
   meals: [lunch, dinner]
   area: "Los Altos, Long Beach"
   region: "Long Beach"
-  food: 7.5
+  food: 7.4
   price: 8.5
   vibe: 7.5
   order: "Fish and chips"
@@ -670,7 +656,7 @@
   meals: [lunch]
   area: "Downtown LA"
   region: "Los Angeles"
-  food: 8.0
+  food: 7.8
   price: 8.0
   vibe: 7.0
   order: "Chicken sandwich and wings"
@@ -684,7 +670,7 @@
   meals: [lunch, dinner]
   area: "Douglas Park, Long Beach"
   region: "Long Beach"
-  food: 8.0
+  food: 7.7
   price: 8.0
   vibe: 7.0
   order: "Khao soi"

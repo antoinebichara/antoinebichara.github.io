@@ -203,6 +203,79 @@
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* Restaurants or bars */
+.eats-kinds {
+    display: inline-flex;
+    margin-bottom: 16px;
+    padding: 4px;
+    background: #f3ede6;
+    border-radius: 26px;
+}
+
+.eats-kinds button {
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #6b6b6b;
+    background: none;
+    border: 0;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.eats-kinds button span {
+    margin-left: 4px;
+    padding: 1px 7px;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.eats-kinds button.active {
+    color: #fff;
+    background: #e8772e;
+    box-shadow: 0 2px 6px rgba(232, 119, 46, 0.35);
+}
+
+.eats-kinds button[data-kind="bars"].active {
+    background: #7a4fc9;
+    box-shadow: 0 2px 6px rgba(122, 79, 201, 0.35);
+}
+
+.eats-kinds button.active span {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Bars have no meals or cuisines to filter by */
+.eats-controls.kind-bars .eats-meals,
+.eats-controls.kind-bars .eats-craving {
+    display: none;
+}
+
+.eats-bars-note {
+    margin: 14px 0 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #6b6b6b;
+}
+
+.eats-bars-note .fa {
+    color: #7a4fc9;
+}
+
+.bar-card .ec-score {
+    background: linear-gradient(135deg, #8f63db, #6a3fb8);
+}
+
+.bar-card .ec-rank {
+    color: #6a3fb8;
+}
+
+.bar-card .ec-meta .fa {
+    color: #7a4fc9;
+}
+
 /* Search by name */
 .eats-search {
     position: relative;
@@ -577,6 +650,12 @@
 .eats-pin.tier-1 { color: #4a3600; }
 .eats-pin.tier-1 .ep-shape { background: #f2b705; }
 
+/* Bars: purple pins */
+.eats-pin.is-bar,
+.eats-pin.is-bar.tier-1 { color: #fff; }
+.eats-pin.is-bar .ep-shape { background: #7a4fc9; }
+.eats-pin.is-bar.tier-1 .ep-shape { background: #5b2fa8; }
+
 .eats-pin.hover,
 .eats-pin.active,
 .eats-pin:hover,
@@ -688,6 +767,10 @@
 .dark .ec-links button,
 .dark .eats-pop a { color: #f4a259; }
 .dark #eats-map { background: #1b1e24; }
+.dark .eats-kinds { background: #1f232a; }
+.dark .eats-kinds button { color: #a29d95; }
+.dark .eats-kinds button.active { color: #fff; }
+.dark .eats-bars-note { color: #a29d95; }
 .dark #eats-query { color: #e4e0d9; background: #1f232a; border-color: #3a404b; }
 .dark .eats-formula { border-color: #3a404b; }
 .dark .ef-line span,

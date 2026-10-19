@@ -1,0 +1,199 @@
+# Bars on the Long Beach eats page (eats.html): one overall rating out of 10.
+# Leave out lat/lng and the bar is listed without a pin on the map.
+
+- name: "Viper Room"
+  area: "Sunset Strip, West Hollywood"
+  region: "Los Angeles"
+  rating: 8.7
+  address: "8852 Sunset Blvd, West Hollywood, CA 90069"
+  lat: 34.09058
+  lng: -118.38454
+
+- name: "Tiki-Ti"
+  area: "Los Feliz, LA"
+  region: "Los Angeles"
+  rating: 8.6
+  address: "4427 W Sunset Blvd, Los Angeles, CA 90027"
+  lat: 34.09733
+  lng: -118.28575
+
+- name: "Clifton's Republic"
+  area: "Downtown LA"
+  region: "Los Angeles"
+  rating: 8.6
+  address: "648 S Broadway, Los Angeles, CA 90014"
+  lat: 34.04591
+  lng: -118.25263
+
+- name: "Break Room 86"
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  rating: 8.6
+  address: "3515 Wilshire Blvd, Los Angeles, CA 90010"
+  lat: 34.06179
+  lng: -118.30217
+
+- name: "Musso & Frank"
+  area: "Hollywood"
+  region: "Los Angeles"
+  rating: 8.5
+  address: "6667 Hollywood Blvd, Los Angeles, CA 90028"
+  lat: 34.10162
+  lng: -118.33534
+
+- name: "Baby Gee"
+  area: "Alamitos Beach, Long Beach"
+  region: "Long Beach"
+  rating: 8.4
+  address: "1227 E 4th St, Long Beach, CA 90802"
+  lat: 33.77177
+  lng: -118.17587
+
+- name: "The Corner Bar Los Angeles"
+  area: "Los Angeles"
+  region: "Los Angeles"
+  rating: 8.4
+
+- name: "The Lucky Tiki"
+  area: "West Hollywood"
+  region: "Los Angeles"
+  rating: 8.3
+  address: "8512 Santa Monica Blvd, West Hollywood, CA 90069"
+  lat: 34.08898
+  lng: -118.3771
+
+- name: "Accomplice Bar"
+  area: "Mar Vista, LA"
+  region: "Los Angeles"
+  rating: 8.3
+  address: "3811 Grand View Blvd, Los Angeles, CA 90066"
+  lat: 34.00452
+  lng: -118.431
+
+- name: "Purple Orchid"
+  area: "El Segundo"
+  region: "Los Angeles"
+  rating: 8.2
+  address: "221 Richmond St, El Segundo, CA 90245"
+  lat: 33.91812
+  lng: -118.41721
+
+- name: "The Wicked Wolf"
+  area: "Wrigley, Long Beach"
+  region: "Long Beach"
+  rating: 8.2
+  address: "2332 Pacific Ave, Long Beach, CA 90806"
+  lat: 33.79957
+  lng: -118.19364
+
+- name: "The Grasshopper"
+  area: "Central Long Beach"
+  region: "Long Beach"
+  rating: 8.2
+  address: "136 E Anaheim St, Long Beach, CA 90813"
+  lat: 33.78254
+  lng: -118.19203
+
+- name: "The 4th Horseman"
+  area: "Downtown Long Beach"
+  region: "Long Beach"
+  rating: 8.2
+  address: "121 W 4th St, Long Beach, CA 90802"
+  lat: 33.77176
+  lng: -118.19288
+
+- name: "R Bar"
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  rating: 8.2
+  address: "3331 W 8th St, Los Angeles, CA 90005"
+  lat: 34.05776
+  lng: -118.30096
+
+- name: "Blind Donkey"
+  area: "East Village, Long Beach"
+  region: "Long Beach"
+  rating: 8.1
+  address: "149 Linden Ave, Long Beach, CA 90802"
+  lat: 33.76893
+  lng: -118.18643
+
+- name: "Alibi Room"
+  area: "Culver City"
+  region: "Los Angeles"
+  rating: 8.1
+  address: "12236 W Washington Blvd, Los Angeles, CA 90066"
+  lat: 33.99716
+  lng: -118.42612
+
+- name: "Old Man Bar"
+  area: "Culver City"
+  region: "Los Angeles"
+  rating: 8.1
+  address: "12517 W Washington Blvd, Los Angeles, CA 90066"
+  lat: 33.99683
+  lng: -118.43133
+
+- name: "The Prince"
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  rating: 8.1
+  address: "3198 W 7th St, Los Angeles, CA 90005"
+  lat: 34.0597
+  lng: -118.29533
+
+- name: "V Room"
+  area: "Alamitos Beach, Long Beach"
+  region: "Long Beach"
+  rating: 8.0
+  address: "918 E 4th St, Long Beach, CA 90802"
+  lat: 33.77166
+  lng: -118.18087
+
+- name: "The Hawk"
+  area: "Willmore, Long Beach"
+  region: "Long Beach"
+  rating: 7.9
+  address: "468 W Anaheim St, Long Beach, CA 90813"
+  lat: 33.78253
+  lng: -118.19718
+
+- name: "HMS Bounty"
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  rating: 7.8
+  address: "3357 Wilshire Blvd, Los Angeles, CA 90010"
+  lat: 34.06182
+  lng: -118.2968
+
+- name: "Death & Co"
+  area: "Arts District, LA"
+  region: "Los Angeles"
+  rating: 7.5
+  address: "818 E 3rd St, Los Angeles, CA 90013"
+  lat: 34.04576
+  lng: -118.23588
+
+- name: "The Normandie Club"
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  rating: 7.5
+  address: "3612 W 6th St, Los Angeles, CA 90020"
+  lat: 34.06351
+  lng: -118.3007
+
+- name: "Scum & Villainy"
+  area: "Hollywood"
+  region: "Los Angeles"
+  rating: 7.5
+  address: "6377 Hollywood Blvd, Los Angeles, CA 90028"
+  lat: 34.10166
+  lng: -118.32909
+
+- name: "No Smoking Bar"
+  area: "Mid-City, LA"
+  region: "Los Angeles"
+  rating: 7.0
+  address: "2692 S La Cienega Blvd, Los Angeles, CA 90034"
+  lat: 34.03376
+  lng: -118.37629

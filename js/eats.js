@@ -7,9 +7,21 @@
 (function () {
     var eats = (window.FAIRVOPIA_EATS || []).map(function (e, i) {
         e.id = i;
+        e.kind = 'eats';
         e.pinned = typeof e.lat === 'number' && typeof e.lng === 'number';
         return e;
     });
+    // Bars (_data/bars.yml) have a single overall rating instead of food, price and vibe
+    var bars = (window.FAIRVOPIA_BARS || []).map(function (b, i) {
+        b.id = eats.length + i;
+        b.kind = 'bars';
+        b.pinned = typeof b.lat === 'number' && typeof b.lng === 'number';
+        b.exact = b.score = b.rating;
+        return b;
+    });
+    bars.slice().sort(function (a, b) { return b.rating - a.rating || a.name.localeCompare(b.name); })
+        .forEach(function (b, i) { b.rank = i + 1; });
+    var all = eats.concat(bars);
 
     // ---- Value score: a weighted mix of food, price and vibe ----
     // The default mix is set at the top of eats.html; visitors can try their own with the sliders.
@@ -37,7 +49,7 @@
     if (!listEl) return;
 
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var state = { region: 'Long Beach', meal: '', cuisine: '', sort: 'score', query: '' };
+    var state = { kind: 'eats', region: 'Long Beach', meal: '', cuisine: '', sort: 'score', query: '' };
     var queryEl = document.getElementById('eats-query');
     var noteEl = document.getElementById('eats-search-note');
 
@@ -88,21 +100,24 @@
     function plain(s) {
         return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
     }
-    eats.forEach(function (e) { e.search = plain(e.name); });
+    all.forEach(function (e) { e.search = plain(e.name); });
 
     function visible() {
         var q = plain(state.query);
-        var list = eats.filter(function (e) {
-            // A search looks at every place, whatever the other filters say
+        var list = all.filter(function (e) {
+            // A search looks at every restaurant and bar, whatever the other filters say
             if (q) return e.search.indexOf(q) !== -1 || e.search.replace(/ /g, '').indexOf(q.replace(/ /g, '')) !== -1;
-            return (!state.region || e.region === state.region) &&
-                (!state.meal || (e.meals || []).indexOf(state.meal) !== -1) &&
+            if (e.kind !== state.kind) return false;
+            if (state.region && e.region !== state.region) return false;
+            if (e.kind === 'bars') return true;
+            return (!state.meal || (e.meals || []).indexOf(state.meal) !== -1) &&
                 (!state.cuisine || e.cuisine === state.cuisine);
         });
         var key = state.sort === 'score' ? 'exact' : state.sort;
         list.sort(function (a, b) {
-            if (key === 'name') return a.name.localeCompare(b.name);
-            return b[key] - a[key] || b.exact - a.exact;
+            if (a.kind !== b.kind) return a.kind === 'eats' ? -1 : 1;
+            if (key === 'name' || a[key] == null) return key === 'name' ? a.name.localeCompare(b.name) : b.exact - a.exact || a.rank - b.rank;
+            return b[key] - a[key] || b.exact - a.exact || a.rank - b.rank;
         });
         return list;
     }
@@ -118,6 +133,22 @@
             });
         }
         listEl.innerHTML = list.map(function (e) {
+            if (e.kind === 'bars') {
+                return '<li class="eat-card bar-card" data-id="' + e.id + '" tabindex="-1">' +
+                    '<div class="ec-top">' +
+                        '<span class="ec-rank">#' + e.rank + '</span>' +
+                        '<div class="ec-head">' +
+                            '<h3 class="ec-name">' + esc(e.name) + '</h3>' +
+                            '<p class="ec-meta"><i class="fa fa-glass" aria-hidden="true"></i> Bar &middot; ' + esc(e.area) + '</p>' +
+                        '</div>' +
+                        '<div class="ec-score" title="Rating out of 10"><strong>' + one(e.score) + '</strong><span>' + praise(e.score) + '</span></div>' +
+                    '</div>' +
+                    '<div class="ec-links">' +
+                        (e.pinned && map ? '<button type="button" class="ec-show"><i class="fa fa-map-marker" aria-hidden="true"></i> Show on map</button>' : '') +
+                        '<a href="' + directions(e) + '" target="_blank" rel="noopener"><i class="fa fa-location-arrow" aria-hidden="true"></i> Directions</a>' +
+                    '</div>' +
+                '</li>';
+            }
             return '<li class="eat-card" data-id="' + e.id + '" tabindex="-1">' +
                 '<div class="ec-top">' +
                     '<span class="ec-rank">#' + e.rank + '</span>' +
@@ -136,8 +167,8 @@
                     (visited(e) ? '<span class="ec-visited">Last visit ' + visited(e) + '</span>' : '') +
                 '</div>' +
             '</li>';
-        }).join('') || (state.query ? '' : '<li class="eats-empty">No favorites here yet. Try another area, meal or craving.</li>');
-        countEl.textContent = list.length + (list.length === 1 ? ' place' : ' places');
+        }).join('') || (state.query ? '' : '<li class="eats-empty">No favorites here yet. Try another area' + (state.kind === 'eats' ? ', meal or craving.' : '.') + '</li>');
+        countEl.textContent = list.length + (state.kind === 'bars' && !state.query ? (list.length === 1 ? ' bar' : ' bars') : (list.length === 1 ? ' place' : ' places'));
         showSearchNote(list);
         updatePins(list);
         if (animate && !reduceMotion) {
@@ -162,7 +193,7 @@
         document.querySelector('.eats-controls').classList.toggle('searching', !!q);
         if (!q) return;
         noteEl.innerHTML = list.length
-            ? '<i class="fa fa-check-circle" aria-hidden="true"></i> ' + (list.length === 1 ? 'Yes! It\'s one of my favorites.' : list.length + ' of my favorites match.') + ' Searching every area.'
+            ? '<i class="fa fa-check-circle" aria-hidden="true"></i> ' + (list.length === 1 ? 'Yes! It\'s one of my favorites.' : list.length + ' of my favorites match.') + ' Searching every area, restaurants and bars.'
             : '<i class="fa fa-question-circle" aria-hidden="true"></i> &ldquo;' + esc(q) + '&rdquo; isn\'t on my favorites list (yet). Maybe I haven\'t been, or maybe it\'s my next stop!';
     }
 
@@ -216,7 +247,7 @@
         var show = ev.target.closest('.ec-show');
         if (!show) return;
         var id = +show.closest('.eat-card').getAttribute('data-id');
-        focusOn(eats[id]);
+        focusOn(all[id]);
         if (mapEl.getBoundingClientRect().top < 0) mapEl.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
     });
     listEl.addEventListener('mouseover', function (ev) {
@@ -238,6 +269,31 @@
             fitToPins(true);
         });
     });
+    // Restaurants or bars: bars have no meals, cuisines or food/price/vibe scores to filter by
+    var controlsEl = document.querySelector('.eats-controls');
+    var pickLabel = document.querySelector('#eats-pick span');
+    function setKind(kind) {
+        state.kind = kind;
+        [].forEach.call(document.querySelectorAll('.eats-kinds button'), function (b) {
+            var on = b.getAttribute('data-kind') === kind;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        controlsEl.classList.toggle('kind-bars', kind === 'bars');
+        [].forEach.call(sortEl.options, function (o) {
+            o.hidden = kind === 'bars' && ['food', 'price', 'vibe'].indexOf(o.value) !== -1;
+        });
+        if (sortEl.selectedOptions[0] && sortEl.selectedOptions[0].hidden) { sortEl.value = 'score'; state.sort = 'score'; }
+        sortEl.options[0].textContent = kind === 'bars' ? 'Top rated' : 'Best value';
+        if (pickLabel) pickLabel.textContent = kind === 'bars' ? 'Where should I drink tonight?' : 'Where should I eat tonight?';
+        closePopup();
+        render();
+        fitToPins(true);
+    }
+    [].forEach.call(document.querySelectorAll('.eats-kinds button'), function (btn) {
+        btn.addEventListener('click', function () { setKind(btn.getAttribute('data-kind')); });
+    });
+
     [].forEach.call(document.querySelectorAll('.eats-meals .rf-filter'), function (btn) {
         btn.addEventListener('click', function () {
             [].forEach.call(document.querySelectorAll('.eats-meals .rf-filter'), function (b) { b.classList.toggle('active', b === btn); });
@@ -275,11 +331,11 @@
         map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
         popup = new maplibregl.Popup({ offset: 20, closeButton: true, maxWidth: '260px', focusAfterOpen: false });
 
-        eats.forEach(function (e) {
+        all.forEach(function (e) {
             if (!e.pinned) return;
             var el = document.createElement('button');
             el.type = 'button';
-            el.className = 'eats-pin';
+            el.className = 'eats-pin' + (e.kind === 'bars' ? ' is-bar' : '');
             // MapLibre positions the marker with a transform, so the teardrop shape is its own element
             el.innerHTML = '<span class="ep-shape"></span><span class="ep-num"></span>';
             el.addEventListener('click', function (ev) {
@@ -325,7 +381,7 @@
         map.flyTo({ center: [e.lng, e.lat], zoom: Math.max(map.getZoom(), 13.5), duration: reduceMotion ? 0 : 1000, essential: true });
         popup.setLngLat([e.lng, e.lat]).setHTML(
             '<div class="eats-pop"><strong>' + esc(e.name) + '</strong>' +
-            '<span>' + esc(e.cuisine) + ' &middot; ' + one(e.score) + ' ' + praise(e.score).toLowerCase() + '</span>' +
+            '<span>' + (e.kind === 'bars' ? 'Bar' : esc(e.cuisine)) + ' &middot; ' + one(e.score) + ' ' + praise(e.score).toLowerCase() + '</span>' +
             (e.order ? '<em>Order: ' + esc(e.order) + '</em>' : '') +
             '<a href="' + directions(e) + '" target="_blank" rel="noopener">Directions <i class="fa fa-external-link" aria-hidden="true"></i></a></div>'
         ).addTo(map);
@@ -341,7 +397,7 @@
     pickBtn.addEventListener('click', function () {
         if (picking) return;
         var pool = visible().filter(function (e) { return e.pinned; });
-        if (!pool.length) pool = eats.filter(function (e) { return e.pinned; });
+        if (!pool.length) pool = all.filter(function (e) { return e.kind === state.kind; }).filter(function (e) { return e.pinned; });
         var choice = pool[Math.floor(Math.random() * pool.length)];
         if (choice.region !== state.region && state.region) {
             document.querySelector('.eats-regions .rf-filter[data-region="' + choice.region + '"]').click();
