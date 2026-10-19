@@ -491,6 +491,19 @@
   lat: 33.98723
   lng: -118.47278
 
+- name: "Nova Bakery"
+  cuisine: "Venezuelan"
+  meals: [breakfast, lunch, dessert]
+  area: "Downtown Long Beach"
+  region: "Long Beach"
+  food: 8.1
+  price: 8.0
+  vibe: 7.5
+  order: "Pastelitos"
+  address: "865 E 7th St, Long Beach, CA 90813"
+  lat: 33.7754
+  lng: -118.18103
+
 - name: "Sura Korean BBQ"
   cuisine: "Korean"
   meals: [lunch, dinner]
@@ -599,6 +612,19 @@
   address: "2130 Sawtelle Blvd, Los Angeles, CA 90025"
   lat: 34.03916
   lng: -118.44201
+
+- name: "Mian"
+  cuisine: "Chinese"
+  meals: [lunch, dinner]
+  area: "Sawtelle, West LA"
+  region: "Los Angeles"
+  food: 8.2
+  price: 8.0
+  vibe: 6.5
+  order: "Chili dumplings and the beef roll"
+  address: "1947 Sawtelle Blvd, Los Angeles, CA 90025"
+  lat: 34.04175
+  lng: -118.44441
 
 - name: "Heritage"
   cuisine: "Californian"
@@ -851,3 +877,42 @@
   address: "8830 Apollo Way, Downey, CA 90242"
   lat: 33.9212
   lng: -118.132
+
+- name: "Marinate Korean BBQ"
+  cuisine: "Korean"
+  meals: [lunch, dinner]
+  area: "Douglas Park, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 7.3
+  vibe: 7.7
+  order: "Bulgogi burrito"
+  address: "4150 McGowen St, Long Beach, CA 90808"
+  lat: 33.82931
+  lng: -118.14485
+
+- name: "Ammatoli"
+  cuisine: "Mediterranean"
+  meals: [lunch, dinner]
+  area: "Downtown Long Beach"
+  region: "Long Beach"
+  food: 7.9
+  price: 7.1
+  vibe: 8.0
+  order: "Kibbeh"
+  address: "285 E 3rd St, Long Beach, CA 90802"
+  lat: 33.77056
+  lng: -118.18958
+
+- name: "Quiadaiyn"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "Mar Vista, LA"
+  region: "Los Angeles"
+  food: 7.9
+  price: 8.1
+  vibe: 7.9
+  order: "Mole"
+  address: "12326 Venice Blvd, Los Angeles, CA 90066"
+  lat: 34.00398
+  lng: -118.43258
