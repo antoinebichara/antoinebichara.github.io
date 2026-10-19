@@ -54,6 +54,75 @@
 }
 
 /* "Back to globe" button, shown once zoomed in */
+/* Shown instead of the globe when the browser can't draw it (js/recipe-globe.js) */
+#recipe-globe-map.has-fallback {
+    position: relative;
+}
+
+#recipe-globe-map.has-fallback canvas,
+#recipe-globe-map.has-fallback .maplibregl-control-container,
+#recipe-globe-map.has-fallback .rg-back {
+    visibility: hidden;
+}
+
+.rg-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+    background: radial-gradient(circle at 50% 45%, rgba(31, 41, 66, 0.92) 0%, rgba(11, 17, 32, 0.6) 55%, rgba(11, 17, 32, 0) 75%);
+}
+
+.rg-fallback-icon {
+    margin-bottom: 14px;
+    font-size: 64px;
+    color: #f4a259;
+    animation: rg-fallback-wobble 2.4s ease-in-out infinite;
+}
+
+@keyframes rg-fallback-wobble {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+}
+
+.rg-fallback-title {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.rg-fallback-text {
+    max-width: 340px;
+    margin: 0 0 18px;
+    font-family: 'Lora', 'Times New Roman', serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.rg-fallback-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.rg-fallback .btn-solid .fa {
+    margin-right: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rg-fallback-icon { animation: none; }
+}
+
 .rg-back {
     position: absolute;
     top: 12px;

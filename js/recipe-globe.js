@@ -8,7 +8,33 @@
 (function () {
     var recipes = window.FAIRVOPIA_RECIPES || [];
     var container = document.getElementById('recipe-globe-map');
-    if (!container || !window.maplibregl) return;
+    if (!container) return;
+
+    // ---- Fallback: a friendly message when the globe can't be drawn ----
+    // The globe is drawn with the graphics card (WebGL). If the browser can't do that, or the
+    // drawing crashes and doesn't come back (Chrome then shows a blank box with a sad face),
+    // show a message with a way to reload instead.
+    function showFallback(crashed) {
+        if (container.querySelector('.rg-fallback')) return;
+        var box = document.createElement('div');
+        box.className = 'rg-fallback';
+        box.innerHTML =
+            '<i class="fa fa-globe rg-fallback-icon" aria-hidden="true"></i>' +
+            '<p class="rg-fallback-title">' + (crashed ? 'The globe took a little tumble' : 'The globe couldn\'t load here') + '</p>' +
+            '<p class="rg-fallback-text">' + (crashed
+                ? 'Your browser stopped drawing it. A reload usually brings it right back.'
+                : 'Your browser couldn\'t draw the 3D globe, but every recipe is still just below.') + '</p>' +
+            '<div class="rg-fallback-buttons">' +
+                (crashed ? '<button type="button" class="btn-solid rg-fallback-reload"><i class="fa fa-refresh" aria-hidden="true"></i> Reload the globe</button>' : '') +
+                '<a class="btn-ghost" href="#recipes">Browse recipes</a>' +
+            '</div>';
+        container.classList.add('has-fallback');
+        container.appendChild(box);
+        var reload = box.querySelector('.rg-fallback-reload');
+        if (reload) reload.addEventListener('click', function () { location.reload(); });
+    }
+
+    if (!window.maplibregl) { showFallback(false); return; }
 
     var COLORS = {
         pin: '#e8772e',
@@ -85,16 +111,30 @@
     }
 
     // ---- Map ----
-    var map = new maplibregl.Map({
-        container: container,
-        style: 'https://tiles.openfreemap.org/styles/' + (night ? 'dark' : 'positron'),
-        center: [20, 25],
-        zoom: isTouch ? Math.min(startZoom, 1.0) : startZoom,
-        attributionControl: { compact: true },
-        // Scrolling the page past the globe shouldn't zoom it: zoom with Ctrl + scroll,
-        // a trackpad pinch, the +/- buttons or a double-click; on phones use two fingers.
-        cooperativeGestures: true
+    var map;
+    try {
+        map = new maplibregl.Map({
+            container: container,
+            style: 'https://tiles.openfreemap.org/styles/' + (night ? 'dark' : 'positron'),
+            center: [20, 25],
+            zoom: isTouch ? Math.min(startZoom, 1.0) : startZoom,
+            attributionControl: { compact: true },
+            // Scrolling the page past the globe shouldn't zoom it: zoom with Ctrl + scroll,
+            // a trackpad pinch, the +/- buttons or a double-click; on phones use two fingers.
+            cooperativeGestures: true
+        });
+    } catch (e) {
+        showFallback(false);
+        return;
+    }
+    // The drawing can be lost (e.g. the graphics driver resets). Give it a few seconds to
+    // come back on its own before offering a reload.
+    var lostTimer = null;
+    map.on('webglcontextlost', function () {
+        clearTimeout(lostTimer);
+        lostTimer = setTimeout(function () { showFallback(true); }, 3000);
     });
+    map.on('webglcontextrestored', function () { clearTimeout(lostTimer); });
     if (!container.hasAttribute('data-no-controls')) {
         map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
         map.addControl(new maplibregl.FullscreenControl(), 'top-right');
