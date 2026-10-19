@@ -394,6 +394,13 @@ var fairvopiaFractions = window.fairvopiaFractions;
     // =====================================================================
     // Cook mode: one step at a time, read aloud, timers, screen stays on
     // =====================================================================
+    // Give each step an anchor (#step-1, #step-2, ...), matching the step links in the
+    // recipe's structured data for Google (_includes/recipe-jsonld.html)
+    var stepNumber = 0;
+    sectionAfter(stepsHeading).forEach(function (el) {
+        [].forEach.call(el.querySelectorAll('li'), function (li) { li.id = 'step-' + (++stepNumber); });
+    });
+
     var steps = [];
     var currentSection = '';
     sectionAfter(stepsHeading).forEach(function (el) {
