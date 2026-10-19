@@ -1,4 +1,4 @@
-    <!-- Navigation: the site name (links home) and the light/dark mode button -->
+    <!-- Navigation: the site name (links home), the light/dark mode button, and on the home page (eats_link=true) a link to the Long Beach eats page -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header page-scroll">
@@ -6,6 +6,9 @@
                 <button type="button" class="theme-toggle" aria-label="Switch between light and dark mode" title="Light / dark mode">
                     <i class="fa fa-moon-o" aria-hidden="true"></i><i class="fa fa-sun-o" aria-hidden="true"></i>
                 </button>
+{%- if include.eats_link %}
+                <a class="nav-eats" href="/eats.html"><i class="fa fa-cutlery" aria-hidden="true"></i> Long Beach eats</a>
+{%- endif %}
             </div>
         </div>
     </nav>

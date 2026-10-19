@@ -1,0 +1,853 @@
+# Restaurants on the Long Beach eats page (eats.html).
+# Scores are out of 10: food, price (how fair it is for what you get; higher is better) and vibe.
+# The overall Value score is worked out on the page from these, using the weights at the top of eats.html.
+# meals: any of breakfast, lunch, dinner, dessert (for the "Meal" filter).
+# Leave out lat/lng and the place is listed without a pin on the map.
+
+- name: "New Spice World"
+  cuisine: "Indian"
+  meals: [lunch, dinner]
+  area: "Corona"
+  region: "Road trip"
+  food: 9.0
+  price: 9.0
+  vibe: 8.0
+  order: "Dosa and the daily specials"
+  visited: 2024-02
+  address: "944 W 6th St, Corona, CA 92882"
+  lat: 33.87667
+  lng: -117.57859
+
+- name: "Fat of the Land"
+  cuisine: "Spanish tapas"
+  meals: [dinner]
+  area: "Santa Ana"
+  region: "Orange County"
+  food: 9.1
+  price: 8.0
+  vibe: 9.1
+  order: "Anchovies, peppers and shrimp"
+  visited: 2024-11
+  address: "700 North Main Street, Santa Ana"
+  lat: 33.75086
+  lng: -117.86777
+
+- name: "Majordomo"
+  cuisine: "Korean"
+  meals: [dinner]
+  area: "Downtown LA"
+  region: "Los Angeles"
+  food: 9.1
+  price: 8.0
+  vibe: 8.5
+  order: "Bo ssam, wings and Korean fried rice"
+  visited: 2023-09
+  address: "1725 Naud Street, Los Angeles"
+  lat: 34.0691
+  lng: -118.22615
+
+- name: "Joliza's Tacos"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "Poly High, Long Beach"
+  region: "Long Beach"
+  food: 8.5
+  price: 8.5
+  vibe: 8.5
+  order: "Burrito"
+  visited: 2021-12
+  address: "2233 Pacific Avenue, Long Beach"
+  lat: 33.79784
+  lng: -118.19393
+
+- name: "Porto's Bakery"
+  cuisine: "Cuban"
+  meals: [breakfast, lunch, dessert]
+  area: "Buena Park"
+  region: "Orange County"
+  food: 8.0
+  price: 9.5
+  vibe: 7.5
+  order: "Potato balls and guava cheese rolls"
+  visited: 2023-11
+  address: "7640 Beach Blvd, Buena Park, CA 90620"
+  lat: 33.85226
+  lng: -117.99782
+
+- name: "Sesame Dinette"
+  cuisine: "Vietnamese"
+  meals: [lunch]
+  area: "Central Long Beach"
+  region: "Long Beach"
+  food: 9.0
+  price: 8.5
+  vibe: 7.0
+  order: "Turmeric fish"
+  visited: 2025-02
+  address: "1750 Pacific Ave, Long Beach, CA 90813"
+  lat: 33.78897
+  lng: -118.19364
+
+- name: "Chateau Marmont"
+  cuisine: "American"
+  meals: [breakfast, lunch]
+  area: "Sunset Strip, West Hollywood"
+  region: "Los Angeles"
+  food: 8.5
+  price: 8.0
+  vibe: 9.0
+  order: "Brunch"
+  visited: 2022-07
+  address: "8221 West Sunset Boulevard, Hollywood"
+  lat: 34.09825
+  lng: -118.3684
+
+- name: "Koh Ruessei Noodles"
+  cuisine: "Cambodian"
+  meals: [lunch, dinner]
+  area: "Cambodia Town, Long Beach"
+  region: "Long Beach"
+  food: 8.3
+  price: 8.2
+  vibe: 8.6
+  order: "Frog legs"
+  visited: 2024-04
+  address: "East Anaheim Street, Long Beach"
+  lat: 33.78249
+  lng: -118.18242
+
+- name: "Sophy's"
+  cuisine: "Cambodian"
+  meals: [lunch, dinner]
+  area: "Cambodia Town, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 8.5
+  vibe: 8.5
+  order: "Fish amok"
+  visited: 2024-05
+  address: "3240 E Pacific Coast Hwy, Long Beach, CA 90804"
+  lat: 33.78983
+  lng: -118.15411
+
+- name: "Little Arabia Lebanese Bakery"
+  cuisine: "Lebanese"
+  meals: [breakfast, lunch, dessert]
+  area: "Little Arabia, Anaheim"
+  region: "Orange County"
+  food: 8.0
+  price: 8.5
+  vibe: 8.5
+  order: "Knafeh"
+  visited: 2023-11
+  address: "638 N Brookhurst St, Anaheim, CA 92801"
+  lat: 33.83989
+  lng: -117.95898
+
+- name: "Oh La Vache"
+  cuisine: "French"
+  meals: [lunch]
+  area: "Retro Row, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 8.5
+  vibe: 8.5
+  order: "Cheese and sandwiches"
+  visited: 2024-07
+  address: "East 4th Street, Long Beach"
+  lat: 33.77162
+  lng: -118.16631
+
+- name: "Pine & Crane"
+  cuisine: "Asian fusion"
+  meals: [lunch, dinner]
+  area: "Silver Lake, LA"
+  region: "Los Angeles"
+  food: 8.7
+  price: 8.0
+  vibe: 8.0
+  order: "Dan dan noodles"
+  visited: 2023-10
+  address: "1120 South Grand Avenue, Los Angeles"
+  lat: 34.04086
+  lng: -118.26236
+
+- name: "Naga Cafe"
+  cuisine: "Cambodian"
+  meals: [breakfast, lunch]
+  area: "Cambodia Town, Long Beach"
+  region: "Long Beach"
+  food: 8.5
+  price: 9.2
+  vibe: 6.0
+  order: "BBQ sandwich and noodle soup"
+  visited: 2024-02
+  address: "Pacific Coast Highway, Signal Hill"
+  lat: 33.7902
+  lng: -118.15386
+
+- name: "Mandi House LA"
+  cuisine: "Yemeni"
+  meals: [lunch, dinner]
+  area: "Westwood, LA"
+  region: "Los Angeles"
+  food: 8.3
+  price: 8.0
+  vibe: 8.6
+  visited: 2025-07
+  address: "1083 Gayley Avenue, Los Angeles"
+  lat: 34.06041
+  lng: -118.4472
+
+- name: "Tacos Lionydas"
+  cuisine: "Mexican"
+  meals: [dinner]
+  area: "Traffic Circle, Long Beach"
+  region: "Long Beach"
+  food: 8.5
+  price: 8.5
+  vibe: 7.0
+  order: "Al pastor and asada tacos"
+  visited: 2024-07
+  address: "1772 Clark Ave, Long Beach, CA 90815"
+  lat: 33.7894
+  lng: -118.13396
+
+- name: "Viaje"
+  cuisine: "Mexican"
+  meals: [dinner]
+  area: "Belmont Shore, Long Beach"
+  region: "Long Beach"
+  food: 8.5
+  price: 8.0
+  vibe: 8.0
+  order: "Lamb shank"
+  visited: 2023-07
+  address: "5224 E 2nd St, Long Beach, CA 90803"
+  lat: 33.76001
+  lng: -118.13442
+
+- name: "Guelaguetza"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  food: 8.5
+  price: 8.0
+  vibe: 8.0
+  order: "The mole combination"
+  visited: 2023-06
+  address: "3014 West Olympic Boulevard, Los Angeles"
+  lat: 34.05242
+  lng: -118.30073
+
+- name: "Jeong Yuk Jeom"
+  cuisine: "Korean"
+  meals: [dinner]
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  food: 8.5
+  price: 8.0
+  vibe: 8.0
+  order: "Korean BBQ"
+  visited: 2023-06
+  address: "621 S Western Ave, Los Angeles, CA 90005"
+  lat: 34.06275
+  lng: -118.30916
+
+- name: "Jus' Poke"
+  cuisine: "Poke"
+  meals: [lunch]
+  area: "Redondo Beach"
+  region: "Los Angeles"
+  food: 8.5
+  price: 8.0
+  vibe: 8.0
+  address: "North Gertruda Avenue, Redondo Beach"
+  lat: 33.84954
+  lng: -118.38883
+
+- name: "Rance's Chicago Pizza"
+  cuisine: "American"
+  meals: [lunch, dinner]
+  area: "Belmont Shore, Long Beach"
+  region: "Long Beach"
+  food: 7.5
+  price: 9.0
+  vibe: 8.0
+  order: "Deep dish pizza"
+  visited: 2021-03
+  address: "East 2nd Street, Long Beach"
+  lat: 33.75958
+  lng: -118.13364
+
+- name: "The Red Dot Vegetarian Kitchen"
+  cuisine: "Indian"
+  meals: [lunch, dinner]
+  area: "Frazier Park, near Lebec"
+  region: "Road trip"
+  food: 8.2
+  price: 8.2
+  vibe: 8.0
+  address: "3221 Mount Pinos Way, Frazier Park"
+  lat: 34.8215
+  lng: -118.94015
+
+- name: "Akuma Ramen & Sushi Bar"
+  cuisine: "Japanese"
+  meals: [lunch, dinner]
+  area: "Huntington Beach"
+  region: "Orange County"
+  food: 8.5
+  price: 8.2
+  vibe: 7.3
+  order: "The chef's sampler"
+  visited: 2024-09
+  address: "16051 Bolsa Chica St, Huntington Beach, CA 92649"
+  lat: 33.72898
+  lng: -118.04177
+
+- name: "Honduras Kitchen"
+  cuisine: "Honduran"
+  meals: [breakfast, lunch, dinner]
+  area: "Retro Row, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 8.2
+  vibe: 8.3
+  order: "The shared platter"
+  visited: 2022-06
+  address: "East 4th Street, Long Beach"
+  lat: 33.77185
+  lng: -118.16851
+
+- name: "Bell's"
+  cuisine: "French"
+  meals: [lunch, dinner]
+  area: "Los Alamos, Santa Barbara County"
+  region: "Road trip"
+  food: 8.5
+  price: 7.5
+  vibe: 8.5
+  order: "Mussels and escargot"
+  visited: 2024-02
+  address: "406 Bell St, Los Alamos, CA 93440"
+  lat: 34.74394
+  lng: -120.27762
+
+- name: "Alta Baja Market"
+  cuisine: "Mexican"
+  meals: [breakfast, lunch]
+  area: "Santa Ana"
+  region: "Orange County"
+  food: 8.5
+  price: 8.0
+  vibe: 7.5
+  order: "Cornbread"
+  visited: 2024-11
+  address: "201 E 4th St, Santa Ana, CA 92701"
+  lat: 33.74806
+  lng: -117.86654
+
+- name: "Angelo's Italian Deli"
+  cuisine: "Italian"
+  meals: [lunch]
+  area: "Belmont Shore, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 8.0
+  vibe: 8.5
+  order: "Prosciutto sandwich"
+  visited: 2020-09
+  address: "190 La Verne Ave, Long Beach, CA 90803"
+  lat: 33.75894
+  lng: -118.13361
+
+- name: "La Perla Tapatia"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "San Pedro"
+  region: "Los Angeles"
+  food: 8.0
+  price: 8.0
+  vibe: 8.5
+
+- name: "Holbox"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "South LA (Mercado La Paloma)"
+  region: "Los Angeles"
+  food: 8.3
+  price: 7.8
+  vibe: 8.0
+  order: "Uni tostada"
+  visited: 2025-07
+  address: "3655 South Grand Avenue, Los Angeles"
+  lat: 34.01732
+  lng: -118.27836
+
+- name: "Open Sesame"
+  cuisine: "Mediterranean"
+  meals: [lunch, dinner]
+  area: "Belmont Shore, Long Beach"
+  region: "Long Beach"
+  food: 8.1
+  price: 8.0
+  vibe: 8.0
+  visited: 2025-03
+  address: "East 2nd Street, Long Beach"
+  lat: 33.7605
+  lng: -118.13501
+
+- name: "Dan Sung Sa"
+  cuisine: "Korean"
+  meals: [dinner]
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  food: 8.5
+  price: 8.0
+  vibe: 7.0
+  order: "Kimchi pancake"
+  visited: 2025-02
+  address: "3317 West 6th Street, Los Angeles"
+  lat: 34.06374
+  lng: -118.29456
+
+- name: "Gusto Bakery"
+  cuisine: "Bakery"
+  meals: [breakfast]
+  area: "Retro Row, Long Beach"
+  region: "Long Beach"
+  food: 8.5
+  price: 7.5
+  vibe: 8.0
+  order: "Rye loaf"
+  visited: 2021-03
+  address: "2710 East 4th Street, Long Beach"
+  lat: 33.7716
+  lng: -118.15986
+
+- name: "Thai House Street Eats"
+  cuisine: "Thai"
+  meals: [lunch, dinner]
+  area: "Lakewood"
+  region: "Long Beach"
+  food: 8.3
+  price: 8.0
+  vibe: 7.4
+  address: "3225 E Carson St, Lakewood, CA 90712"
+  lat: 33.83245
+  lng: -118.15586
+
+- name: "Tasty Food To Go"
+  cuisine: "Thai & Lao"
+  meals: [lunch, dinner]
+  area: "Rose Park, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 8.5
+  vibe: 7.0
+  order: "Pad kee mao"
+  visited: 2020-03
+  address: "2015 E 10th St, Long Beach, CA 90804"
+  lat: 33.77903
+  lng: -118.16744
+
+- name: "Ruiji Sichuan Cuisine"
+  cuisine: "Chinese"
+  meals: [lunch, dinner]
+  area: "Lomita"
+  region: "Los Angeles"
+  food: 8.0
+  price: 8.0
+  vibe: 8.0
+  address: "1953 Pacific Coast Highway, Lomita"
+  lat: 33.79018
+  lng: -118.31399
+
+- name: "Al Wadee"
+  cuisine: "Lebanese"
+  meals: [lunch, dinner]
+  area: "Little Arabia, Anaheim"
+  region: "Orange County"
+  food: 7.5
+  price: 8.5
+  vibe: 8.0
+  address: "311 S Brookhurst St, Anaheim, CA 92804"
+  lat: 33.82873
+  lng: -117.95899
+
+- name: "Teddy's Red Tacos"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "Venice"
+  region: "Los Angeles"
+  food: 8.3
+  price: 7.6
+  vibe: 8.1
+  order: "Birria plate"
+  visited: 2024-07
+  address: "Windward Avenue, Los Angeles"
+  lat: 33.98723
+  lng: -118.47278
+
+- name: "Sura Korean BBQ"
+  cuisine: "Korean"
+  meals: [lunch, dinner]
+  area: "Downtown Long Beach"
+  region: "Long Beach"
+  food: 8.1
+  price: 7.7
+  vibe: 8.1
+  order: "Korean BBQ"
+  visited: 2024-06
+  address: "621 Atlantic Ave, Long Beach, CA 90802"
+  lat: 33.77451
+  lng: -118.18509
+
+- name: "Pickle Banh Mi"
+  cuisine: "Vietnamese"
+  meals: [lunch]
+  area: "Cambodia Town, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 8.0
+  vibe: 7.7
+  order: "Banh mi"
+  visited: 2025-01
+  address: "1171 East Anaheim Street, Long Beach"
+  lat: 33.78296
+  lng: -118.17717
+
+- name: "Soowon Galbi"
+  cuisine: "Korean"
+  meals: [dinner]
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  food: 8.5
+  price: 7.5
+  vibe: 7.5
+  order: "The BBQ specials"
+  visited: 2024-02
+  address: "856 South Vermont Avenue, Los Angeles"
+  lat: 34.05639
+  lng: -118.29134
+
+- name: "Jounetsu Ramen"
+  cuisine: "Japanese"
+  meals: [lunch, dinner]
+  area: "Retro Row, Long Beach"
+  region: "Long Beach"
+  food: 7.8
+  price: 8.2
+  vibe: 7.5
+  order: "Tonkotsu ramen"
+  visited: 2025-03
+  address: "1035 East 4th Street, Long Beach"
+  lat: 33.7719
+  lng: -118.17899
+
+- name: "Village Inn Fish and Chips"
+  cuisine: "English"
+  meals: [lunch, dinner]
+  area: "Los Altos, Long Beach"
+  region: "Long Beach"
+  food: 7.5
+  price: 8.5
+  vibe: 7.5
+  order: "Fish and chips"
+  visited: 2025-02
+  address: "6406 E Stearns St, Long Beach, CA 90815"
+  lat: 33.79538
+  lng: -118.10776
+
+- name: "The Eldo"
+  cuisine: "South African"
+  meals: [dinner]
+  area: "East Long Beach"
+  region: "Long Beach"
+  food: 7.5
+  price: 8.0
+  vibe: 8.5
+  order: "The South African dishes"
+  visited: 2023-11
+  address: "3014 N Studebaker Rd, Long Beach, CA 90808"
+  lat: 33.81114
+  lng: -118.0991
+
+- name: "Artelice"
+  cuisine: "Bakery"
+  meals: [breakfast, dessert]
+  area: "West LA"
+  region: "Los Angeles"
+  food: 8.6
+  price: 7.5
+  vibe: 7.2
+  order: "Pastries"
+  address: "11301 West Olympic Boulevard, Los Angeles"
+  lat: 34.03815
+  lng: -118.44174
+
+- name: "Kura Revolving Sushi Bar"
+  cuisine: "Japanese"
+  meals: [lunch, dinner]
+  area: "Sawtelle, West LA"
+  region: "Los Angeles"
+  food: 8.2
+  price: 7.3
+  vibe: 8.2
+  address: "2130 Sawtelle Blvd, Los Angeles, CA 90025"
+  lat: 34.03916
+  lng: -118.44201
+
+- name: "Heritage"
+  cuisine: "Californian"
+  meals: [dinner]
+  area: "Rose Park, Long Beach"
+  region: "Long Beach"
+  food: 8.8
+  price: 7.0
+  vibe: 7.5
+  visited: 2025-03
+  address: "2030 E 7th St, Long Beach, CA 90804"
+  lat: 33.77528
+  lng: -118.16718
+
+- name: "New York Bagel Deli"
+  cuisine: "Bagels"
+  meals: [breakfast, lunch]
+  area: "Santa Monica"
+  region: "Los Angeles"
+  food: 8.7
+  price: 7.0
+  vibe: 7.6
+  order: "Lox bagel"
+  visited: 2024-03
+  address: "2216 Wilshire Blvd, Santa Monica, CA 90403"
+  lat: 34.03297
+  lng: -118.48097
+
+- name: "RoVino"
+  cuisine: "Italian"
+  meals: [dinner]
+  area: "Little Italy, San Diego"
+  region: "Road trip"
+  food: 8.5
+  price: 7.0
+  vibe: 8.0
+  address: "2034 Kettner Blvd, San Diego, CA 92101"
+  lat: 32.72548
+  lng: -117.17007
+
+- name: "Howlin' Ray's"
+  cuisine: "Southern"
+  meals: [lunch]
+  area: "Downtown LA"
+  region: "Los Angeles"
+  food: 8.0
+  price: 8.0
+  vibe: 7.0
+  order: "Chicken sandwich and wings"
+  visited: 2021-03
+  address: "727 North Broadway, Los Angeles"
+  lat: 34.06155
+  lng: -118.23971
+
+- name: "S.T. Noodle Bar"
+  cuisine: "Thai"
+  meals: [lunch, dinner]
+  area: "Douglas Park, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 8.0
+  vibe: 7.0
+  order: "Khao soi"
+  address: "4152 Norse Way, Long Beach"
+  lat: 33.83355
+  lng: -118.14172
+
+- name: "The Attic"
+  cuisine: "American"
+  meals: [breakfast, dinner]
+  area: "Belmont Heights, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 7.5
+  vibe: 8.0
+  order: "Mussels and the breakfast bowl"
+  visited: 2024-01
+  address: "3441 East Broadway, Long Beach"
+  lat: 33.76466
+  lng: -118.15153
+
+- name: "Lonzo's"
+  cuisine: "Peruvian"
+  meals: [lunch, dinner]
+  area: "Culver City"
+  region: "Los Angeles"
+  food: 8.0
+  price: 7.5
+  vibe: 8.0
+  address: "10800 Washington Boulevard, Culver City"
+  lat: 34.01503
+  lng: -118.40728
+
+- name: "Buna Ethiopian"
+  cuisine: "Ethiopian"
+  meals: [lunch, dinner]
+  area: "Little Ethiopia, LA"
+  region: "Los Angeles"
+  food: 8.0
+  price: 7.0
+  vibe: 9.0
+  order: "Doro wat and the vegetarian combo"
+  visited: 2024-03
+  address: "1034 South Fairfax Avenue, Los Angeles"
+  lat: 34.05716
+  lng: -118.36415
+
+- name: "Portillo's"
+  cuisine: "American"
+  meals: [lunch, dinner]
+  area: "Buena Park"
+  region: "Orange County"
+  food: 7.5
+  price: 8.5
+  vibe: 7.0
+  order: "Beef dog with onions"
+  visited: 2020-08
+  address: "8390 La Palma Ave, Buena Park, CA 90620"
+  lat: 33.84657
+  lng: -117.98737
+
+- name: "Phnom Penh Noodle Shack"
+  cuisine: "Cambodian"
+  meals: [breakfast, lunch]
+  area: "Central Long Beach"
+  region: "Long Beach"
+  food: 7.5
+  price: 8.0
+  vibe: 8.0
+  order: "Noodle soup"
+  visited: 2020-10
+  address: "1644 Cherry Avenue, Long Beach"
+  lat: 33.78789
+  lng: -118.16746
+
+- name: "GamBoJok"
+  cuisine: "Korean"
+  meals: [dinner]
+  area: "Koreatown, LA"
+  region: "Los Angeles"
+  food: 6.5
+  price: 9.0
+  vibe: 8.0
+  order: "Pork belly wraps (bossam)"
+  visited: 2024-04
+  address: "301 S Western Ave, Los Angeles, CA 90020"
+  lat: 34.0689
+  lng: -118.30918
+
+- name: "Tim is Making Great Coffee"
+  cuisine: "Hawaiian"
+  meals: [breakfast, lunch]
+  area: "San Juan Capistrano"
+  region: "Orange County"
+  food: 7.9
+  price: 7.0
+  vibe: 9.0
+  order: "The Aloha Hawaiian Breakfast"
+  visited: 2024-01
+  address: "31431 Rancho Viejo Rd, San Juan Capistrano, CA 92675"
+  lat: 33.50587
+  lng: -117.65662
+
+- name: "La Cocina De Rosita"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "Grant Hill, San Diego"
+  region: "Road trip"
+  food: 8.5
+  price: 6.5
+  vibe: 8.5
+  order: "Mole and the carnitas burrito"
+  visited: 2024-03
+
+- name: "Raven Hill Bagels"
+  cuisine: "Bagels"
+  meals: [breakfast, lunch]
+  area: "Idyllwild"
+  region: "Road trip"
+  food: 8.5
+  price: 7.0
+  vibe: 7.5
+  order: "Lox bagel"
+  visited: 2025-02
+  address: "54440 N Circle Dr, Idyllwild, CA 92549"
+  lat: 33.74678
+  lng: -116.71145
+
+- name: "République"
+  cuisine: "French"
+  meals: [breakfast, lunch, dessert]
+  area: "Mid-Wilshire, LA"
+  region: "Los Angeles"
+  food: 8.5
+  price: 6.5
+  vibe: 8.5
+  order: "Pastries"
+  visited: 2023-12
+  address: "624 S La Brea Ave, Los Angeles, CA 90036"
+  lat: 34.06426
+  lng: -118.34395
+
+- name: "Panxa Cocina"
+  cuisine: "Mexican"
+  meals: [dinner]
+  area: "Belmont Heights, Long Beach"
+  region: "Long Beach"
+  food: 8.0
+  price: 7.5
+  vibe: 7.5
+  order: "Mole"
+  visited: 2024-01
+  address: "3937 E Broadway, Long Beach, CA 90803"
+  lat: 33.7645
+  lng: -118.14656
+
+- name: "Takuma"
+  cuisine: "Japanese"
+  meals: [lunch, dinner]
+  area: "Santa Monica"
+  region: "Los Angeles"
+  food: 8.0
+  price: 7.5
+  vibe: 7.5
+  order: "The mackerel"
+  address: "2627 Wilshire Blvd, Santa Monica, CA 90403"
+  lat: 34.03678
+  lng: -118.4766
+
+- name: "Tacos Chidos"
+  cuisine: "Mexican"
+  meals: [lunch, dinner]
+  area: "Venice"
+  region: "Los Angeles"
+  food: 7.5
+  price: 8.0
+  vibe: 7.5
+  order: "Al pastor tacos"
+
+- name: "The Olive Restobar"
+  cuisine: "Mediterranean"
+  meals: [lunch, dinner]
+  area: "Downey"
+  region: "Los Angeles"
+  food: 7.5
+  price: 7.5
+  vibe: 8.5
+  order: "Chicken shawarma"
+  visited: 2020-09
+  address: "8830 Apollo Way, Downey, CA 90242"
+  lat: 33.9212
+  lng: -118.132

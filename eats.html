@@ -1,0 +1,139 @@
+---
+# Long Beach eats: a map of my favorite restaurants. The list lives in _data/eats.yml.
+# How many restaurants I've scored in total (the page shows the best quarter of them)
+tried: 231
+# How much each score counts toward the overall Value score. Change these to re-rank the
+# list; they don't need to add up to 100. Visitors can also try their own on the page.
+weights:
+  food: 40
+  price: 40
+  vibe: 20
+---
+{%- assign eats = site.data.eats -%}
+{%- assign lb = eats | where: "region", "Long Beach" -%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Antoine Bichara">
+{% include social-meta.html title="Long Beach Eats | Fairvopia" description="Where to eat in Long Beach and around Southern California: a map of my favorite restaurants, scored for food, value and vibe." %}
+
+    <title>Long Beach Eats | Fairvopia</title>
+
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" rel="stylesheet">
+    <link href="/css/home-layouts.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
+    <link href="/css/eats.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
+{% include app-head.html %}
+
+</head>
+
+<body class="home eats-page">
+
+{% include nav.html %}
+
+    <header class="eats-hero">
+        <div class="wide">
+            <p class="eats-kicker"><i class="fa fa-map-marker" aria-hidden="true"></i> A Fairvopia side quest</p>
+            <h1>Long Beach Eats</h1>
+            <p class="eats-tagline">When I'm not cooking, I'm eating my way around Long Beach and Southern California. These are my favorite spots, the top quarter of the {{ page.tried }} places I've tried and scored.</p>
+            <div class="eats-stats">
+                <div><strong>{{ eats.size }}</strong><span>favorites</span></div>
+                <div><strong>{{ lb.size }}</strong><span>in Long Beach</span></div>
+                <div><strong>{{ eats | map: "cuisine" | uniq | size }}</strong><span>cuisines</span></div>
+            </div>
+            <button type="button" class="btn-solid" id="eats-pick"><i class="fa fa-random" aria-hidden="true"></i> Where should I eat tonight?</button>
+        </div>
+    </header>
+
+    <section class="wide eats-how">
+        <h2 class="section-title">How I score</h2>
+        <p class="section-lead">Every visit gets three scores out of 10, which add up to one overall Value score.</p>
+        <div class="eats-legend">
+            <div class="eats-key"><span class="ek-icon ek-food"><i class="fa fa-cutlery" aria-hidden="true"></i></span><strong>Food</strong><span>How good it tastes.</span></div>
+            <div class="eats-key"><span class="ek-icon ek-price"><i class="fa fa-usd" aria-hidden="true"></i></span><strong>Price</strong><span>How fair the price is for what you get, whether it's a $3 taco or a tasting menu. Higher is better.</span></div>
+            <div class="eats-key"><span class="ek-icon ek-vibe"><i class="fa fa-music" aria-hidden="true"></i></span><strong>Vibe</strong><span>The room, the service, the feeling of being there.</span></div>
+        </div>
+
+        <div class="eats-formula" id="eats-formula">
+            <p class="ef-line"><strong>Value</strong> = <span data-share="food">40%</span> Food + <span data-share="price">40%</span> Price + <span data-share="vibe">20%</span> Vibe</p>
+            <details class="ef-tweak">
+                <summary><i class="fa fa-sliders" aria-hidden="true"></i> Care more about one of them? Change the mix and re-rank the list</summary>
+                <div class="ef-sliders">
+                    <label><span>Food</span><input type="range" min="0" max="100" step="5" data-weight="food"><output data-out="food"></output></label>
+                    <label><span>Price</span><input type="range" min="0" max="100" step="5" data-weight="price"><output data-out="price"></output></label>
+                    <label><span>Vibe</span><input type="range" min="0" max="100" step="5" data-weight="vibe"><output data-out="vibe"></output></label>
+                </div>
+                <button type="button" class="ef-reset">Back to my mix</button>
+            </details>
+        </div>
+    </section>
+
+    <section class="eats-explore" id="eats">
+        <div class="wide">
+            <div class="eats-controls">
+                <div class="eats-search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="search" id="eats-query" placeholder="Is your favorite spot on my list? Search by name" aria-label="Search restaurants by name" autocomplete="off">
+                </div>
+                <p class="eats-search-note" id="eats-search-note" hidden></p>
+                <div class="eats-meals" role="group" aria-label="Meal">
+                    <button type="button" class="rf-filter active" data-meal="">Any meal</button>
+                    <button type="button" class="rf-filter" data-meal="breakfast"><i class="fa fa-coffee" aria-hidden="true"></i> Breakfast</button>
+                    <button type="button" class="rf-filter" data-meal="lunch"><i class="fa fa-sun-o" aria-hidden="true"></i> Lunch</button>
+                    <button type="button" class="rf-filter" data-meal="dinner"><i class="fa fa-moon-o" aria-hidden="true"></i> Dinner</button>
+                    <button type="button" class="rf-filter" data-meal="dessert"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Dessert</button>
+                </div>
+                <div class="eats-regions" role="group" aria-label="Area">
+                    <button type="button" class="rf-filter active" data-region="Long Beach">Long Beach</button>
+                    <button type="button" class="rf-filter" data-region="Los Angeles">Los Angeles</button>
+                    <button type="button" class="rf-filter" data-region="Orange County">Orange County</button>
+                    <button type="button" class="rf-filter" data-region="Road trip">Road trips</button>
+                    <button type="button" class="rf-filter" data-region="">Everywhere</button>
+                </div>
+                <div class="eats-row">
+                    <label class="eats-select"><span>Craving</span>
+                        <select id="eats-cuisine"><option value="">Anything</option></select>
+                    </label>
+                    <label class="eats-select"><span>Sort</span>
+                        <select id="eats-sort">
+                            <option value="score">Best value</option>
+                            <option value="food">Best food</option>
+                            <option value="price">Best price</option>
+                            <option value="vibe">Best vibe</option>
+                            <option value="name">A to Z</option>
+                        </select>
+                    </label>
+                    <span class="eats-count" id="eats-count" aria-live="polite"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="eats-split">
+            <div class="eats-map-wrap"><div id="eats-map" aria-label="Map of restaurants"></div></div>
+            <ol class="eats-list" id="eats-list"></ol>
+        </div>
+    </section>
+
+    <hr>
+
+{% include footer.html %}
+
+    <script>window.FAIRVOPIA_EATS = {{ eats | jsonify }}; window.FAIRVOPIA_EATS_WEIGHTS = {{ page.weights | jsonify }};</script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/clean-blog.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+    <script src="/js/eats.js?v={{ site.time | date: "%s" }}"></script>
+
+</body>
+
+</html>

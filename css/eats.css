@@ -1,0 +1,696 @@
+/* Long Beach eats page (eats.html) */
+
+/* ===== Hero ===== */
+.eats-hero {
+    position: relative;
+    padding: 130px 0 60px;
+    color: #fff;
+    background: #0b1120 url('../img/rszhome-image.jpg') center / cover no-repeat;
+}
+
+.eats-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(7, 11, 22, 0.92) 0%, rgba(7, 11, 22, 0.75) 55%, rgba(7, 11, 22, 0.5) 100%);
+}
+
+.eats-hero .wide {
+    position: relative;
+}
+
+.eats-kicker {
+    margin: 0 0 6px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #f4a259;
+}
+
+.eats-hero h1 {
+    margin: 0 0 12px;
+    font-size: 56px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.eats-tagline {
+    max-width: 640px;
+    margin: 0 0 26px;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.eats-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-bottom: 28px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.eats-stats strong {
+    display: block;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    color: #f4a259;
+}
+
+.eats-stats span {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.eats-hero .btn-solid .fa {
+    margin-right: 6px;
+}
+
+/* ===== How I score ===== */
+.eats-how {
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+.eats-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.eats-key {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #fbf7f2;
+    border-radius: 10px;
+}
+
+.eats-key strong {
+    font-size: 17px;
+}
+
+.eats-key > span:last-child {
+    grid-column: 2;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #6b6b6b;
+}
+
+.ek-icon {
+    grid-row: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 19px;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.ek-food, .ec-bar-food .ec-bar-track span { background: #e8772e; }
+.ek-price, .ec-bar-price .ec-bar-track span { background: #1f7a63; }
+.ek-vibe, .ec-bar-vibe .ec-bar-track span { background: #7a4fc9; }
+
+/* ===== The Value formula and its sliders ===== */
+.eats-formula {
+    margin-top: 18px;
+    padding: 14px 18px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    border: 2px dashed #ecd9c6;
+    border-radius: 10px;
+}
+
+.ef-line {
+    margin: 0;
+    font-size: 17px;
+}
+
+.ef-line span {
+    font-weight: 800;
+    color: #c95f1a;
+}
+
+.eats-formula.custom .ef-line span {
+    color: #1f7a63;
+}
+
+.ef-tweak summary {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #c95f1a;
+    cursor: pointer;
+}
+
+.ef-sliders {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px 24px;
+    margin: 12px 0 8px;
+}
+
+.ef-sliders label {
+    display: grid;
+    grid-template-columns: 44px 1fr 40px;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.ef-sliders input {
+    width: 100%;
+    accent-color: #e8772e;
+}
+
+.ef-sliders output {
+    font-weight: 700;
+    text-align: right;
+}
+
+.ef-reset {
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2b2b2b;
+    background: #fff;
+    border: 1px solid #d9d2c9;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.eats-formula:not(.custom) .ef-reset {
+    visibility: hidden;
+}
+
+/* ===== Filters ===== */
+.eats-explore {
+    padding: 30px 0 50px;
+}
+
+.eats-controls {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Search by name */
+.eats-search {
+    position: relative;
+    max-width: 560px;
+    margin-bottom: 14px;
+}
+
+.eats-search .fa {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    color: #9a948c;
+    transform: translateY(-50%);
+}
+
+#eats-query {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    font-size: 15px;
+    color: #2b2b2b;
+    background: #fff;
+    border: 1px solid #d9d2c9;
+    border-radius: 24px;
+}
+
+#eats-query:focus {
+    border-color: #e8772e;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 119, 46, 0.18);
+}
+
+.eats-search-note {
+    margin: -4px 0 14px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.eats-search-note .fa-check-circle { color: #1f7a63; }
+.eats-search-note .fa-question-circle { color: #e8772e; }
+
+/* While searching, the other filters don't apply */
+.eats-controls.searching .eats-meals,
+.eats-controls.searching .eats-regions,
+.eats-controls.searching .eats-select {
+    opacity: 0.4;
+}
+
+/* The same chips as the recipe finder on the home page */
+.eats-meals,
+.eats-regions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.eats-page .rf-filter {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2b2b2b;
+    background: #fff;
+    border: 1px solid #d9d2c9;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.eats-page .rf-filter:hover,
+.eats-page .rf-filter:focus-visible {
+    border-color: #e8772e;
+}
+
+.eats-page .rf-filter.active {
+    color: #fff;
+    background: #e8772e;
+    border-color: #e8772e;
+}
+
+.eats-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 22px;
+    margin-bottom: 18px;
+}
+
+.eats-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.eats-select select {
+    padding: 5px 8px;
+    font-weight: 400;
+    color: #2b2b2b;
+    background: #fff;
+    border: 1px solid #d9d2c9;
+    border-radius: 6px;
+}
+
+.eats-count {
+    margin-left: auto;
+    font-size: 14px;
+    color: #808080;
+}
+
+/* ===== Map + list ===== */
+.eats-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(340px, 1fr);
+    gap: 20px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.eats-map-wrap {
+    position: sticky;
+    top: 70px;
+    align-self: start;
+}
+
+#eats-map {
+    height: calc(100vh - 100px);
+    min-height: 460px;
+    max-height: 820px;
+    overflow: hidden;
+    background: #e8e4dc;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.eats-list {
+    height: calc(100vh - 100px);
+    min-height: 460px;
+    max-height: 820px;
+    margin: 0;
+    padding: 2px 6px 2px 2px;
+    overflow-y: auto;
+    list-style: none;
+    scrollbar-width: thin;
+}
+
+.eats-empty {
+    padding: 30px 10px;
+    font-style: italic;
+    color: #808080;
+}
+
+/* ===== Restaurant cards ===== */
+.eat-card {
+    margin-bottom: 14px;
+    padding: 14px 16px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 14px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.eat-card.active {
+    border-color: #e8772e;
+}
+
+.eat-card.pulse {
+    animation: eat-pulse 0.9s ease;
+}
+
+@keyframes eat-pulse {
+    30% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(232, 119, 46, 0.25); }
+}
+
+.ec-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.ec-rank {
+    flex: none;
+    min-width: 34px;
+    padding-top: 3px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #c95f1a;
+}
+
+.ec-head {
+    flex: 1;
+    min-width: 0;
+}
+
+.ec-name {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.ec-meta {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #808080;
+}
+
+.ec-score {
+    flex: none;
+    min-width: 72px;
+    padding: 6px 8px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(135deg, #e8772e, #c95f1a);
+    border-radius: 10px;
+}
+
+.ec-score strong {
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.05;
+}
+
+.ec-score span {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.ec-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0 0 46px;
+}
+
+.ec-badge {
+    padding: 2px 9px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 11px;
+}
+
+.ec-badge-top { color: #5a4300; background: #f2b705; }
+.ec-badge-food { color: #8a3d0c; background: #fde3cf; }
+.ec-badge-price { color: #135241; background: #d3f0e7; }
+.ec-badge-vibe { color: #4a2a87; background: #e6dcf8; }
+
+.ec-order {
+    margin: 10px 0 0 46px;
+    font-family: 'Lora', 'Times New Roman', serif;
+    font-size: 15px;
+}
+
+.ec-order .fa {
+    color: #f2b705;
+}
+
+.ec-bars {
+    display: grid;
+    gap: 4px;
+    margin: 10px 0 0 46px;
+}
+
+.ec-bar {
+    display: grid;
+    grid-template-columns: 46px 1fr 30px;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.ec-bar-label {
+    font-weight: 600;
+    color: #6b6b6b;
+}
+
+.ec-bar-track {
+    height: 7px;
+    overflow: hidden;
+    background: #efe9e2;
+    border-radius: 4px;
+}
+
+.ec-bar-track span {
+    display: block;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.ec-bar-num {
+    font-weight: 700;
+    text-align: right;
+}
+
+.ec-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
+    margin: 10px 0 0 46px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ec-links a,
+.ec-links button {
+    padding: 0;
+    color: #c95f1a;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.ec-links a:hover,
+.ec-links button:hover {
+    color: #e8772e;
+    text-decoration: underline;
+}
+
+.ec-visited {
+    margin-left: auto;
+    font-weight: 400;
+    color: #9a948c;
+}
+
+/* ===== Map pins and popups ===== */
+.eats-pin {
+    width: 38px;
+    height: 46px;
+    padding: 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+/* A teardrop pointing down at the restaurant */
+.ep-shape {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    width: 32px;
+    height: 32px;
+    background: #c95f1a;
+    border: 2px solid #fff;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    transition: background 0.15s ease;
+}
+
+.ep-num {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    line-height: 16px;
+}
+
+.eats-pin.tier-2 .ep-shape { background: #e8772e; }
+.eats-pin.tier-1 { color: #4a3600; }
+.eats-pin.tier-1 .ep-shape { background: #f2b705; }
+
+.eats-pin.hover,
+.eats-pin.active,
+.eats-pin:hover,
+.eats-pin:focus-visible {
+    z-index: 2;
+    color: #fff;
+    outline: none;
+}
+
+.eats-pin.hover .ep-shape,
+.eats-pin.active .ep-shape,
+.eats-pin:hover .ep-shape,
+.eats-pin:focus-visible .ep-shape {
+    background: #1f7a63;
+}
+
+.eats-pin.active .ep-shape,
+.eats-pin.active .ep-num {
+    animation: pin-bounce 0.5s ease;
+}
+
+@keyframes pin-bounce {
+    40% { margin-top: -10px; }
+}
+
+.eats-pop {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.eats-pop strong {
+    display: block;
+    padding-right: 14px;
+    font-size: 15px;
+}
+
+.eats-pop span,
+.eats-pop em {
+    display: block;
+    color: #6b6b6b;
+}
+
+.eats-pop em {
+    margin-top: 4px;
+    font-family: 'Lora', 'Times New Roman', serif;
+}
+
+.eats-pop a {
+    display: inline-block;
+    margin-top: 6px;
+    font-weight: 700;
+    color: #c95f1a;
+}
+
+/* ===== Phones and tablets: map on top, list below ===== */
+@media (max-width: 860px) {
+    .eats-split {
+        grid-template-columns: 1fr;
+    }
+    .eats-map-wrap {
+        position: relative;
+        top: 0;
+    }
+    #eats-map {
+        height: 58vh;
+        min-height: 320px;
+    }
+    .eats-list {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        overflow: visible;
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .eats-hero { padding-top: 110px; }
+    .eats-hero h1 { font-size: 40px; }
+    .eats-tagline { font-size: 18px; }
+    .eats-stats strong { font-size: 32px; }
+    .eats-count { margin-left: 0; }
+    .eat-card { padding: 12px; }
+    .ec-badges, .ec-order, .ec-bars, .ec-links { margin-left: 0; }
+    .ec-rank { min-width: 28px; }
+    .ec-name { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .eat-card.pulse, .eats-pin.active { animation: none; }
+}
+
+/* ===== Dark mode ===== */
+.dark .eats-key { background: #1f232a; }
+.dark .eats-key > span:last-child,
+.dark .ec-meta,
+.dark .ec-bar-label,
+.dark .eats-pop span,
+.dark .eats-pop em { color: #a29d95; }
+.dark .eats-page .rf-filter,
+.dark .eats-select select { color: #e4e0d9; background: #1f232a; border-color: #3a404b; }
+.dark .eats-page .rf-filter.active { color: #fff; background: #e8772e; border-color: #e8772e; }
+.dark .eats-select { color: #e4e0d9; }
+.dark .eat-card { color: #e4e0d9; background: #1f232a; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.3); }
+.dark .eat-card.active { border-color: #e8772e; }
+.dark .ec-bar-track { background: #333944; }
+.dark .ec-links a,
+.dark .ec-links button,
+.dark .eats-pop a { color: #f4a259; }
+.dark #eats-map { background: #1b1e24; }
+.dark #eats-query { color: #e4e0d9; background: #1f232a; border-color: #3a404b; }
+.dark .eats-formula { border-color: #3a404b; }
+.dark .ef-line span,
+.dark .ef-tweak summary { color: #f4a259; }
+.dark .eats-formula.custom .ef-line span { color: #5fd0b0; }
+.dark .ef-reset { color: #e4e0d9; background: #1f232a; border-color: #3a404b; }

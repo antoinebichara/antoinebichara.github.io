@@ -51,6 +51,22 @@
     color: #7bd88f;
 }
 
+/* Footer link to the Long Beach eats page */
+.footer-eats {
+    margin: 0 0 6px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-eats a {
+    color: #c95f1a;
+}
+
+.dark .footer-eats a {
+    color: #f4a259;
+}
+
 /* ===== Menu bar: site name on the left, light/dark button on the right ===== */
 .navbar-custom .navbar-header {
     float: none;
@@ -75,6 +91,37 @@
 
 .dark .theme-toggle .fa-sun-o {
     display: inline-block;
+}
+
+/* Home page only: a small link to the Long Beach eats page, left of the light/dark button */
+.nav-eats {
+    float: right;
+    margin: 14px 8px 0 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #777;
+}
+
+.nav-eats:hover,
+.nav-eats:focus {
+    color: #e8772e;
+    text-decoration: none;
+}
+
+.nav-eats .fa {
+    margin-right: 3px;
+}
+
+@media (min-width: 768px) {
+    .nav-eats { margin-top: 21px; color: rgba(255, 255, 255, 0.85); letter-spacing: 0.5px; }
+    .nav-eats:hover, .nav-eats:focus { color: #fff; }
+    .navbar-custom.is-fixed .nav-eats { color: #333; }
+    .dark .navbar-custom.is-fixed .nav-eats { color: #e4e0d9; }
+}
+
+@media (max-width: 767px) {
+    .dark .nav-eats { color: #e4e0d9; }
 }
 
 @media (min-width: 768px) {
