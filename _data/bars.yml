@@ -102,14 +102,6 @@
   lat: 33.91812
   lng: -118.41721
 
-- name: "The Wicked Wolf"
-  area: "Wrigley, Long Beach"
-  region: "Long Beach"
-  rating: 8.2
-  address: "2332 Pacific Ave, Long Beach, CA 90806"
-  lat: 33.79957
-  lng: -118.19364
-
 - name: "The Grasshopper"
   area: "Central Long Beach"
   region: "Long Beach"
@@ -197,3 +189,11 @@
   address: "1542 Sunset Blvd, Los Angeles, CA 90026"
   lat: 34.07630
   lng: -118.25643
+
+- name: "Bar Sinister"
+  area: "Hollywood"
+  region: "Los Angeles"
+  rating: 8.1
+  address: "1652 N Cherokee Ave, Los Angeles, CA 90028"
+  lat: 34.10069
+  lng: -118.33496
