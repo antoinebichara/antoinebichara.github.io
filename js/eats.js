@@ -480,7 +480,18 @@
         })();
     });
 
+    // A link like eats.html?q=Sophy's opens with that search filled in, handy for sharing a place
+    var linked = '';
+    try { linked = new URLSearchParams(location.search).get('q') || ''; } catch (err) {}
+    if (linked) { queryEl.value = state.query = linked; }
+
     if (formula) showWeights();
     render();
-    if (map) map.once('load', function () { fitToPins(false); });
+    var linkedMatch = linked && visible().length === 1 ? visible()[0] : null;
+    if (linkedMatch) highlight(linkedMatch.id, false);
+    if (map) map.once('load', function () {
+        fitToPins(false);
+        if (linkedMatch) focusOn(linkedMatch);
+    });
+    if (linked) document.getElementById('eats').scrollIntoView();
 })();

@@ -116,6 +116,14 @@ A place with more than one location (like Pine & Crane or Porto's) lists them un
 `locations` instead of one `address`/`lat`/`lng`, each with its own `area` and pin (and
 optionally its own `region`). Copy an existing one as a template.
 
+## To cook wish list
+
+The To Cook Wish List page (`/wish-list.html`, linked from the footer) lists dishes to cook
+next, from `_data/wish_list.yml`: just a `dish` name for each, in order. Take a dish off once
+it's posted as a recipe.
+
+## Bars
+
 Bars live in `_data/bars.yml` and show under the page's Bars tab. Each bar just has a name,
 area, region, one overall `rating` out of 10, and optionally `address` and `lat`/`lng`.
 

@@ -1,0 +1,70 @@
+/* To Cook Wish List page (wish-list.html) */
+
+.wish-list {
+    max-width: 760px;
+    padding-bottom: 40px;
+}
+
+.wish-list-items {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wish-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 18px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.wl-number {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, #e8772e, #c95f1a);
+    border-radius: 50%;
+}
+
+.wl-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.wl-dish {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.wish-list-more a {
+    font-weight: 700;
+    color: #c95f1a;
+}
+
+.wish-list-more {
+    margin-top: 24px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+}
+
+@media (max-width: 480px) {
+    .wish-item { gap: 12px; padding: 14px 16px; }
+    .wl-number { width: 34px; height: 34px; font-size: 16px; }
+    .wl-dish { font-size: 19px; }
+}
+
+/* Dark mode */
+.dark .wish-item { color: #e4e0d9; background: #1f232a; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.3); }
+.dark .wish-list-more a { color: #f4a259; }

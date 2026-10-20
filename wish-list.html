@@ -1,0 +1,71 @@
+---
+# To Cook Wish List: dishes I want to cook. The list lives in _data/wish_list.yml.
+---
+{%- assign queue = site.data.wish_list -%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Antoine Bichara">
+{% include social-meta.html title="To Cook Wish List | Fairvopia" description="Dishes I want to cook next for Fairvopia." %}
+
+    <title>To Cook Wish List | Fairvopia</title>
+
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="/css/home-layouts.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
+    <link href="/css/wish-list.css?v={{ site.time | date: "%s" }}" rel="stylesheet">
+{% include app-head.html %}
+
+</head>
+
+<body class="home">
+
+{% include nav.html %}
+
+    <header class="intro-header" style="background-image: url('/img/rszhome-image.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>To Cook Wish List</h1>
+                        <span class="subheading">Coming soon to a kitchen near me</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wide wish-list">
+        <ol class="wish-list-items">
+{%- for item in queue %}
+            <li class="wish-item">
+                <span class="wl-number">{{ forloop.index }}</span>
+                <div class="wl-body">
+                    <h2 class="wl-dish">{{ item.dish }}</h2>
+                </div>
+            </li>
+{%- endfor %}
+        </ol>
+
+        <p class="wish-list-more"><a href="/#recipes">Browse the {{ site.recipes | where_exp: "recipe", "recipe.hidden != true" | size }} recipes I've already cooked</a> &middot; <a href="/eats.html">See where I like to eat</a></p>
+    </div>
+
+    <hr>
+
+{% include footer.html %}
+
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
