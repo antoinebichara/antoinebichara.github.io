@@ -1,21 +1,29 @@
 /*
- * Long Beach eats page (eats.html): a map and a list of favorite restaurants.
+ * Long Beach eats page (eats.html): a map and a list of favorite restaurants and bars.
  *
  * The restaurants come from window.FAIRVOPIA_EATS, which Jekyll fills in from
  * _data/eats.yml. Nothing in this file needs editing to add a restaurant.
  */
 (function () {
+    // Each place gets a list of spots for the map: usually one, or several when it has
+    // more than one location (a "locations" list in the data, each with its own area and pin)
+    function addSpots(e) {
+        var list = e.locations || [{ area: '', address: e.address, lat: e.lat, lng: e.lng }];
+        e.spots = list.filter(function (s) { return typeof s.lat === 'number' && typeof s.lng === 'number'; });
+        e.pinned = e.spots.length > 0;
+        e.multi = e.spots.length > 1;
+    }
     var eats = (window.FAIRVOPIA_EATS || []).map(function (e, i) {
         e.id = i;
         e.kind = 'eats';
-        e.pinned = typeof e.lat === 'number' && typeof e.lng === 'number';
+        addSpots(e);
         return e;
     });
     // Bars (_data/bars.yml) have a single overall rating instead of food, price and vibe
     var bars = (window.FAIRVOPIA_BARS || []).map(function (b, i) {
         b.id = eats.length + i;
         b.kind = 'bars';
-        b.pinned = typeof b.lat === 'number' && typeof b.lng === 'number';
+        addSpots(b);
         b.exact = b.score = b.rating;
         return b;
     });
@@ -77,8 +85,21 @@
             '<span class="ec-bar-track"><span style="width:' + (n * 10) + '%"></span></span>' +
             '<span class="ec-bar-num">' + one(n) + '</span></span>';
     }
-    function directions(e) {
-        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(e.name + ', ' + (e.address || e.area));
+    function directions(e, spot) {
+        var where = spot ? (spot.address || spot.area) : (e.address || e.area);
+        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(e.name + ', ' + where);
+    }
+    // "Directions", or one link per location ("Silver Lake", "Downtown LA") for places with several
+    function directionLinks(e) {
+        var icon = '<i class="fa fa-location-arrow" aria-hidden="true"></i> ';
+        if (!e.multi) return '<a href="' + directions(e) + '" target="_blank" rel="noopener">' + icon + 'Directions</a>';
+        return e.spots.map(function (s) {
+            return '<a href="' + directions(e, s) + '" target="_blank" rel="noopener">' + icon + esc(s.area) + '</a>';
+        }).join('');
+    }
+    function areaText(e) {
+        if (!e.multi) return esc(e.area);
+        return e.spots.length + ' locations: ' + e.spots.map(function (s) { return esc(s.area); }).join(' and ');
     }
     function visited(e) {
         if (!e.visited) return '';
@@ -139,13 +160,13 @@
                         '<span class="ec-rank">#' + e.rank + '</span>' +
                         '<div class="ec-head">' +
                             '<h3 class="ec-name">' + esc(e.name) + '</h3>' +
-                            '<p class="ec-meta"><i class="fa fa-glass" aria-hidden="true"></i> Bar &middot; ' + esc(e.area) + '</p>' +
+                            '<p class="ec-meta"><i class="fa fa-glass" aria-hidden="true"></i> Bar &middot; ' + areaText(e) + '</p>' +
                         '</div>' +
                         '<div class="ec-score" title="Rating out of 10"><strong>' + one(e.score) + '</strong><span>' + praise(e.score) + '</span></div>' +
                     '</div>' +
                     '<div class="ec-links">' +
                         (e.pinned && map ? '<button type="button" class="ec-show"><i class="fa fa-map-marker" aria-hidden="true"></i> Show on map</button>' : '') +
-                        '<a href="' + directions(e) + '" target="_blank" rel="noopener"><i class="fa fa-location-arrow" aria-hidden="true"></i> Directions</a>' +
+                        directionLinks(e) +
                     '</div>' +
                 '</li>';
             }
@@ -154,7 +175,7 @@
                     '<span class="ec-rank">#' + e.rank + '</span>' +
                     '<div class="ec-head">' +
                         '<h3 class="ec-name">' + esc(e.name) + '</h3>' +
-                        '<p class="ec-meta">' + esc(e.cuisine) + ' &middot; ' + esc(e.area) + '</p>' +
+                        '<p class="ec-meta">' + esc(e.cuisine) + ' &middot; ' + areaText(e) + '</p>' +
                     '</div>' +
                     '<div class="ec-score" title="Value score"><strong>' + one(e.score) + '</strong><span>' + praise(e.score) + '</span></div>' +
                 '</div>' +
@@ -163,7 +184,7 @@
                 '<div class="ec-bars">' + bar('Food', e.food, 'food') + bar('Price', e.price, 'price') + bar('Vibe', e.vibe, 'vibe') + '</div>' +
                 '<div class="ec-links">' +
                     (e.pinned && map ? '<button type="button" class="ec-show"><i class="fa fa-map-marker" aria-hidden="true"></i> Show on map</button>' : '') +
-                    '<a href="' + directions(e) + '" target="_blank" rel="noopener"><i class="fa fa-location-arrow" aria-hidden="true"></i> Directions</a>' +
+                    directionLinks(e) +
                     (visited(e) ? '<span class="ec-visited">Last visit ' + visited(e) + '</span>' : '') +
                 '</div>' +
             '</li>';
@@ -232,7 +253,7 @@
     function card(id) { return listEl.querySelector('.eat-card[data-id="' + id + '"]'); }
     function highlight(id, scroll) {
         [].forEach.call(listEl.querySelectorAll('.eat-card.active'), function (c) { c.classList.remove('active'); });
-        Object.keys(markers).forEach(function (k) { markers[k].getElement().classList.toggle('active', +k === id); });
+        eachMarker(function (m, k) { m.getElement().classList.toggle('active', k === id); });
         var c = card(id);
         if (!c) return;
         c.classList.add('active');
@@ -252,12 +273,12 @@
     });
     listEl.addEventListener('mouseover', function (ev) {
         var c = ev.target.closest('.eat-card');
-        Object.keys(markers).forEach(function (k) {
-            markers[k].getElement().classList.toggle('hover', !!c && +k === +c.getAttribute('data-id'));
+        eachMarker(function (m, k) {
+            m.getElement().classList.toggle('hover', !!c && k === +c.getAttribute('data-id'));
         });
     });
     listEl.addEventListener('mouseleave', function () {
-        Object.keys(markers).forEach(function (k) { markers[k].getElement().classList.remove('hover'); });
+        eachMarker(function (m) { m.getElement().classList.remove('hover'); });
     });
 
     [].forEach.call(document.querySelectorAll('.eats-regions .rf-filter'), function (btn) {
@@ -315,7 +336,11 @@
     });
 
     // ---- Map ----
+    // markers: place id -> its pins (one per location)
     var map = null, markers = {}, popup = null, shown = [];
+    function eachMarker(fn) {
+        Object.keys(markers).forEach(function (k) { markers[k].forEach(function (m) { fn(m, +k); }); });
+    }
     function styleUrl() {
         return 'https://tiles.openfreemap.org/styles/' + (document.documentElement.classList.contains('dark') ? 'dark' : 'positron');
     }
@@ -332,17 +357,18 @@
         popup = new maplibregl.Popup({ offset: 20, closeButton: true, maxWidth: '260px', focusAfterOpen: false });
 
         all.forEach(function (e) {
-            if (!e.pinned) return;
-            var el = document.createElement('button');
-            el.type = 'button';
-            el.className = 'eats-pin' + (e.kind === 'bars' ? ' is-bar' : '');
-            // MapLibre positions the marker with a transform, so the teardrop shape is its own element
-            el.innerHTML = '<span class="ep-shape"></span><span class="ep-num"></span>';
-            el.addEventListener('click', function (ev) {
-                ev.stopPropagation();
-                focusOn(e, true);
+            markers[e.id] = e.spots.map(function (spot) {
+                var el = document.createElement('button');
+                el.type = 'button';
+                el.className = 'eats-pin' + (e.kind === 'bars' ? ' is-bar' : '');
+                // MapLibre positions the marker with a transform, so the teardrop shape is its own element
+                el.innerHTML = '<span class="ep-shape"></span><span class="ep-num"></span>';
+                el.addEventListener('click', function (ev) {
+                    ev.stopPropagation();
+                    focusOn(e, true, spot);
+                });
+                return new maplibregl.Marker({ element: el, anchor: 'bottom' }).setLngLat([spot.lng, spot.lat]);
             });
-            markers[e.id] = new maplibregl.Marker({ element: el, anchor: 'bottom' }).setLngLat([e.lng, e.lat]);
         });
 
         // Follow the site's light/dark switch
@@ -359,31 +385,44 @@
         shown = list.filter(function (e) { return e.pinned; });
         shown.forEach(function (e) {
             keep[e.id] = true;
-            var el = markers[e.id].getElement();
-            el.classList.toggle('tier-1', e.score >= 8.5);
-            el.classList.toggle('tier-2', e.score >= 8.2 && e.score < 8.5);
-            el.setAttribute('aria-label', e.name + ', value ' + one(e.score));
-            el.querySelector('.ep-num').textContent = one(e.score);
-            markers[e.id].addTo(map);
+            markers[e.id].forEach(function (m, i) {
+                var el = m.getElement();
+                el.classList.toggle('tier-1', e.score >= 8.5);
+                el.classList.toggle('tier-2', e.score >= 8.2 && e.score < 8.5);
+                el.setAttribute('aria-label', e.name + (e.multi ? ' (' + e.spots[i].area + ')' : '') + ', ' + one(e.score));
+                el.querySelector('.ep-num').textContent = one(e.score);
+                m.addTo(map);
+            });
         });
-        Object.keys(markers).forEach(function (k) { if (!keep[k]) markers[k].remove(); });
+        eachMarker(function (m, k) { if (!keep[k]) m.remove(); });
+    }
+    function fitSpots(spots, animate, maxZoom) {
+        var b = new maplibregl.LngLatBounds();
+        spots.forEach(function (s) { b.extend([s.lng, s.lat]); });
+        map.fitBounds(b, { padding: { top: 60, bottom: 30, left: 40, right: 40 }, maxZoom: maxZoom || 14, duration: animate && !reduceMotion ? 900 : 0 });
     }
     function fitToPins(animate) {
         if (!map || !shown.length) return;
-        var b = new maplibregl.LngLatBounds();
-        shown.forEach(function (e) { b.extend([e.lng, e.lat]); });
-        map.fitBounds(b, { padding: { top: 60, bottom: 30, left: 40, right: 40 }, maxZoom: 14, duration: animate && !reduceMotion ? 900 : 0 });
+        fitSpots([].concat.apply([], shown.map(function (e) { return e.spots; })), animate);
     }
     function closePopup() { if (popup) popup.remove(); }
-    function focusOn(e, fromPin) {
+    function focusOn(e, fromPin, spot) {
         highlight(e.id, true);
         if (!map || !e.pinned) return;
-        map.flyTo({ center: [e.lng, e.lat], zoom: Math.max(map.getZoom(), 13.5), duration: reduceMotion ? 0 : 1000, essential: true });
-        popup.setLngLat([e.lng, e.lat]).setHTML(
+        // A place with several locations: show them all, unless one pin was clicked
+        if (e.multi && !spot) {
+            closePopup();
+            fitSpots(e.spots, true, 13.5);
+            return;
+        }
+        spot = spot || e.spots[0];
+        map.flyTo({ center: [spot.lng, spot.lat], zoom: Math.max(map.getZoom(), 13.5), duration: reduceMotion ? 0 : 1000, essential: true });
+        popup.setLngLat([spot.lng, spot.lat]).setHTML(
             '<div class="eats-pop"><strong>' + esc(e.name) + '</strong>' +
+            (e.multi ? '<span>' + esc(spot.area) + ' (one of ' + e.spots.length + ' locations)</span>' : '') +
             '<span>' + (e.kind === 'bars' ? 'Bar' : esc(e.cuisine)) + ' &middot; ' + one(e.score) + ' ' + praise(e.score).toLowerCase() + '</span>' +
             (e.order ? '<em>Order: ' + esc(e.order) + '</em>' : '') +
-            '<a href="' + directions(e) + '" target="_blank" rel="noopener">Directions <i class="fa fa-external-link" aria-hidden="true"></i></a></div>'
+            '<a href="' + directions(e, e.multi ? spot : null) + '" target="_blank" rel="noopener">Directions <i class="fa fa-external-link" aria-hidden="true"></i></a></div>'
         ).addTo(map);
         if (fromPin && getComputedStyle(listEl).overflowY !== 'auto') {
             var c = card(e.id);

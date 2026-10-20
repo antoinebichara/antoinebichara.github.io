@@ -3,6 +3,7 @@
 # The overall Value score is worked out on the page from these, using the weights at the top of eats.html.
 # meals: any of breakfast, lunch, dinner, dessert (for the "Meal" filter).
 # Leave out lat/lng and the place is listed without a pin on the map.
+# A place with several locations lists them under "locations" (see Pine & Crane), one pin each.
 
 - name: "New Spice World"
   cuisine: "Indian"
@@ -161,16 +162,23 @@
 - name: "Pine & Crane"
   cuisine: "Asian fusion"
   meals: [lunch, dinner]
-  area: "Silver Lake, LA"
+  area: "Silver Lake and Downtown LA"
   region: "Los Angeles"
   food: 8.7
   price: 8.0
   vibe: 8.0
   order: "Dan dan noodles"
   visited: 2023-10
-  address: "1120 South Grand Avenue, Los Angeles"
-  lat: 34.04086
-  lng: -118.26236
+  # Two locations, both rated the same: each gets its own pin on the map
+  locations:
+    - area: "Silver Lake"
+      address: "1521 Griffith Park Blvd, Los Angeles, CA 90026"
+      lat: 34.09013
+      lng: -118.27709
+    - area: "Downtown LA"
+      address: "1120 S Grand Ave, Los Angeles, CA 90015"
+      lat: 34.0412
+      lng: -118.26221
 
 - name: "Naga Cafe"
   cuisine: "Cambodian"
@@ -587,18 +595,6 @@
   lat: 34.03815
   lng: -118.44174
 
-- name: "Kura Revolving Sushi Bar"
-  cuisine: "Japanese"
-  meals: [lunch, dinner]
-  area: "Sawtelle, West LA"
-  region: "Los Angeles"
-  food: 8.2
-  price: 7.3
-  vibe: 8.2
-  address: "2130 Sawtelle Blvd, Los Angeles, CA 90025"
-  lat: 34.03916
-  lng: -118.44201
-
 - name: "Mian"
   cuisine: "Chinese"
   meals: [lunch, dinner]
@@ -928,3 +924,55 @@
   address: "718 S Los Angeles St, Los Angeles, CA 90014"
   lat: 34.04294
   lng: -118.25074
+
+- name: "Mala Class"
+  cuisine: "Chinese"
+  meals: [lunch, dinner]
+  area: "Highland Park, LA"
+  region: "Los Angeles"
+  food: 8.3
+  price: 8.0
+  vibe: 7.9
+  order: "Mapo tofu"
+  address: "5816 York Blvd, Los Angeles, CA 90042"
+  lat: 34.1185
+  lng: -118.19197
+
+- name: "Artisanal Goods by CAR"
+  cuisine: "Bakery"
+  meals: [breakfast, dessert]
+  area: "Pasadena"
+  region: "Los Angeles"
+  food: 8.3
+  price: 7.5
+  vibe: 8.0
+  order: "Chocolate croissant"
+  address: "1009 E Colorado Blvd, Pasadena, CA 91106"
+  lat: 34.14598
+  lng: -118.13003
+
+- name: "Amara Cafe"
+  cuisine: "Venezuelan"
+  meals: [breakfast, lunch]
+  area: "Old Pasadena"
+  region: "Los Angeles"
+  food: 8.0
+  price: 7.4
+  vibe: 8.0
+  order: "Arepas"
+  address: "55 S Raymond Ave, Pasadena, CA 91105"
+  lat: 34.14498
+  lng: -118.14895
+
+- name: "The Cheese Store of Beverly Hills"
+  cuisine: "Cheese shop"
+  meals: [lunch]
+  area: "Beverly Hills"
+  region: "Los Angeles"
+  food: 8.7
+  price: 7.9
+  vibe: 8.4
+  order: "Vermont cheddar"
+  address: "9705 S Santa Monica Blvd, Beverly Hills, CA 90210"
+  lat: 34.0685
+  lng: -118.40751
