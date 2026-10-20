@@ -635,19 +635,6 @@
   lat: 34.06155
   lng: -118.23971
 
-- name: "S.T. Noodle Bar"
-  cuisine: "Thai"
-  meals: [lunch, dinner]
-  area: "Douglas Park, Long Beach"
-  region: "Long Beach"
-  food: 7.7
-  price: 8.0
-  atmosphere: 7.0
-  order: "Khao soi"
-  address: "4152 Norse Way, Long Beach"
-  lat: 33.83355
-  lng: -118.14172
-
 - name: "The Attic"
   cuisine: "American"
   meals: [breakfast, dinner]
@@ -976,3 +963,29 @@
   address: "123 S Topanga Canyon Blvd, Topanga, CA 90290"
   lat: 34.08905
   lng: -118.60386
+
+- name: "@Sushi"
+  cuisine: "Japanese"
+  meals: [lunch, dinner]
+  area: "Belmont Shore, Long Beach"
+  region: "Long Beach"
+  food: 8.2
+  price: 7.6
+  atmosphere: 7.8
+  order: "The chef's sampler"
+  address: "5372 E 2nd St, Long Beach, CA 90803"
+  lat: 33.75851
+  lng: -118.13088
+
+- name: "Beach Hut Deli"
+  cuisine: "Sandwiches"
+  meals: [breakfast, lunch]
+  area: "Downtown Long Beach"
+  region: "Long Beach"
+  food: 7.7
+  price: 8.1
+  atmosphere: 7.4
+  order: "The Malibu sandwich"
+  address: "180 E Ocean Blvd, Long Beach, CA 90802"
+  lat: 33.76638
+  lng: -118.19146
