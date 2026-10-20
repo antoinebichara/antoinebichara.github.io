@@ -1,5 +1,5 @@
 # Restaurants on the Long Beach eats page (eats.html).
-# Scores are out of 10: food, price (how fair it is for what you get; higher is better) and vibe.
+# Scores are out of 10: food, price (how fair it is for what you get; higher is better) and atmosphere.
 # The overall Value score is worked out on the page from these, using the weights at the top of eats.html.
 # meals: any of breakfast, lunch, dinner, dessert (for the "Meal" filter).
 # Leave out lat/lng and the place is listed without a pin on the map.
@@ -12,7 +12,7 @@
   region: "Road trip"
   food: 9.0
   price: 9.0
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Dosa and the daily specials"
   visited: 2024-02
   address: "944 W 6th St, Corona, CA 92882"
@@ -26,7 +26,7 @@
   region: "Orange County"
   food: 9.1
   price: 8.0
-  vibe: 9.1
+  atmosphere: 9.1
   order: "Anchovies, peppers and shrimp"
   visited: 2024-11
   address: "700 North Main Street, Santa Ana"
@@ -40,7 +40,7 @@
   region: "Los Angeles"
   food: 9.1
   price: 8.0
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Bo ssam, wings and Korean fried rice"
   visited: 2023-09
   address: "1725 Naud Street, Los Angeles"
@@ -54,7 +54,7 @@
   region: "Long Beach"
   food: 8.5
   price: 8.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Burrito"
   visited: 2021-12
   address: "2233 Pacific Avenue, Long Beach"
@@ -64,16 +64,30 @@
 - name: "Porto's Bakery"
   cuisine: "Cuban"
   meals: [breakfast, lunch, dessert]
-  area: "Buena Park"
+  area: "Buena Park, Downey and Burbank"
   region: "Orange County"
   food: 8.0
   price: 9.5
-  vibe: 7.5
+  atmosphere: 7.5
   order: "Potato balls and guava cheese rolls"
   visited: 2023-11
-  address: "7640 Beach Blvd, Buena Park, CA 90620"
-  lat: 33.85226
-  lng: -117.99782
+  # Three locations, all rated the same. Each can sit in its own region for the area filter.
+  locations:
+    - area: "Buena Park"
+      region: "Orange County"
+      address: "7640 Beach Blvd, Buena Park, CA 90620"
+      lat: 33.85226
+      lng: -117.99782
+    - area: "Downey"
+      region: "Los Angeles"
+      address: "8233 Firestone Blvd, Downey, CA 90241"
+      lat: 33.94057
+      lng: -118.13372
+    - area: "Burbank"
+      region: "Los Angeles"
+      address: "3614 W Magnolia Blvd, Burbank, CA 91505"
+      lat: 34.16809
+      lng: -118.34611
 
 - name: "Sesame Dinette"
   cuisine: "Vietnamese"
@@ -82,7 +96,7 @@
   region: "Long Beach"
   food: 9.0
   price: 8.5
-  vibe: 7.0
+  atmosphere: 7.0
   order: "Turmeric fish"
   visited: 2025-02
   address: "1750 Pacific Ave, Long Beach, CA 90813"
@@ -96,7 +110,7 @@
   region: "Los Angeles"
   food: 8.5
   price: 8.0
-  vibe: 9.0
+  atmosphere: 9.0
   order: "Brunch"
   visited: 2022-07
   address: "8221 West Sunset Boulevard, Hollywood"
@@ -110,7 +124,7 @@
   region: "Long Beach"
   food: 8.3
   price: 8.2
-  vibe: 8.6
+  atmosphere: 8.6
   order: "Frog legs"
   visited: 2024-04
   address: "East Anaheim Street, Long Beach"
@@ -124,7 +138,7 @@
   region: "Long Beach"
   food: 8.0
   price: 8.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Fish amok"
   visited: 2024-05
   address: "3240 E Pacific Coast Hwy, Long Beach, CA 90804"
@@ -138,7 +152,7 @@
   region: "Orange County"
   food: 8.0
   price: 8.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Knafeh"
   visited: 2023-11
   address: "638 N Brookhurst St, Anaheim, CA 92801"
@@ -152,7 +166,7 @@
   region: "Long Beach"
   food: 8.0
   price: 8.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Cheese and sandwiches"
   visited: 2024-07
   address: "East 4th Street, Long Beach"
@@ -166,7 +180,7 @@
   region: "Los Angeles"
   food: 8.7
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Dan dan noodles"
   visited: 2023-10
   # Two locations, both rated the same: each gets its own pin on the map
@@ -187,7 +201,7 @@
   region: "Long Beach"
   food: 8.5
   price: 9.2
-  vibe: 6.0
+  atmosphere: 6.0
   order: "BBQ sandwich and noodle soup"
   visited: 2024-02
   address: "Pacific Coast Highway, Signal Hill"
@@ -201,7 +215,7 @@
   region: "Los Angeles"
   food: 8.3
   price: 8.0
-  vibe: 8.6
+  atmosphere: 8.6
   visited: 2025-07
   address: "1083 Gayley Avenue, Los Angeles"
   lat: 34.06041
@@ -214,7 +228,7 @@
   region: "Long Beach"
   food: 8.5
   price: 8.5
-  vibe: 7.0
+  atmosphere: 7.0
   order: "Al pastor and asada tacos"
   visited: 2024-07
   address: "1772 Clark Ave, Long Beach, CA 90815"
@@ -228,7 +242,7 @@
   region: "Long Beach"
   food: 8.5
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Lamb shank"
   visited: 2023-07
   address: "5224 E 2nd St, Long Beach, CA 90803"
@@ -242,7 +256,7 @@
   region: "Los Angeles"
   food: 8.5
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   order: "The mole combination"
   visited: 2023-06
   address: "3014 West Olympic Boulevard, Los Angeles"
@@ -256,7 +270,7 @@
   region: "Los Angeles"
   food: 8.5
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Korean BBQ"
   visited: 2023-06
   address: "621 S Western Ave, Los Angeles, CA 90005"
@@ -270,7 +284,7 @@
   region: "Los Angeles"
   food: 8.5
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   address: "North Gertruda Avenue, Redondo Beach"
   lat: 33.84954
   lng: -118.38883
@@ -282,7 +296,7 @@
   region: "Long Beach"
   food: 7.5
   price: 9.0
-  vibe: 7.5
+  atmosphere: 7.5
   order: "Deep dish pizza"
   visited: 2021-03
   address: "East 2nd Street, Long Beach"
@@ -296,7 +310,7 @@
   region: "Road trip"
   food: 8.2
   price: 8.2
-  vibe: 8.0
+  atmosphere: 8.0
   address: "3221 Mount Pinos Way, Frazier Park"
   lat: 34.8215
   lng: -118.94015
@@ -308,7 +322,7 @@
   region: "Orange County"
   food: 8.5
   price: 8.2
-  vibe: 7.3
+  atmosphere: 7.3
   order: "The chef's sampler"
   visited: 2024-09
   address: "16051 Bolsa Chica St, Huntington Beach, CA 92649"
@@ -322,7 +336,7 @@
   region: "Road trip"
   food: 8.5
   price: 7.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Mussels and escargot"
   visited: 2024-02
   address: "406 Bell St, Los Alamos, CA 93440"
@@ -336,7 +350,7 @@
   region: "Orange County"
   food: 8.5
   price: 8.0
-  vibe: 7.5
+  atmosphere: 7.5
   order: "Cornbread"
   visited: 2024-11
   address: "201 E 4th St, Santa Ana, CA 92701"
@@ -350,7 +364,7 @@
   region: "Long Beach"
   food: 8.0
   price: 8.0
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Prosciutto sandwich"
   visited: 2020-09
   address: "190 La Verne Ave, Long Beach, CA 90803"
@@ -364,7 +378,7 @@
   region: "Los Angeles"
   food: 8.0
   price: 8.0
-  vibe: 8.5
+  atmosphere: 8.5
 
 - name: "Holbox"
   cuisine: "Mexican"
@@ -373,7 +387,7 @@
   region: "Los Angeles"
   food: 8.3
   price: 7.8
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Uni tostada"
   visited: 2025-07
   address: "3655 South Grand Avenue, Los Angeles"
@@ -387,7 +401,7 @@
   region: "Long Beach"
   food: 7.7
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   visited: 2025-03
   address: "East 2nd Street, Long Beach"
   lat: 33.7605
@@ -400,7 +414,7 @@
   region: "Los Angeles"
   food: 8.5
   price: 8.0
-  vibe: 7.0
+  atmosphere: 7.0
   order: "Kimchi pancake"
   visited: 2025-02
   address: "3317 West 6th Street, Los Angeles"
@@ -414,24 +428,12 @@
   region: "Long Beach"
   food: 8.5
   price: 7.5
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Rye loaf"
   visited: 2021-03
   address: "2710 East 4th Street, Long Beach"
   lat: 33.7716
   lng: -118.15986
-
-- name: "Thai House Street Eats"
-  cuisine: "Thai"
-  meals: [lunch, dinner]
-  area: "Lakewood"
-  region: "Long Beach"
-  food: 7.9
-  price: 8.0
-  vibe: 7.4
-  address: "3225 E Carson St, Lakewood, CA 90712"
-  lat: 33.83245
-  lng: -118.15586
 
 - name: "Tasty Food To Go"
   cuisine: "Thai & Lao"
@@ -440,7 +442,7 @@
   region: "Long Beach"
   food: 8.0
   price: 8.5
-  vibe: 7.0
+  atmosphere: 7.0
   order: "Pad kee mao"
   visited: 2020-03
   address: "2015 E 10th St, Long Beach, CA 90804"
@@ -454,7 +456,7 @@
   region: "Los Angeles"
   food: 8.0
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   address: "1953 Pacific Coast Highway, Lomita"
   lat: 33.79018
   lng: -118.31399
@@ -466,7 +468,7 @@
   region: "Orange County"
   food: 7.5
   price: 8.5
-  vibe: 8.0
+  atmosphere: 8.0
   address: "311 S Brookhurst St, Anaheim, CA 92804"
   lat: 33.82873
   lng: -117.95899
@@ -478,7 +480,7 @@
   region: "Los Angeles"
   food: 8.3
   price: 7.6
-  vibe: 8.1
+  atmosphere: 8.1
   order: "Birria plate"
   visited: 2024-07
   address: "Windward Avenue, Los Angeles"
@@ -492,7 +494,7 @@
   region: "Long Beach"
   food: 8.1
   price: 8.0
-  vibe: 7.5
+  atmosphere: 7.5
   order: "Pastelitos"
   address: "865 E 7th St, Long Beach, CA 90813"
   lat: 33.7754
@@ -505,7 +507,7 @@
   region: "Long Beach"
   food: 8.1
   price: 7.7
-  vibe: 8.1
+  atmosphere: 8.1
   order: "Korean BBQ"
   visited: 2024-06
   address: "621 Atlantic Ave, Long Beach, CA 90802"
@@ -519,7 +521,7 @@
   region: "Long Beach"
   food: 8.0
   price: 8.0
-  vibe: 7.7
+  atmosphere: 7.7
   order: "Banh mi"
   visited: 2025-01
   address: "1171 East Anaheim Street, Long Beach"
@@ -533,40 +535,12 @@
   region: "Los Angeles"
   food: 8.5
   price: 7.5
-  vibe: 7.5
+  atmosphere: 7.5
   order: "The BBQ specials"
   visited: 2024-02
   address: "856 South Vermont Avenue, Los Angeles"
   lat: 34.05639
   lng: -118.29134
-
-- name: "Jounetsu Ramen"
-  cuisine: "Japanese"
-  meals: [lunch, dinner]
-  area: "Retro Row, Long Beach"
-  region: "Long Beach"
-  food: 7.8
-  price: 8.2
-  vibe: 7.5
-  order: "Tonkotsu ramen"
-  visited: 2025-03
-  address: "1035 East 4th Street, Long Beach"
-  lat: 33.7719
-  lng: -118.17899
-
-- name: "Village Inn Fish and Chips"
-  cuisine: "English"
-  meals: [lunch, dinner]
-  area: "Los Altos, Long Beach"
-  region: "Long Beach"
-  food: 7.4
-  price: 8.5
-  vibe: 7.5
-  order: "Fish and chips"
-  visited: 2025-02
-  address: "6406 E Stearns St, Long Beach, CA 90815"
-  lat: 33.79538
-  lng: -118.10776
 
 - name: "The Eldo"
   cuisine: "South African"
@@ -575,7 +549,7 @@
   region: "Long Beach"
   food: 7.5
   price: 8.0
-  vibe: 8.5
+  atmosphere: 8.5
   order: "The South African dishes"
   visited: 2023-11
   address: "3014 N Studebaker Rd, Long Beach, CA 90808"
@@ -589,7 +563,7 @@
   region: "Los Angeles"
   food: 8.6
   price: 7.5
-  vibe: 7.2
+  atmosphere: 7.2
   order: "Pastries"
   address: "11301 West Olympic Boulevard, Los Angeles"
   lat: 34.03815
@@ -602,7 +576,7 @@
   region: "Los Angeles"
   food: 8.2
   price: 8.0
-  vibe: 6.5
+  atmosphere: 6.5
   order: "Chili dumplings and the beef roll"
   address: "1947 Sawtelle Blvd, Los Angeles, CA 90025"
   lat: 34.04175
@@ -615,7 +589,7 @@
   region: "Long Beach"
   food: 8.8
   price: 7.0
-  vibe: 7.5
+  atmosphere: 7.5
   visited: 2025-03
   address: "2030 E 7th St, Long Beach, CA 90804"
   lat: 33.77528
@@ -628,7 +602,7 @@
   region: "Los Angeles"
   food: 8.7
   price: 7.0
-  vibe: 7.6
+  atmosphere: 7.6
   order: "Lox bagel"
   visited: 2024-03
   address: "2216 Wilshire Blvd, Santa Monica, CA 90403"
@@ -642,7 +616,7 @@
   region: "Road trip"
   food: 8.5
   price: 7.0
-  vibe: 8.0
+  atmosphere: 8.0
   address: "2034 Kettner Blvd, San Diego, CA 92101"
   lat: 32.72548
   lng: -117.17007
@@ -654,7 +628,7 @@
   region: "Los Angeles"
   food: 7.8
   price: 8.0
-  vibe: 7.0
+  atmosphere: 7.0
   order: "Chicken sandwich and wings"
   visited: 2021-03
   address: "727 North Broadway, Los Angeles"
@@ -668,7 +642,7 @@
   region: "Long Beach"
   food: 7.7
   price: 8.0
-  vibe: 7.0
+  atmosphere: 7.0
   order: "Khao soi"
   address: "4152 Norse Way, Long Beach"
   lat: 33.83355
@@ -681,7 +655,7 @@
   region: "Long Beach"
   food: 8.0
   price: 7.5
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Mussels and the breakfast bowl"
   visited: 2024-01
   address: "3441 East Broadway, Long Beach"
@@ -695,7 +669,7 @@
   region: "Los Angeles"
   food: 8.0
   price: 7.5
-  vibe: 8.0
+  atmosphere: 8.0
   address: "10800 Washington Boulevard, Culver City"
   lat: 34.01503
   lng: -118.40728
@@ -707,7 +681,7 @@
   region: "Los Angeles"
   food: 8.0
   price: 7.0
-  vibe: 9.0
+  atmosphere: 9.0
   order: "Doro wat and the vegetarian combo"
   visited: 2024-03
   address: "1034 South Fairfax Avenue, Los Angeles"
@@ -721,7 +695,7 @@
   region: "Orange County"
   food: 7.5
   price: 8.5
-  vibe: 7.0
+  atmosphere: 7.0
   order: "Beef dog with onions"
   visited: 2020-08
   address: "8390 La Palma Ave, Buena Park, CA 90620"
@@ -735,7 +709,7 @@
   region: "Long Beach"
   food: 7.5
   price: 8.0
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Noodle soup"
   visited: 2020-10
   address: "1644 Cherry Avenue, Long Beach"
@@ -749,7 +723,7 @@
   region: "Los Angeles"
   food: 6.5
   price: 9.0
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Pork belly wraps (bossam)"
   visited: 2024-04
   address: "301 S Western Ave, Los Angeles, CA 90020"
@@ -763,7 +737,7 @@
   region: "Orange County"
   food: 7.9
   price: 7.0
-  vibe: 9.0
+  atmosphere: 9.0
   order: "The Aloha Hawaiian Breakfast"
   visited: 2024-01
   address: "31431 Rancho Viejo Rd, San Juan Capistrano, CA 92675"
@@ -777,7 +751,7 @@
   region: "Road trip"
   food: 8.5
   price: 6.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Mole and the carnitas burrito"
   visited: 2024-03
 
@@ -788,7 +762,7 @@
   region: "Road trip"
   food: 8.5
   price: 7.0
-  vibe: 7.5
+  atmosphere: 7.5
   order: "Lox bagel"
   visited: 2025-02
   address: "54440 N Circle Dr, Idyllwild, CA 92549"
@@ -802,7 +776,7 @@
   region: "Los Angeles"
   food: 8.5
   price: 6.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Pastries"
   visited: 2023-12
   address: "624 S La Brea Ave, Los Angeles, CA 90036"
@@ -816,7 +790,7 @@
   region: "Long Beach"
   food: 8.0
   price: 7.5
-  vibe: 7.5
+  atmosphere: 7.5
   order: "Mole"
   visited: 2024-01
   address: "3937 E Broadway, Long Beach, CA 90803"
@@ -830,7 +804,7 @@
   region: "Los Angeles"
   food: 8.0
   price: 7.5
-  vibe: 7.5
+  atmosphere: 7.5
   order: "The mackerel"
   address: "2627 Wilshire Blvd, Santa Monica, CA 90403"
   lat: 34.03678
@@ -843,7 +817,7 @@
   region: "Los Angeles"
   food: 7.5
   price: 8.0
-  vibe: 7.5
+  atmosphere: 7.5
   order: "Al pastor tacos"
 
 - name: "The Olive Restobar"
@@ -853,7 +827,7 @@
   region: "Los Angeles"
   food: 7.5
   price: 7.5
-  vibe: 8.5
+  atmosphere: 8.5
   order: "Chicken shawarma"
   visited: 2020-09
   address: "8830 Apollo Way, Downey, CA 90242"
@@ -867,7 +841,7 @@
   region: "Long Beach"
   food: 8.0
   price: 7.3
-  vibe: 7.7
+  atmosphere: 7.7
   order: "Bulgogi burrito"
   address: "4150 McGowen St, Long Beach, CA 90808"
   lat: 33.82931
@@ -880,7 +854,7 @@
   region: "Long Beach"
   food: 7.9
   price: 7.1
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Kibbeh"
   address: "285 E 3rd St, Long Beach, CA 90802"
   lat: 33.77056
@@ -893,7 +867,7 @@
   region: "Los Angeles"
   food: 7.9
   price: 8.1
-  vibe: 7.9
+  atmosphere: 7.9
   order: "Mole"
   address: "12326 Venice Blvd, Los Angeles, CA 90066"
   lat: 34.00398
@@ -906,7 +880,7 @@
   region: "Road trip"
   food: 8.6
   price: 7.5
-  vibe: 8.3
+  atmosphere: 8.3
   order: "Anything, it's all good"
   address: "2375 Alamo Pintado Ave, Los Olivos, CA 93441"
   lat: 34.66557
@@ -919,7 +893,7 @@
   region: "Los Angeles"
   food: 8.3
   price: 7.9
-  vibe: 6.9
+  atmosphere: 6.9
   order: "Short rib"
   address: "718 S Los Angeles St, Los Angeles, CA 90014"
   lat: 34.04294
@@ -932,7 +906,7 @@
   region: "Los Angeles"
   food: 8.3
   price: 8.0
-  vibe: 7.9
+  atmosphere: 7.9
   order: "Mapo tofu"
   address: "5816 York Blvd, Los Angeles, CA 90042"
   lat: 34.1185
@@ -945,7 +919,7 @@
   region: "Los Angeles"
   food: 8.3
   price: 7.5
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Chocolate croissant"
   address: "1009 E Colorado Blvd, Pasadena, CA 91106"
   lat: 34.14598
@@ -958,7 +932,7 @@
   region: "Los Angeles"
   food: 8.0
   price: 7.4
-  vibe: 8.0
+  atmosphere: 8.0
   order: "Arepas"
   address: "55 S Raymond Ave, Pasadena, CA 91105"
   lat: 34.14498
@@ -971,8 +945,34 @@
   region: "Los Angeles"
   food: 8.7
   price: 7.9
-  vibe: 8.4
+  atmosphere: 8.4
   order: "Vermont cheddar"
   address: "9705 S Santa Monica Blvd, Beverly Hills, CA 90210"
   lat: 34.0685
   lng: -118.40751
+
+- name: "Chiang Rai"
+  cuisine: "Thai"
+  meals: [lunch, dinner]
+  area: "East Anaheim Street, Long Beach"
+  region: "Long Beach"
+  food: 7.8
+  price: 7.7
+  atmosphere: 7.8
+  order: "Khao soi"
+  address: "3832 E Anaheim St, Long Beach, CA 90804"
+  lat: 33.78254
+  lng: -118.14741
+
+- name: "Endless Color"
+  cuisine: "Pizza"
+  meals: [lunch, dinner]
+  area: "Topanga"
+  region: "Los Angeles"
+  food: 7.9
+  price: 7.7
+  atmosphere: 8.2
+  order: "The pizzas"
+  address: "123 S Topanga Canyon Blvd, Topanga, CA 90290"
+  lat: 34.08905
+  lng: -118.60386

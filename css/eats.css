@@ -120,7 +120,7 @@
 
 .ek-food, .ec-bar-food .ec-bar-track span { background: #e8772e; }
 .ek-price, .ec-bar-price .ec-bar-track span { background: #1f7a63; }
-.ek-vibe, .ec-bar-vibe .ec-bar-track span { background: #7a4fc9; }
+.ek-atmosphere, .ec-bar-atmosphere .ec-bar-track span { background: #7a4fc9; }
 
 /* ===== The Value formula and its sliders ===== */
 .eats-formula {
@@ -162,7 +162,7 @@
 
 .ef-sliders label {
     display: grid;
-    grid-template-columns: 44px 1fr 40px;
+    grid-template-columns: 84px 1fr 40px;
     align-items: center;
     gap: 8px;
     margin: 0;
@@ -528,7 +528,7 @@
 .ec-badge-top { color: #5a4300; background: #f2b705; }
 .ec-badge-food { color: #8a3d0c; background: #fde3cf; }
 .ec-badge-price { color: #135241; background: #d3f0e7; }
-.ec-badge-vibe { color: #4a2a87; background: #e6dcf8; }
+.ec-badge-atmosphere { color: #4a2a87; background: #e6dcf8; }
 
 .ec-order {
     margin: 10px 0 0 46px;
@@ -548,7 +548,7 @@
 
 .ec-bar {
     display: grid;
-    grid-template-columns: 46px 1fr 30px;
+    grid-template-columns: 76px 1fr 30px;
     align-items: center;
     gap: 8px;
     font-size: 12px;

@@ -12,6 +12,10 @@
         e.spots = list.filter(function (s) { return typeof s.lat === 'number' && typeof s.lng === 'number'; });
         e.pinned = e.spots.length > 0;
         e.multi = e.spots.length > 1;
+        // A location can sit in a different region from the others (Porto's: Orange County and LA)
+        e.spots.forEach(function (s) { s.region = s.region || e.region; });
+        e.regions = [e.region];
+        e.spots.forEach(function (s) { if (e.regions.indexOf(s.region) === -1) e.regions.push(s.region); });
     }
     var eats = (window.FAIRVOPIA_EATS || []).map(function (e, i) {
         e.id = i;
@@ -19,7 +23,7 @@
         addSpots(e);
         return e;
     });
-    // Bars (_data/bars.yml) have a single overall rating instead of food, price and vibe
+    // Bars (_data/bars.yml) have a single overall rating instead of food, price and atmosphere
     var bars = (window.FAIRVOPIA_BARS || []).map(function (b, i) {
         b.id = eats.length + i;
         b.kind = 'bars';
@@ -31,17 +35,17 @@
         .forEach(function (b, i) { b.rank = i + 1; });
     var all = eats.concat(bars);
 
-    // ---- Value score: a weighted mix of food, price and vibe ----
+    // ---- Value score: a weighted mix of food, price and atmosphere ----
     // The default mix is set at the top of eats.html; visitors can try their own with the sliders.
-    var DEFAULT_WEIGHTS = window.FAIRVOPIA_EATS_WEIGHTS || { food: 40, price: 40, vibe: 20 };
+    var DEFAULT_WEIGHTS = window.FAIRVOPIA_EATS_WEIGHTS || { food: 40, price: 40, atmosphere: 20 };
     var weights = {};
-    function setWeights(w) { ['food', 'price', 'vibe'].forEach(function (k) { weights[k] = +w[k] || 0; }); }
+    function setWeights(w) { ['food', 'price', 'atmosphere'].forEach(function (k) { weights[k] = +w[k] || 0; }); }
     setWeights(DEFAULT_WEIGHTS);
     function rescore() {
-        var total = weights.food + weights.price + weights.vibe || 1;
+        var total = weights.food + weights.price + weights.atmosphere || 1;
         eats.forEach(function (e) {
             // Rank by the exact mix; show it rounded. (Ranking by the rounded number left many ties.)
-            e.exact = (weights.food * e.food + weights.price * e.price + weights.vibe * e.vibe) / total;
+            e.exact = (weights.food * e.food + weights.price * e.price + weights.atmosphere * e.atmosphere) / total;
             e.score = Math.round(e.exact * 10) / 10;
         });
         eats.slice().sort(function (a, b) { return b.exact - a.exact || b.food - a.food; })
@@ -75,7 +79,7 @@
         if (e.rank <= 10) b.push(['top', 'fa-trophy', 'Top 10']);
         if (e.food >= 9) b.push(['food', 'fa-cutlery', 'Amazing food']);
         if (e.price >= 8.5) b.push(['price', 'fa-usd', 'Great price']);
-        if (e.vibe >= 8.5) b.push(['vibe', 'fa-music', 'Great vibe']);
+        if (e.atmosphere >= 8.5) b.push(['atmosphere', 'fa-music', 'Great atmosphere']);
         return b.map(function (x) {
             return '<span class="ec-badge ec-badge-' + x[0] + '"><i class="fa ' + x[1] + '" aria-hidden="true"></i> ' + x[2] + '</span>';
         }).join('');
@@ -99,7 +103,8 @@
     }
     function areaText(e) {
         if (!e.multi) return esc(e.area);
-        return e.spots.length + ' locations: ' + e.spots.map(function (s) { return esc(s.area); }).join(' and ');
+        var names = e.spots.map(function (s) { return esc(s.area); });
+        return names.length + ' locations: ' + names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
     }
     function visited(e) {
         if (!e.visited) return '';
@@ -129,7 +134,7 @@
             // A search looks at every restaurant and bar, whatever the other filters say
             if (q) return e.search.indexOf(q) !== -1 || e.search.replace(/ /g, '').indexOf(q.replace(/ /g, '')) !== -1;
             if (e.kind !== state.kind) return false;
-            if (state.region && e.region !== state.region) return false;
+            if (state.region && e.regions.indexOf(state.region) === -1) return false;
             if (e.kind === 'bars') return true;
             return (!state.meal || (e.meals || []).indexOf(state.meal) !== -1) &&
                 (!state.cuisine || e.cuisine === state.cuisine);
@@ -181,7 +186,7 @@
                 '</div>' +
                 (badges(e) ? '<div class="ec-badges">' + badges(e) + '</div>' : '') +
                 (e.order ? '<p class="ec-order"><i class="fa fa-star" aria-hidden="true"></i> <strong>Order:</strong> ' + esc(e.order) + '</p>' : '') +
-                '<div class="ec-bars">' + bar('Food', e.food, 'food') + bar('Price', e.price, 'price') + bar('Vibe', e.vibe, 'vibe') + '</div>' +
+                '<div class="ec-bars">' + bar('Food', e.food, 'food') + bar('Price', e.price, 'price') + bar('Atmosphere', e.atmosphere, 'atmosphere') + '</div>' +
                 '<div class="ec-links">' +
                     (e.pinned && map ? '<button type="button" class="ec-show"><i class="fa fa-map-marker" aria-hidden="true"></i> Show on map</button>' : '') +
                     directionLinks(e) +
@@ -221,14 +226,14 @@
     // ---- The formula line and the sliders ----
     var formula = document.getElementById('eats-formula');
     function showWeights() {
-        var total = weights.food + weights.price + weights.vibe || 1;
-        ['food', 'price', 'vibe'].forEach(function (k) {
+        var total = weights.food + weights.price + weights.atmosphere || 1;
+        ['food', 'price', 'atmosphere'].forEach(function (k) {
             var pct = Math.round(weights[k] / total * 100) + '%';
             formula.querySelector('[data-share="' + k + '"]').textContent = pct;
             formula.querySelector('[data-out="' + k + '"]').textContent = pct;
             formula.querySelector('[data-weight="' + k + '"]').value = weights[k];
         });
-        var mine = ['food', 'price', 'vibe'].every(function (k) { return weights[k] === (+DEFAULT_WEIGHTS[k] || 0); });
+        var mine = ['food', 'price', 'atmosphere'].every(function (k) { return weights[k] === (+DEFAULT_WEIGHTS[k] || 0); });
         formula.classList.toggle('custom', !mine);
     }
     function reweigh() {
@@ -290,7 +295,7 @@
             fitToPins(true);
         });
     });
-    // Restaurants or bars: bars have no meals, cuisines or food/price/vibe scores to filter by
+    // Restaurants or bars: bars have no meals, cuisines or food/price/atmosphere scores to filter by
     var controlsEl = document.querySelector('.eats-controls');
     var pickLabel = document.querySelector('#eats-pick span');
     function setKind(kind) {
@@ -302,7 +307,7 @@
         });
         controlsEl.classList.toggle('kind-bars', kind === 'bars');
         [].forEach.call(sortEl.options, function (o) {
-            o.hidden = kind === 'bars' && ['food', 'price', 'vibe'].indexOf(o.value) !== -1;
+            o.hidden = kind === 'bars' && ['food', 'price', 'atmosphere'].indexOf(o.value) !== -1;
         });
         if (sortEl.selectedOptions[0] && sortEl.selectedOptions[0].hidden) { sortEl.value = 'score'; state.sort = 'score'; }
         sortEl.options[0].textContent = kind === 'bars' ? 'Top rated' : 'Best value';
@@ -379,13 +384,20 @@
         map.__style = styleUrl();
     }
 
+    // With an area picked, only that area's locations get pins (a search shows them all)
+    function spotsInView(e) {
+        if (!state.region || state.query.trim()) return e.spots;
+        return e.spots.filter(function (s) { return s.region === state.region; });
+    }
     function updatePins(list) {
         if (!map) return;
-        var keep = {};
         shown = list.filter(function (e) { return e.pinned; });
+        var keep = {};
         shown.forEach(function (e) {
-            keep[e.id] = true;
+            var inView = spotsInView(e);
             markers[e.id].forEach(function (m, i) {
+                if (inView.indexOf(e.spots[i]) === -1) return;
+                keep[e.id + ':' + i] = true;
                 var el = m.getElement();
                 el.classList.toggle('tier-1', e.score >= 8.5);
                 el.classList.toggle('tier-2', e.score >= 8.2 && e.score < 8.5);
@@ -394,7 +406,9 @@
                 m.addTo(map);
             });
         });
-        eachMarker(function (m, k) { if (!keep[k]) m.remove(); });
+        Object.keys(markers).forEach(function (k) {
+            markers[k].forEach(function (m, i) { if (!keep[k + ':' + i]) m.remove(); });
+        });
     }
     function fitSpots(spots, animate, maxZoom) {
         var b = new maplibregl.LngLatBounds();
@@ -403,7 +417,7 @@
     }
     function fitToPins(animate) {
         if (!map || !shown.length) return;
-        fitSpots([].concat.apply([], shown.map(function (e) { return e.spots; })), animate);
+        fitSpots([].concat.apply([], shown.map(spotsInView)), animate);
     }
     function closePopup() { if (popup) popup.remove(); }
     function focusOn(e, fromPin, spot) {
@@ -411,9 +425,13 @@
         if (!map || !e.pinned) return;
         // A place with several locations: show them all, unless one pin was clicked
         if (e.multi && !spot) {
-            closePopup();
-            fitSpots(e.spots, true, 13.5);
-            return;
+            var inView = spotsInView(e);
+            if (inView.length > 1) {
+                closePopup();
+                fitSpots(inView, true, 13.5);
+                return;
+            }
+            spot = inView[0];
         }
         spot = spot || e.spots[0];
         map.flyTo({ center: [spot.lng, spot.lat], zoom: Math.max(map.getZoom(), 13.5), duration: reduceMotion ? 0 : 1000, essential: true });
@@ -438,7 +456,7 @@
         var pool = visible().filter(function (e) { return e.pinned; });
         if (!pool.length) pool = all.filter(function (e) { return e.kind === state.kind; }).filter(function (e) { return e.pinned; });
         var choice = pool[Math.floor(Math.random() * pool.length)];
-        if (choice.region !== state.region && state.region) {
+        if (state.region && choice.regions.indexOf(state.region) === -1) {
             document.querySelector('.eats-regions .rf-filter[data-region="' + choice.region + '"]').click();
         }
         document.getElementById('eats').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });

@@ -10,7 +10,7 @@ tried: 242
 weights:
   food: 40
   price: 40
-  vibe: 20
+  atmosphere: 20
 ---
 {%- assign eats = site.data.eats -%}
 {%- assign lb = eats | where: "region", "Long Beach" -%}
@@ -24,7 +24,7 @@ weights:
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Antoine Bichara">
-{% include social-meta.html title="Long Beach Eats | Fairvopia" description="Where to eat in Long Beach and around Southern California: a map of my favorite restaurants, scored for food, value and vibe." %}
+{% include social-meta.html title="Long Beach Eats | Fairvopia" description="Where to eat in Long Beach and around Southern California: a map of my favorite restaurants, scored for food, price and atmosphere." %}
 
     <title>Long Beach Eats | Fairvopia</title>
 
@@ -65,17 +65,17 @@ weights:
         <div class="eats-legend">
             <div class="eats-key"><span class="ek-icon ek-food"><i class="fa fa-cutlery" aria-hidden="true"></i></span><strong>Food</strong><span>How good it tastes.</span></div>
             <div class="eats-key"><span class="ek-icon ek-price"><i class="fa fa-usd" aria-hidden="true"></i></span><strong>Price</strong><span>How fair the price is for what you get, whether it's a $3 taco or a tasting menu. Higher is better.</span></div>
-            <div class="eats-key"><span class="ek-icon ek-vibe"><i class="fa fa-music" aria-hidden="true"></i></span><strong>Vibe</strong><span>The room, the service, the feeling of being there.</span></div>
+            <div class="eats-key"><span class="ek-icon ek-atmosphere"><i class="fa fa-music" aria-hidden="true"></i></span><strong>Atmosphere</strong><span>The room, the service, the feeling of being there.</span></div>
         </div>
 
         <div class="eats-formula" id="eats-formula">
-            <p class="ef-line"><strong>Value</strong> = <span data-share="food">40%</span> Food + <span data-share="price">40%</span> Price + <span data-share="vibe">20%</span> Vibe</p>
+            <p class="ef-line"><strong>Value</strong> = <span data-share="food">40%</span> Food + <span data-share="price">40%</span> Price + <span data-share="atmosphere">20%</span> Atmosphere</p>
             <details class="ef-tweak">
                 <summary><i class="fa fa-sliders" aria-hidden="true"></i> Care more about one of them? Change the mix and re-rank the list</summary>
                 <div class="ef-sliders">
                     <label><span>Food</span><input type="range" min="0" max="100" step="5" data-weight="food"><output data-out="food"></output></label>
                     <label><span>Price</span><input type="range" min="0" max="100" step="5" data-weight="price"><output data-out="price"></output></label>
-                    <label><span>Vibe</span><input type="range" min="0" max="100" step="5" data-weight="vibe"><output data-out="vibe"></output></label>
+                    <label><span>Atmosphere</span><input type="range" min="0" max="100" step="5" data-weight="atmosphere"><output data-out="atmosphere"></output></label>
                 </div>
                 <button type="button" class="ef-reset">Back to my mix</button>
             </details>
@@ -118,7 +118,7 @@ weights:
                             <option value="score">Best value</option>
                             <option value="food">Best food</option>
                             <option value="price">Best price</option>
-                            <option value="vibe">Best vibe</option>
+                            <option value="atmosphere">Best atmosphere</option>
                             <option value="name">A to Z</option>
                         </select>
                     </label>

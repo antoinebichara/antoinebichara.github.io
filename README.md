@@ -102,15 +102,19 @@ its card falls back to the full photo, which works but loads more slowly.
 The restaurant map at `/eats.html` (linked from the home page's top corner and the footer)
 reads its list from `_data/eats.yml`. Each restaurant has a name, cuisine, area, region
 (`Long Beach`, `Los Angeles`, `Orange County` or `Road trip`), the three scores out of 10
-(`food`, `price`, `vibe`), `meals` (any of `breakfast`, `lunch`, `dinner`, `dessert`, for the
+(`food`, `price`, `atmosphere`), `meals` (any of `breakfast`, `lunch`, `dinner`, `dessert`, for the
 meal filter), and optionally `order` (the dish to get), `visited` (e.g.
 `2025-03`), `address`, and `lat`/`lng` for its pin (copy them from Google Maps by
 right-clicking the spot).
 
 The page works out each place's overall Value score and the ranking itself. How much food,
-price and vibe count is set by `weights` at the top of `eats.html` (40/40/20 to start);
+price and atmosphere count is set by `weights` at the top of `eats.html` (40/40/20 to start);
 change them to re-rank the list. Visitors can also try their own mix with the sliders, which
 only changes what they see.
+
+A place with more than one location (like Pine & Crane or Porto's) lists them under
+`locations` instead of one `address`/`lat`/`lng`, each with its own `area` and pin (and
+optionally its own `region`). Copy an existing one as a template.
 
 Bars live in `_data/bars.yml` and show under the page's Bars tab. Each bar just has a name,
 area, region, one overall `rating` out of 10, and optionally `address` and `lat`/`lng`.
