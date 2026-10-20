@@ -182,22 +182,6 @@
   lat: 33.77166
   lng: -118.18087
 
-- name: "The Hawk"
-  area: "Willmore, Long Beach"
-  region: "Long Beach"
-  rating: 7.9
-  address: "468 W Anaheim St, Long Beach, CA 90813"
-  lat: 33.78253
-  lng: -118.19718
-
-- name: "The Normandie Club"
-  area: "Koreatown, LA"
-  region: "Los Angeles"
-  rating: 7.5
-  address: "3612 W 6th St, Los Angeles, CA 90020"
-  lat: 34.06351
-  lng: -118.3007
-
 - name: "Scum & Villainy"
   area: "Hollywood"
   region: "Los Angeles"
@@ -205,3 +189,11 @@
   address: "6377 Hollywood Blvd, Los Angeles, CA 90028"
   lat: 34.10166
   lng: -118.32909
+
+- name: "Bar Flores"
+  area: "Echo Park, LA"
+  region: "Los Angeles"
+  rating: 7.8
+  address: "1542 Sunset Blvd, Los Angeles, CA 90026"
+  lat: 34.07630
+  lng: -118.25643
